@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Phone2</th>
+      <th>Date of birth</th>
+      <th>Role</th>
+      <th>Tradesmen Profile</th>
+      <th>Business</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.address %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.phone2 %></td>
+        <td><%= user.date_of_birth %></td>
+        <td><%= user.role.name %></td>
+        <td>
+          <% if user.tradesmen_profile.present? %>
+            <%= link_to user.tradesmen_profile.name, tradesmen_profile_path(id: user.tradesmen_profile.id) %>
+          <% end %>
+        </td>
+        <td>
+          <% if user.business.present? %>
+            <%= link_to user.business.name, business_path(id: user.business.id) %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

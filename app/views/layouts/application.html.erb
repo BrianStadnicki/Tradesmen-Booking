@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lottery Booking</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <%= link_to 'Users', users_path %>
+      <%= link_to 'Tradesmen Profiles', tradesmen_profiles_path %>
+      <%= link_to 'Businesses', businesses_path %>
+      <%= link_to 'Tradesmen Trades', tradesmen_trades_path %>
+      <%= link_to 'Roles', roles_path %>
+      <%= link_to 'Role Categories', role_categories_path %>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

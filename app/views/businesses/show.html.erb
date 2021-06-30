@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @business.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @business.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @business.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @business.phone %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= link_to @business.owner.name, user_path(id: @business.owner.id) %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @business.users.each do |user_and_role| %>
+        <tr>
+          <td><%= user_and_role.user.name %></td>
+          <td><%= user_and_role.role.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Back', businesses_path %>

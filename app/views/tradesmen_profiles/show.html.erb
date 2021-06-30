@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tradesmen_profile.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tradesmen_profile.description %>
+</p>
+
+<p>
+  <strong>Trades:</strong>
+  <%= @tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= link_to @tradesmen_profile.owner.name, user_path(id: @tradesmen_profile.owner.id) %>
+</p>
+
+<%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
+<%= link_to 'Back', tradesmen_profiles_path %>
