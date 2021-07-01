@@ -5,5 +5,23 @@
   <%= @tradesmen_trade.name %>
 </p>
 
+<p>
+  <strong>Tradesmen:</strong>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tradesmen_trade.tradesmen_profiles.each do |profile| %>
+        <tr>
+          <th><%= link_to profile.name, tradesmen_profile_path(id: profile.id) %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_tradesmen_trade_path(@tradesmen_trade) %> |
 <%= link_to 'Back', tradesmen_trades_path %>
