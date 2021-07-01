@@ -12,12 +12,12 @@
 
   <body>
     <nav>
+      <%= link_to 'Jobs', jobs_path %>
       <%= link_to 'Users', users_path %>
       <%= link_to 'Tradesmen Profiles', tradesmen_profiles_path %>
       <%= link_to 'Businesses', businesses_path %>
       <%= link_to 'Tradesmen Trades', tradesmen_trades_path %>
       <%= link_to 'Roles', roles_path %>
-      <%= link_to 'Role Categories', role_categories_path %>
     </nav>
     <%= yield %>
   </body>
