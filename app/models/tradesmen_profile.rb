@@ -9,4 +9,8 @@ class TradesmenProfile < ApplicationRecord
   has_many :employees, lambda {
                          TradesmenProfileUser.joins(:role).where(roles: { name: 'Employee' }).includes(:user)
                        }, class_name: 'TradesmenProfileUser'
+
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
+  validates :description, presence: true, length: { maximum: 200 }
+  validates :owner_id, presence: true
 end
