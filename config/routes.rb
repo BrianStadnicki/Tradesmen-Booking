@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :role_categories
   resources :jobs
   resources :tradesmen_trades
   resources :tradesmen_profiles
