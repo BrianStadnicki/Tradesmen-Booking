@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :business_id %>
-    <%= form.text_field :business_id %>
+    <%= collection_select(:business, :business_id, Business.all, :id, :name, { prompt: true }) %>
   </div>
 
   <div class="actions">
