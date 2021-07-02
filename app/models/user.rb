@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :role
-  has_one :business, required: false, foreign_key: 'owner_id'
-  has_one :tradesmen_profile, required: false, foreign_key: 'owner_id'
+  has_one :business, required: false, foreign_key: 'owner_id', dependent: :destroy
+  has_one :tradesmen_profile, required: false, foreign_key: 'owner_id', dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :address, presence: true, length: { maximum: 100 }

@@ -44,7 +44,7 @@
   <div class="field">
     <%= form.label :role_id %>
     <%= collection_select(
-          :user, :role_id, Role.all, :id, :name, { prompt: true }
+          :user, :role_id, Role.user_category, :id, :name, { prompt: true }
         ) %>
   </div>
 
