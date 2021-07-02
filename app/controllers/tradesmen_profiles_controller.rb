@@ -1,4 +1,5 @@
 class TradesmenProfilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tradesmen_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /tradesmen_profiles

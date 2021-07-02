@@ -1,4 +1,5 @@
 class TradesmenTradesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tradesmen_trade, only: [:show, :edit, :update, :destroy]
 
   # GET /tradesmen_trades
