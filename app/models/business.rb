@@ -1,5 +1,6 @@
 class Business < ApplicationRecord
   belongs_to :owner, class_name: 'User', dependent: :destroy
+  has_many :jobs
 
   has_many :users, class_name: 'BusinessUser'
   has_many :admins, lambda {
