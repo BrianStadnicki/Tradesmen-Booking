@@ -1,10 +1,9 @@
 class TradesmenProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tradesmen_profile, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /tradesmen_profiles
   def index
-    @tradesmen_profiles = TradesmenProfile.all
   end
 
   # GET /tradesmen_profiles/1
@@ -13,7 +12,6 @@ class TradesmenProfilesController < ApplicationController
 
   # GET /tradesmen_profiles/new
   def new
-    @tradesmen_profile = TradesmenProfile.new
   end
 
   # GET /tradesmen_profiles/1/edit
@@ -22,8 +20,6 @@ class TradesmenProfilesController < ApplicationController
 
   # POST /tradesmen_profiles
   def create
-    @tradesmen_profile = TradesmenProfile.new(tradesmen_profile_params)
-
     params[:tradesmen_profile][:tradesmen_trade_ids].each do |tradesmen_trade_id|
       unless tradesmen_trade_id.empty?
         tradesmen_trade = TradesmenTrade.find(tradesmen_trade_id)
@@ -62,10 +58,6 @@ class TradesmenProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tradesmen_profile
-      @tradesmen_profile = TradesmenProfile.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def tradesmen_profile_params

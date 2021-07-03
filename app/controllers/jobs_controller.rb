@@ -1,10 +1,9 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_job, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /jobs
   def index
-    @jobs = Job.all
   end
 
   # GET /jobs/1
@@ -13,7 +12,6 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
-    @job = Job.new
   end
 
   # GET /jobs/1/edit
@@ -22,8 +20,6 @@ class JobsController < ApplicationController
 
   # POST /jobs
   def create
-    @job = Job.new(job_params)
-
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
@@ -47,10 +43,6 @@ class JobsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_job
-      @job = Job.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def job_params

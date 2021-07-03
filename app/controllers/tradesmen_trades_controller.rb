@@ -1,10 +1,9 @@
 class TradesmenTradesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tradesmen_trade, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /tradesmen_trades
   def index
-    @tradesmen_trades = TradesmenTrade.all
   end
 
   # GET /tradesmen_trades/1
@@ -13,7 +12,6 @@ class TradesmenTradesController < ApplicationController
 
   # GET /tradesmen_trades/new
   def new
-    @tradesmen_trade = TradesmenTrade.new
   end
 
   # GET /tradesmen_trades/1/edit
@@ -22,8 +20,6 @@ class TradesmenTradesController < ApplicationController
 
   # POST /tradesmen_trades
   def create
-    @tradesmen_trade = TradesmenTrade.new(tradesmen_trade_params)
-
     if @tradesmen_trade.save
       redirect_to @tradesmen_trade, notice: 'Tradesmen trade was successfully created.'
     else
@@ -47,13 +43,9 @@ class TradesmenTradesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tradesmen_trade
-      @tradesmen_trade = TradesmenTrade.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tradesmen_trade_params
-      params.require(:tradesmen_trade).permit(:name)
-    end
+  # Only allow a list of trusted parameters through.
+  def tradesmen_trade_params
+    params.require(:tradesmen_trade).permit(:name)
+  end
 end

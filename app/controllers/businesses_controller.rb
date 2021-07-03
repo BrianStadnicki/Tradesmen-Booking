@@ -1,10 +1,9 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_business, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /businesses
   def index
-    @businesses = Business.all
   end
 
   # GET /businesses/1
@@ -13,7 +12,6 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/new
   def new
-    @business = Business.new
   end
 
   # GET /businesses/1/edit
@@ -22,8 +20,6 @@ class BusinessesController < ApplicationController
 
   # POST /businesses
   def create
-    @business = Business.new(business_params)
-
     if @business.save
       redirect_to @business, notice: 'Business was successfully created.'
     else
@@ -50,10 +46,6 @@ class BusinessesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_business
-      @business = Business.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def business_params

@@ -13,4 +13,16 @@ class User < ApplicationRecord
   validates :phone, presence: true, length: { maximum: 30 }
   validates :phone2, allow_blank: true, length: { maximum: 30 }
   validates :date_of_birth, presence: true
+
+  def admin?
+    role.name == 'Admin'
+  end
+
+  def tradesmen?
+    role.name == 'Tradesmen'
+  end
+
+  def booker?
+    role.name == 'Booker'
+  end
 end
