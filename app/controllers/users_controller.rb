@@ -9,6 +9,13 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @joined_on = @user.created_at.to_formatted_s(:short)
+
+    @last_login = if @user.current_sign_in_at
+                    @user.current_sign_in_at.to_formatted_s(:short)
+    else
+      'never'
+                  end
   end
 
   # GET /users/new
@@ -48,12 +55,12 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:name, :email, :address, :phone, :phone2, :date_of_birth, :role_id)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :address, :phone, :phone2, :date_of_birth, :role_id, :password, :password_confirmation)
+  end
 end
