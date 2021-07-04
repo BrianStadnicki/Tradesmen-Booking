@@ -9,6 +9,7 @@
       <th>Description</th>
       <th>Address</th>
       <th>Business</th>
+      <th>Tradesmen</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= job.description %></td>
         <td><%= job.address %></td>
         <td><%= job.business.name %></td>
+        <td><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
         <td><%= link_to 'Show', job %></td>
         <td><%= link_to 'Edit', edit_job_path(job) %></td>
         <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>

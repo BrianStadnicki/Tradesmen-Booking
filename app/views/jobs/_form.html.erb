@@ -31,6 +31,11 @@
     <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
   </div>
 
+  <div class="field">
+    <%= form.label :tradesmen_profile %>
+    <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
