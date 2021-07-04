@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_03_122601) do
+ActiveRecord::Schema.define(version: 2021_07_04_073612) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -33,13 +33,15 @@ ActiveRecord::Schema.define(version: 2021_07_03_122601) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string "type"
+    t.string "title"
     t.text "description"
     t.string "address"
     t.integer "business_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "tradesmen_profile_id"
     t.index ["business_id"], name: "index_jobs_on_business_id"
+    t.index ["tradesmen_profile_id"], name: "index_jobs_on_tradesmen_profile_id"
   end
 
   create_table "role_categories", force: :cascade do |t|

@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @job.type %>
+  <strong>Title:</strong>
+  <%= @job.title %>
 </p>
 
 <p>
@@ -17,8 +17,15 @@
 
 <p>
   <strong>Business:</strong>
-  <%= @job.business_id %>
+  <%= @job.business.name %>
 </p>
+
+<% if @job.tradesmen_profile.present? %>
+  <p>
+    <strong>Tradesmen:</strong>
+    <%= :job.tradesmen_profile.name %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>

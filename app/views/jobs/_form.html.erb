@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.text_field :type %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
 
   <div class="field">
@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :business_id %>
-    <%= collection_select(:business, :business_id, Business.all, :id, :name, { prompt: true }) %>
+    <%= form.label :business %>
+    <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
   </div>
 
   <div class="actions">
