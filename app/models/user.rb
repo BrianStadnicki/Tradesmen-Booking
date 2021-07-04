@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def tradesmen?
-    role.name == 'Tradesmen'
+    role.name == 'Tradesman'
   end
 
   def booker?
