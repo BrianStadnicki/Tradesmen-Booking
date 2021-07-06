@@ -11,14 +11,16 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'Jobs', jobs_path %>
-      <%= link_to 'Users', users_path %>
-      <%= link_to 'Tradesmen Profiles', tradesmen_profiles_path %>
-      <%= link_to 'Businesses', businesses_path %>
-      <%= link_to 'Tradesmen Trades', tradesmen_trades_path %>
-    </nav>
     <% if user_signed_in? %>
+      <nav>
+        <%= link_to 'Jobs', jobs_path %>
+        <%= link_to 'Users', users_path %>
+        <%= link_to 'Tradesmen', tradesmen_profiles_path %>
+        <%= link_to 'Businesses', businesses_path %>
+        <% if current_user.admin? %>
+          <%= link_to 'Tradesmen Trades', tradesmen_trades_path %>
+        <% end %>
+      </nav>
       Signed in as <%= current_user.email %>. Not you?
       <%= link_to "Edit profile", edit_user_registration_path %>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
