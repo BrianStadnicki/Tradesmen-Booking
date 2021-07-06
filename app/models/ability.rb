@@ -9,8 +9,17 @@ class Ability
       can :manage, Job, tradesmen_profile: user.tradesmen_profile_user.tradesmen_profile
       can :read, TradesmenProfile
       can :manage, TradesmenProfile, owner: user
-      if user.tradesmen_profile_user.role.name == 'Admin'
+
+      case user.tradesmen_profile_user.role.name
+      when 'Owner'
+        can :manage, User, user.tradesmen_profile_user.tradesmen_profile.users do
+          true
+        end
+      when 'Admin'
         can :manage, TradesmenProfile, id: user.tradesmen_profile_user.tradesmen_profile.id
+        can :manage, User, user.tradesmen_profile_user.tradesmen_profile.employees do
+          true
+        end
       end
     elsif user.booker?
       can :read, Business
