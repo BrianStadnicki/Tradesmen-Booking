@@ -17,6 +17,7 @@ class Ability
         end
       when 'Admin'
         can :manage, TradesmenProfile, id: user.tradesmen_profile_user.tradesmen_profile.id
+        cannot :destroy, TradesmenProfile, id: user.tradesmen_profile_user.tradesmen_profile.id
         can :manage, User, user.tradesmen_profile_user.tradesmen_profile.employees do
           true
         end
