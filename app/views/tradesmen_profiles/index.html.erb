@@ -19,8 +19,12 @@
         <td><%= tradesmen_profile.description %></td>
         <td><%= tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
         <td><%= link_to 'Show', tradesmen_profile %></td>
-        <td><%= link_to 'Edit', edit_tradesmen_profile_path(tradesmen_profile) %></td>
-        <td><%= link_to 'Destroy', tradesmen_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, tradesmen_profile %>
+          <td><%= link_to 'Edit', edit_tradesmen_profile_path(tradesmen_profile) %></td>
+        <% end %>
+        <% if can? :destroy, tradesmen_profile %>
+          <td><%= link_to 'Destroy', tradesmen_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
