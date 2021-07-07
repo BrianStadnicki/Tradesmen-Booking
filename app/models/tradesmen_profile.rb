@@ -1,10 +1,10 @@
 class TradesmenProfile < ApplicationRecord
-  has_and_belongs_to_many :tradesmen_trades
+  has_and_belongs_to_many :tradesmen_trades, dependent: :destroy
   belongs_to :owner, dependent: :destroy, class_name: 'User'
-  has_many :jobs
+  has_many :jobs, dependent: :destroy
 
-  has_many :users_tradesmen_profile_user, class_name: 'TradesmenProfileUser'
-  has_many :users, through: :users_tradesmen_profile_user
+  has_many :users_tradesmen_profile_user, class_name: 'TradesmenProfileUser', dependent: :destroy
+  has_many :users, through: :users_tradesmen_profile_user, dependent: :destroy
 
   has_many :admins_tradesmen_profile_user,
            lambda {
