@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'jobs#index'
-  scope '/admin' do
-    resources :users
-  end
+  resources :users
   resources :jobs
   resources :tradesmen_trades
   resources :tradesmen_profiles
