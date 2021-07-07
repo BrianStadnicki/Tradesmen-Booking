@@ -36,7 +36,7 @@
     </thead>
 
     <tbody>
-      <% @business.users.each do |user_and_role| %>
+      <% @business.users_business_user.each do |user_and_role| %>
         <tr>
           <td><%= user_and_role.user.name %></td>
           <td><%= user_and_role.role.name %></td>
