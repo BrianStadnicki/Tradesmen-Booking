@@ -14,12 +14,12 @@ class Ability
       case user.tradesmen_profile_user.role.name
       when 'Owner'
         can :manage, User, tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile }
-        can :manage, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile
+        can :destroy, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile
       when 'Admin'
         can :update, TradesmenProfile, id: user.tradesmen_profile_belongs.id
         can :manage, User,
             tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile_belongs, role: { name: 'Employee' } }
-        can :manage, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
+        can :destroy, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
       end
     elsif user.booker?
       can :read, Business
@@ -31,11 +31,11 @@ class Ability
       case user.business_user.role.name
       when 'Owner'
         can :manage, User, business_user: { business: user.business }
-        can :manage, BusinessesTradesmenProfile, business: user.business_belongs
+        can :destroy, BusinessesTradesmenProfile, business: user.business_belongs
       when 'Admin'
         can :update, Business, id: user.business_belongs.id
         can :manage, User, business_user: { business: user.business, role: { name: 'Employee' } }
-        can :manage, BusinessesTradesmenProfile, business: user.business_belongs
+        can :destroy, BusinessesTradesmenProfile, business: user.business_belongs
       end
     end
   end
