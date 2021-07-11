@@ -18,6 +18,9 @@ class TradesmenProfile < ApplicationRecord
            }, class_name: 'TradesmenProfileUser'
   has_many :employees, through: :employees_tradesmen_profile_user, source: :user
 
+  has_many :businesses_businesses_tradesmen_profiles, class_name: 'BusinessesTradesmenProfile'
+  has_many :businesses, through: :businesses_businesses_tradesmen_profiles, source: :business
+
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 200 }
   validates :owner_id, presence: true

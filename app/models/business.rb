@@ -11,6 +11,10 @@ class Business < ApplicationRecord
   has_many :employees_business_user, lambda {
                          BusinessUser.joins(:role).where(roles: { name: 'Employee' }).includes(:user)
                        }, class_name: 'BusinessUser'
+
+  has_many :tradesmen_businesses_tradesmen_profiles, class_name: 'BusinessesTradesmenProfile'
+  has_many :tradesmen, through: :tradesmen_businesses_tradesmen_profiles, source: :tradesmen_profile
+
   has_many :employees, through: :employees_business_user, source: :user
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 500 }

@@ -1,0 +1,2 @@
+module BusinessesTradesmenProfilesHelper
+end

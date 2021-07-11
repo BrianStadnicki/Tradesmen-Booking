@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Business:</strong>
+  <%= @businesses_tradesmen_profile.business_id %>
+</p>
+
+<p>
+  <strong>Tradesmen profile:</strong>
+  <%= @businesses_tradesmen_profile.tradesmen_profile_id %>
+</p>
+
+<%= link_to 'Edit', edit_businesses_tradesmen_profile_path(@businesses_tradesmen_profile) %> |
+<%= link_to 'Back', businesses_tradesmen_profiles_path %>

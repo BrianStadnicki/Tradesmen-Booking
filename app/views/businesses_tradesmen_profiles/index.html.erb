@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Businesses Tradesmen Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Business</th>
+      <th>Tradesmen profile</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @businesses_tradesmen_profiles.each do |businesses_tradesmen_profile| %>
+      <tr>
+        <td><%= businesses_tradesmen_profile.business_id %></td>
+        <td><%= businesses_tradesmen_profile.tradesmen_profile_id %></td>
+        <td><%= link_to 'Show', businesses_tradesmen_profile %></td>
+        <td><%= link_to 'Edit', edit_businesses_tradesmen_profile_path(businesses_tradesmen_profile) %></td>
+        <td><%= link_to 'Destroy', businesses_tradesmen_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Businesses Tradesmen Profile', new_businesses_tradesmen_profile_path %>
