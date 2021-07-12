@@ -20,7 +20,7 @@
   <%= link_to @tradesmen_profile.owner.name, user_path(id: @tradesmen_profile.owner.id) %>
 </p>
 
-<% if @current_user.booker? %>
+<% if @current_user.booker? and can? :create, @business_tradesmen_profile %>
   <%= button_to 'Register to', businesses_tradesmen_profiles_path(tradesmen_profile_id: @tradesmen_profile, business_id: @current_user.business_belongs.id), action: 'create' %>
 <% end %>
 
