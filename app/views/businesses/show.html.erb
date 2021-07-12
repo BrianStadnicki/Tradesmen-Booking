@@ -46,7 +46,9 @@
   </table>
 </p>
 
-<%= button_to 'Register to', businesses_tradesmen_profiles_path(tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id, business_id: @business.id), action: 'create' %>
+<% if @current_user.tradesmen? %>
+  <%= button_to 'Register to', businesses_tradesmen_profiles_path(tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id, business_id: @business.id), action: 'create' %>
+<% end %>
 
 <%= link_to 'Edit', edit_business_path(@business) %> |
 <%= link_to 'Back', businesses_path %>
