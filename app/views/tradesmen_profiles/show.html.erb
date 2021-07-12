@@ -20,5 +20,7 @@
   <%= link_to @tradesmen_profile.owner.name, user_path(id: @tradesmen_profile.owner.id) %>
 </p>
 
+<%= button_to 'Register to', businesses_tradesmen_profiles_path(tradesmen_profile_id: @tradesmen_profile, business_id: @current_user.business_belongs.id), action: 'create' %>
+
 <%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
 <%= link_to 'Back', tradesmen_profiles_path %>
