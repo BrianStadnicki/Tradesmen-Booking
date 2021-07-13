@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_11_132244) do
+ActiveRecord::Schema.define(version: 2021_07_13_000107) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_132244) do
     t.integer "tradesmen_profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["business_id", "tradesmen_profile_id"], name: "index_on_businesses_tradesmen_profiles_uniqueness", unique: true
     t.index ["business_id"], name: "index_businesses_tradesmen_profiles_on_business_id"
     t.index ["tradesmen_profile_id"], name: "index_businesses_tradesmen_profiles_on_tradesmen_profile_id"
   end
