@@ -2,9 +2,8 @@ class BusinessesTradesmenProfilesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  # POST /businesses
+  # POST /businesses_tradesmen_profiles
   def create
-    @business_tradesmen_profile = BusinessesTradesmenProfile.new(business_tradesmen_profile_params)
     if @business_tradesmen_profile.save
       redirect_back notice: 'Business<->Tradesmen was successfully created.', fallback_location: root_path
     else
@@ -12,7 +11,7 @@ class BusinessesTradesmenProfilesController < ApplicationController
     end
   end
 
-  # DELETE /businesses/1
+  # DELETE /businesses_tradesmen_profiles/1
   def destroy
     @business_tradesmen_profile.destroy
     redirect_back notice: 'Business<->Tradesmen was successfully destroyed.', fallback_location: root_path
@@ -21,7 +20,7 @@ class BusinessesTradesmenProfilesController < ApplicationController
   private
 
   # Only allow a list of trusted parameters through.
-  def business_tradesmen_profile_params
+  def businesses_tradesmen_profile_params
     params.permit(:business_id, :tradesmen_profile_id)
   end
 end
