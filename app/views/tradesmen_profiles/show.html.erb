@@ -24,6 +24,9 @@
   <% if can? :create, BusinessesTradesmenProfile %>
     <%= button_to 'Add as bookable tradesman', businesses_tradesmen_profiles_path, params: {tradesmen_profile_id: @tradesmen_profile, business_id: @current_user.business_belongs.id}, action: 'create' %>
   <% end %>
+  <% if can? :destroy, BusinessesTradesmenProfile %>
+    <%= button_to 'Remove bookable tradesman', businesses_tradesmen_profile_path(@business_tradesmen_profile), action: 'destroy', method: :delete %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
