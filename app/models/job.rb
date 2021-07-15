@@ -6,4 +6,6 @@ class Job < ApplicationRecord
   validates :description, presence: true, length: { maximum: 2000 }
   validates :tradesmen_profile, presence: false
   validates :business, presence: true
+  validates :status, presence: true, length: { maximum: 50 }
+  validates :active, presence: true
 end

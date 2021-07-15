@@ -27,6 +27,16 @@
   </div>
 
   <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="field">
     <%= form.label :business %>
     <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
   </div>
