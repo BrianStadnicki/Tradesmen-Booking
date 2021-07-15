@@ -2,6 +2,9 @@ class BusinessesTradesmenProfileController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource # FIXME: cancancan isn't loading and creating resources
 
+  def index
+  end
+
   # POST /businesess_tradesmen_profiles
   def create
     @business_tradesmen_profile = BusinessesTradesmenProfile.new(businesses_tradesmen_profile_params)
