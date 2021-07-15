@@ -20,9 +20,13 @@
   <%= link_to @tradesmen_profile.owner.name, user_path(id: @tradesmen_profile.owner.id) %>
 </p>
 
-<%= button_to 'Trusted', controller: 'businesses_tradesmen_profile', params: { business_id: @current_user.business_belongs.id, tradesmen_profile_id: @tradesmen_profile.id }, method: :post, action: :create %>
-<% if @business_tradesmen_profile %>
-  <%= button_to 'Untrusted', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy' %>
+<% if @current_user.booker? %>
+  <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
+    <%= button_to 'Trusted', controller: 'businesses_tradesmen_profile', params: { business_id: @current_user.business_belongs.id, tradesmen_profile_id: @tradesmen_profile.id }, method: :post, action: :create %>
+  <% elsif can? :destroy, BusinessesTradesmenProfile %>
+    <%= button_to 'Untrusted', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy' %>
+  <% end %>
 <% end %>
+
 <%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
 <%= link_to 'Back', tradesmen_profiles_path %>

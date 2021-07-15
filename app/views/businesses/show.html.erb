@@ -47,8 +47,10 @@
 </p>
 
 <% if @current_user.tradesmen? %>
-  <% if can? :create, BusinessesTradesmenProfile %>
-    <%= button_to 'Register to', businesses_tradesmen_profiles_path, params: { tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id, business_id: @business.id }, action: 'create' %>
+  <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
+    <%= button_to 'Trusted', controller: 'businesses_tradesmen_profile', params: { business_id: @business.id, tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id }, method: :post, action: :create %>
+  <% elsif can? :destroy, BusinessesTradesmenProfile %>
+    <%= button_to 'Untrusted', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy' %>
   <% end %>
 <% end %>
 

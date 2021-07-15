@@ -8,6 +8,9 @@ class BusinessesController < ApplicationController
 
   # GET /businesses/1
   def show
+    @business_tradesmen_profile =
+      BusinessesTradesmenProfile.find_by(business_id: @business.id,
+                                         tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id)
   end
 
   # GET /businesses/new
