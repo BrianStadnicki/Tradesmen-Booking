@@ -20,10 +20,12 @@
   <%= @business.phone %>
 </p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= link_to @business.owner.name, user_path(id: @business.owner.id) %>
-</p>
+<% if @current_user.admin? %>
+  <p>
+    <strong>Owner:</strong>
+    <%= link_to @business.owner.name, user_path(id: @business.owner.id) %>
+  </p>
+<% end %>
 
 <p>
   <strong>Users:</strong>
