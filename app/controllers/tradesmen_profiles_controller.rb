@@ -8,8 +8,10 @@ class TradesmenProfilesController < ApplicationController
 
   # GET /tradesmen_profiles/1
   def show
-    @business_tradesmen_profile = BusinessesTradesmenProfile.find_by(business_id: @current_user.business_belongs.id,
-                                                                     tradesmen_profile_id: @tradesmen_profile.id)
+    if @current_user.booker?
+      @business_tradesmen_profile = BusinessesTradesmenProfile.find_by(business_id: @current_user.business_belongs.id,
+                                                                      tradesmen_profile_id: @tradesmen_profile.id)
+    end
   end
 
   # GET /tradesmen_profiles/new
