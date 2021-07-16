@@ -13,9 +13,9 @@
 
   <body>
     <% if user_signed_in? %>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
               <li class="nav-item"><%= link_to 'Jobs', jobs_path, class: 'nav-link active' %></li>
               <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-link active' %></li>
@@ -24,19 +24,17 @@
               <% if current_user.admin? %>
                 <li class="nav-item"><%= link_to 'Tradesmen Trades', tradesmen_trades_path, class: 'nav-link active' %></li>
               <% end %>
+              <li class="nav-item"><%= link_to "Edit Profile", edit_user_registration_path, class: 'nav-link active' %></li>
+              <li class="nav-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link active' %></li>
             </ul>
           </div>
         </div>
       </nav>
-    <div class="container-fluid">
-      Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Edit profile", edit_user_registration_path %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or
-        <%= link_to "sign in", new_user_session_path %>
-      <% end %>
-    </div>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> or
+      <%= link_to "sign in", new_user_session_path %>
+    <% end %>
+
   <div class="container-fluid">
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, id: "flash_#{name}" %>
