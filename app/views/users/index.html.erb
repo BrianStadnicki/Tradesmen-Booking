@@ -9,7 +9,6 @@
       <th>Address</th>
       <th>Phone</th>
       <th>Phone2</th>
-      <th>Date of birth</th>
       <% if current_user.admin? %>
         <th>Role</th>
         <th>Tradesmen Profile</th>
@@ -27,7 +26,6 @@
         <td><%= user.address %></td>
         <td><%= user.phone %></td>
         <td><%= user.phone2 %></td>
-        <td><%= user.date_of_birth %></td>
         <% if current_user.admin? %>
           <td><%= user.role.name %></td>
           <td>
