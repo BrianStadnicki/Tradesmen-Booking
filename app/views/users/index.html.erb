@@ -12,9 +12,9 @@
       <th>Date of birth</th>
       <% if current_user.admin? %>
         <th>Role</th>
-      <% end %>
-      <th>Tradesmen Profile</th>
-      <th>Business</th>
+        <th>Tradesmen Profile</th>
+        <th>Business</th>
+    <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -30,17 +30,17 @@
         <td><%= user.date_of_birth %></td>
         <% if current_user.admin? %>
           <td><%= user.role.name %></td>
-        <% end %>
-        <td>
-          <% if user.tradesmen_profile.present? %>
-            <%= link_to user.tradesmen_profile.name, tradesmen_profile_path(id: user.tradesmen_profile.id) %>
-          <% end %>
-        </td>
-        <td>
-          <% if user.business.present? %>
-            <%= link_to user.business.name, business_path(id: user.business.id) %>
-          <% end %>
-        </td>
+          <td>
+            <% if user.tradesmen_profile.present? %>
+              <%= link_to user.tradesmen_profile.name, tradesmen_profile_path(id: user.tradesmen_profile.id) %>
+            <% end %>
+          </td>
+          <td>
+            <% if user.business.present? %>
+              <%= link_to user.business.name, business_path(id: user.business.id) %>
+            <% end %>
+          </td>
+      <% end %>
         <td><%= link_to 'Show', user %></td>
         <% if can? :update, user %>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
