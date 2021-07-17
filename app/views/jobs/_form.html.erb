@@ -18,7 +18,7 @@
   <% if current_user.admin? %>
     <%= f.association :business %>
   <% end %>
-  <%= f.association :tradesmen_profile  %>
+  <%= f.association :tradesmen_profile, collection: current_user.business_belongs.tradesmen %>
   <%= f.button :submit %>
 
 <% end %>
