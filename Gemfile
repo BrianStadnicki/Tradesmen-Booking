@@ -57,7 +57,5 @@ gem "devise", "~> 4.8"
 # User permissions
 gem "cancancan", "~> 3.3"
 
-# For bootstrap 5
+# For bootstrap
 gem 'bootstrap', '~> 5.0.0.beta2'
-gem 'sprockets-rails'
-gem 'jquery-rails'
