@@ -20,6 +20,7 @@ class JobsController < ApplicationController
 
   # POST /jobs
   def create
+    @job.active ||= true
     if @job.save
       redirect_to @job, notice: 'Job was successfully created.'
     else
