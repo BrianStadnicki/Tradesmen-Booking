@@ -9,8 +9,12 @@
       <th>Address</th>
       <th>Status</th>
       <th>Active</th>
-      <th>Business</th>
-      <th>Tradesmen</th>
+      <% if current_user.tradesmen? or current_user.admin?%>
+        <th>Business</th>
+      <% end %>
+      <% if current_user.booker? or current_user.admin? %>
+        <th>Tradesmen</th>
+      <% end %>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,8 +27,12 @@
         <td><%= job.address %></td>
         <td><%= job.status %></td>
         <td><%= job.active %></td>
-        <td><%= job.business.name %></td>
-        <td><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
+        <% if current_user.tradesmen? or current_user.admin?%>
+          <td><%= job.business.name %></td>
+        <% end %>
+        <% if current_user.booker? or current_user.admin? %>
+          <td><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
+        <% end %>
         <td><%= link_to 'Show', job %></td>
         <td><%= link_to 'Edit', edit_job_path(job) %></td>
         <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,4 +43,6 @@
 
 <br>
 
-<%= link_to 'New Job', new_job_path %>
+<% if current_user.booker? or current_user.admin? %>
+  <%= link_to 'New Job', new_job_path %>
+<% end %>

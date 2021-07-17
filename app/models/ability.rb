@@ -7,6 +7,7 @@ class Ability
     elsif user.tradesmen?
       can :read, Business
       can :manage, Job, tradesmen_profile: user.tradesmen_profile_belongs
+      cannot :create, Job
       can :read, User, tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile_belongs }
       can :read, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
       can :read, TradesmenProfile
