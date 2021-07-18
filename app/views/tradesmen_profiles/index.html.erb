@@ -61,4 +61,6 @@
 
 <br>
 
-<%= link_to 'New Tradesmen Profile', new_tradesmen_profile_path %>
+<% if can? :create, TradesmenProfile %>
+  <%= link_to 'New Tradesmen Profile', new_tradesmen_profile_path %>
+<% end %>

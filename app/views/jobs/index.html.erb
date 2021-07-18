@@ -43,6 +43,6 @@
 
 <br>
 
-<% if current_user.booker? or current_user.admin? %>
+<% if can? :create, Job %>
   <%= link_to 'New Job', new_job_path %>
 <% end %>

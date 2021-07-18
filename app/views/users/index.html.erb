@@ -53,4 +53,6 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<% if can? :create, User %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>

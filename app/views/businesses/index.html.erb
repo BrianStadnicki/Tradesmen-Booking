@@ -68,4 +68,6 @@
 
 <br>
 
-<%= link_to 'New Business', new_business_path %>
+<% if can? :create, Business %>
+  <%= link_to 'New Business', new_business_path %>
+<% end %>
