@@ -34,9 +34,9 @@
         <%= form.text_field :status, class: "form-control" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.label :active, class: "form-label" %>
-        <%= form.check_box :active, checked: true, class: "form-control" %> <!-- FIXME: active can't be blank error when deactivating job -->
+      <div class="mb-3 form-check form-switch">
+        <%= form.check_box :active, checked: true, class: "form-check-input", id: "active_switch" %> <!-- FIXME: active can't be blank error when deactivating job -->
+        <%= form.label :active, class: "form-label", for: "active_check" %>
       </div>
 
       <% if current_user.admin? %>
@@ -54,8 +54,8 @@
       <div class="actions">
         <%= form.submit class: "btn btn-primary" %>
       </div>
-      
-    </div>
 
+    </div>
   </div>
+
 <% end %>
