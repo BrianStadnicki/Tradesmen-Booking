@@ -11,44 +11,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="card">
+    <div class="card-body">
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_area :description, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :address, class: "form-label" %>
+        <%= form.text_field :address, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active, checked: true %> <!-- FIXME: active can't be blank error when deactivating job -->
-  </div>
+      <div class="mb-3">
+        <%= form.label :status, class: "form-label" %>
+        <%= form.text_field :status, class: "form-control" %>
+      </div>
 
-  <% if current_user.admin? %>
-    <div class="field">
-      <%= form.label :business %>
-      <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
+      <div class="mb-3">
+        <%= form.label :active, class: "form-label" %>
+        <%= form.check_box :active, checked: true, class: "form-control" %> <!-- FIXME: active can't be blank error when deactivating job -->
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <%= form.label :business, class: "form-label" %>
+          <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }, class: "form-control") %>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :tradesmen_profile, class: "form-label" %>
+        <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
+      
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :tradesmen_profile %>
-    <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
