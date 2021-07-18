@@ -26,7 +26,12 @@ class BusinessesController < ApplicationController
   # POST /businesses
   def create
     @business.owner_id = @current_user.id unless @current_user.admin?
-    if @business.save
+    @business_user = BusinessUser.new(user: @business.owner, business: @business,
+                                      role: Role.find_by(name: 'Admin',
+                                                         category: RoleCategory.find_by(name: 'Business')))
+    if @business.save!
+      @business_user.business_id = @business.id
+      @business_user.save!
       redirect_to @business, notice: 'Business was successfully created.'
     else
       render :new
