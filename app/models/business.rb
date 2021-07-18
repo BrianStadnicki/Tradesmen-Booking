@@ -1,5 +1,5 @@
 class Business < ApplicationRecord
-  belongs_to :owner, class_name: 'User', dependent: :destroy
+  belongs_to :owner, class_name: 'User'
   has_many :jobs
 
   has_many :users_business_user, class_name: 'BusinessUser'
