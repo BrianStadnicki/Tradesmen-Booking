@@ -25,6 +25,7 @@ class Ability
         can :create, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
         can :destroy, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
       end
+      cannot :create, User
     elsif user.booker?
       can :read, Business
       can :manage, Business, owner: user
@@ -44,6 +45,7 @@ class Ability
         can :create, BusinessesTradesmenProfile, business: user.business_belongs
         can :destroy, BusinessesTradesmenProfile, business: user.business_belongs
       end
+      cannot :create, User
     end
   end
 end
