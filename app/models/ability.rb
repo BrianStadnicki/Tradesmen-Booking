@@ -12,6 +12,7 @@ class Ability
       can :read, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
       can :read, TradesmenProfile
       can :manage, TradesmenProfile, owner: user
+      cannot :create, TradesmenProfile if user.tradesmen_profile_belongs.present?
       case user.tradesmen_profile_user.role.name
       when 'Owner'
         can :manage, User, tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile }
@@ -27,6 +28,7 @@ class Ability
     elsif user.booker?
       can :read, Business
       can :manage, Business, owner: user
+      cannot :create, Business if user.business_belongs.present?
       can :manage, Job, business: user.business_belongs
       can :read, User, business_user: { business: user.business_belongs }
       can :read, BusinessesTradesmenProfile, business: user.business_belongs
