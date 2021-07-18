@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :active %>
-    <%= form.check_box :active, checked: true %>
+    <%= form.check_box :active, checked: true %> <!-- FIXME: active can't be blank error when deactivating job -->
   </div>
 
   <% if current_user.admin? %>
