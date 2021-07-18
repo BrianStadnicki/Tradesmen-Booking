@@ -4,7 +4,9 @@
   <%= f.input :description %>
   <%= f.input :address %>
   <%= f.input :phone %>
-  <%= f.association :owner %>
+  <% if current_user.admin? %>
+    <%= f.association :owner %>
+  <% end %>
   <%= f.button :submit %>
 
 <% end %>

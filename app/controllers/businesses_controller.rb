@@ -25,6 +25,7 @@ class BusinessesController < ApplicationController
 
   # POST /businesses
   def create
+    @business.owner_id = @current_user.id unless @current_user.admin?
     if @business.save
       redirect_to @business, notice: 'Business was successfully created.'
     else
@@ -52,8 +53,8 @@ class BusinessesController < ApplicationController
 
   private
 
-    # Only allow a list of trusted parameters through.
-    def business_params
-      params.require(:business).permit(:name, :description, :address, :phone, :owner_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def business_params
+    params.require(:business).permit(:name, :description, :address, :phone, :owner_id)
+  end
 end
