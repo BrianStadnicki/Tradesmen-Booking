@@ -36,10 +36,12 @@
     <%= form.check_box :active %>
   </div>
 
-  <div class="field">
-    <%= form.label :business %>
-    <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= form.label :business %>
+      <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }) %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :tradesmen_profile %>

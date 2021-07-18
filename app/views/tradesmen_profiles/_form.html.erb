@@ -26,12 +26,14 @@
     <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :owner %>
-    <%=  collection_select(
-           :tradesmen_profile, :owner_id, User.all, :id, :name, { prompt: true }
-         ) %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= form.label :owner %>
+      <%=  collection_select(
+             :tradesmen_profile, :owner_id, User.all, :id, :name, { prompt: true }
+           ) %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
