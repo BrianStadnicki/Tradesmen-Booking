@@ -24,6 +24,7 @@ class TradesmenProfilesController < ApplicationController
 
   # POST /tradesmen_profiles
   def create
+    @tradesmen_profile.owner_id = @current_user.id unless @current_user.admin?
     params[:tradesmen_profile][:tradesmen_trade_ids].each do |tradesmen_trade_id|
       unless tradesmen_trade_id.empty?
         tradesmen_trade = TradesmenTrade.find(tradesmen_trade_id)
