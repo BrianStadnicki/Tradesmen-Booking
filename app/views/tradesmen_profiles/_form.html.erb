@@ -1,11 +1,39 @@
-<%= simple_form_for @tradesmen_profile do |f| %>
+<%= form_with(model: tradesmen_profile) do |form| %>
+  <% if tradesmen_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tradesmen_profile.errors.count, "error") %> prohibited this tradesmen_profile from being saved:</h2>
 
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :tradesmen_trades %>
-  <% if current_user.admin? %>
-    <%= f.association :owner %>
+      <ul>
+        <% tradesmen_profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-  <%= f.button :submit %>
 
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tradesmen_trades %>
+    <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner %>
+    <%=  collection_select(
+           :tradesmen_profile, :owner_id, User.all, :id, :name, { prompt: true }
+         ) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
