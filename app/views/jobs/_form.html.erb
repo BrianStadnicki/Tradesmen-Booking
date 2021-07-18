@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :active %>
-    <%= form.check_box :active %>
+    <%= form.check_box :active, checked: true %>
   </div>
 
   <% if current_user.admin? %>
