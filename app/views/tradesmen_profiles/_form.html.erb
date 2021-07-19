@@ -11,31 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="card">
+    <div class="card-body">
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :tradesmen_trades %>
-    <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
 
-  <% if current_user.admin? %>
-    <div class="field">
-      <%= form.label :owner %>
-      <%=  collection_select(
-             :tradesmen_profile, :owner_id, User.all, :id, :name, { prompt: true }
-           ) %>
+      <div class="mb-3 form-check form-switch">
+        <%= form.label :tradesmen_trades, class: "form-label" %>
+        <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name, class: "form-control" do |b| %>
+          <div class="row">
+            <%= b.check_box class: "form-check-input", id: b.text + "_trade_toggle"%>
+            <%= b.label class: "form-label", for: b.text + "_trade_toggle" %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <%= form.label :owner, class: "form-label" %>
+          <%=  collection_select(
+                 :tradesmen_profile, :owner_id, User.all, :id, :name, { prompt: true }, class: "form-control"
+               ) %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
+
 <% end %>
