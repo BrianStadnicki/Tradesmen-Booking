@@ -26,12 +26,14 @@
 
       <div class="mb-3 form-check form-switch">
         <%= form.label :tradesmen_trades, class: "form-label" %>
-        <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name, class: "form-control" do |b| %>
-          <div class="row">
-            <%= b.check_box class: "form-check-input", id: b.text + "_trade_toggle"%>
-            <%= b.label class: "form-label", for: b.text + "_trade_toggle" %>
-          </div>
-        <% end %>
+        <div class="container">
+          <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name, class: "form-control" do |b| %>
+            <div class="row">
+              <%= b.check_box class: "form-check-input", id: b.text + "_trade_toggle"%>
+              <%= b.label class: "form-label", for: b.text + "_trade_toggle" %>
+            </div>
+          <% end %>
+        </div>
       </div>
 
       <% if current_user.admin? %>
