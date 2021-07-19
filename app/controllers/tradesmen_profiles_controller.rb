@@ -24,18 +24,24 @@ class TradesmenProfilesController < ApplicationController
 
   # POST /tradesmen_profiles
   def create
-    @tradesmen_profile.owner_id = @current_user.id unless @current_user.admin?
-    params[:tradesmen_profile][:tradesmen_trade_ids].each do |tradesmen_trade_id|
-      unless tradesmen_trade_id.empty?
-        tradesmen_trade = TradesmenTrade.find(tradesmen_trade_id)
-        @tradesmen_profile.tradesmen_trades << tradesmen_trade
+    ActiveRecord::Base.transaction do
+      @tradesmen_profile.owner_id = @current_user.id unless @current_user.admin?
+      params[:tradesmen_profile][:tradesmen_trade_ids].each do |tradesmen_trade_id|
+        unless tradesmen_trade_id.empty?
+          tradesmen_trade = TradesmenTrade.find(tradesmen_trade_id)
+          @tradesmen_profile.tradesmen_trades << tradesmen_trade
+        end
       end
-    end
-
-    if @tradesmen_profile.save
+      @tradesmen_profile.save!
+      @tradesmen_profile_user = TradesmenProfileUser.new(user: @tradesmen_profile.owner,
+                                                         tradesmen_profile: @tradesmen_profile,
+                                                         role: Role.find_by(name: 'Admin',
+                                                                            category: RoleCategory.find_by(name: 'Tradesmen Profile')))
+      @tradesmen_profile_user.save!
       redirect_to @tradesmen_profile, notice: 'Tradesmen profile was successfully created.'
-    else
+    rescue
       render :new
+      raise ActiveRecord::Rollback
     end
   end
 
