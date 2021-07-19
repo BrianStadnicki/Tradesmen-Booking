@@ -11,36 +11,44 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="card">
+    <div class="card-body">
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :address, class: "form-label" %>
+        <%= form.text_field :address, class: "form-control" %>
+      </div>
 
-  <% if current_user.admin? %>
-    <div class="field">
-      <%= form.label :owner_id %>
-      <%= collection_select(
-            :owner, :owner_id, User.all, :id, :name, { prompt: true }
-          ) %>
+      <div class="mb-3">
+        <%= form.label :phone, class: "form-label" %>
+        <%= form.text_field :phone, class: "form-control" %>
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <%= form.label :owner_id, class: "form-label" %>
+          <%= collection_select(
+                :owner, :owner_id, User.all, :id, :name, { prompt: true }, class: "form-control"
+              ) %>
+        </div>
+        
+      <% end %>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary"%>
+      </div>
+
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
+
 <% end %>
