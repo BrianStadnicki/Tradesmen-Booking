@@ -1,15 +1,4 @@
 <%= form_with(model: tradesmen_profile) do |form| %>
-  <% if tradesmen_profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tradesmen_profile.errors.count, "error") %> prohibited this tradesmen_profile from being saved:</h2>
-
-      <ul>
-        <% tradesmen_profile.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="card">
     <div class="card-body">
