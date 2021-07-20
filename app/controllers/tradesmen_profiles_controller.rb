@@ -6,6 +6,13 @@ class TradesmenProfilesController < ApplicationController
   def index
   end
 
+  # Get /tradesmen_profiles/trusted
+  def trusted
+    if @current_user.booker?
+      @tradesmen = @current_user.business_belongs.tradesmen
+    end
+  end
+
   # GET /tradesmen_profiles/1
   def show
     if @current_user.booker?

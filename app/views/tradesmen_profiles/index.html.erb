@@ -1,36 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<% if @current_user.booker? %>
-  <h1 class="display-1 text-center">My Tradesmen Profiles</h1>
-
-  <table class="table table-hover table-striped table-bordered">    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Trades</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @current_user.business_belongs.tradesmen.each do |tradesmen_profile| %>
-      <tr>
-        <td><%= tradesmen_profile.name %></td>
-        <td><%= tradesmen_profile.description %></td>
-        <td><%= tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
-        <td><%= link_to 'Show', tradesmen_profile %></td>
-        <% if can? :update, tradesmen_profile %>
-          <td><%= link_to 'Edit', edit_tradesmen_profile_path(tradesmen_profile) %></td>
-        <% end %>
-        <% if can? :destroy, tradesmen_profile %>
-          <td><%= link_to 'Destroy', tradesmen_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
-
 <h1 class="display-1 text-center">Tradesmen Profiles</h1>
 
 <table class="table table-hover table-striped table-bordered">
