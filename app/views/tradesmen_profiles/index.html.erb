@@ -7,22 +7,14 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Trades</th>
-      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tradesmen_profiles.each do |tradesmen_profile| %>
-      <tr>
+      <tr onclick="location.href='<%= tradesmen_profile_path(tradesmen_profile) %>'">
         <td><%= tradesmen_profile.name %></td>
         <td><%= tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
-        <td><%= link_to 'Show', tradesmen_profile %></td>
-        <% if can? :update, tradesmen_profile %>
-          <td><%= link_to 'Edit', edit_tradesmen_profile_path(tradesmen_profile) %></td>
-        <% end %>
-        <% if can? :destroy, tradesmen_profile %>
-          <td><%= link_to 'Destroy', tradesmen_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -13,18 +13,11 @@
 
   <tbody>
   <% @businesses.each do |business| %>
-    <tr>
+    <tr onclick="location.href='<%= business_path(business) %>'">
       <td><%= business.name %></td>
       <td><%= business.description %></td>
       <td><%= business.address %></td>
       <td><%= business.phone %></td>
-      <td><%= link_to 'Show', business %></td>
-      <% if can? :update, business %>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-      <% end %>
-      <% if can? :destroy, business %>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
     </tr>
   <% end %>
   </tbody>
