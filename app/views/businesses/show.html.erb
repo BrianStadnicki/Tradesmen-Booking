@@ -1,51 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @business.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @business.description %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @business.address %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @business.phone %>
-</p>
-
-<% if @current_user.admin? %>
-  <p>
-    <strong>Owner:</strong>
-    <%= link_to @business.owner.name, user_path(id: @business.owner.id) %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Users:</strong>
-  <table class="table table-hover table-striped table-bordered">    <thead>
+<div class="card text-center">
+  <h2 class="card-title"><%= @business.name %></h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered table-responsive">
+      <tbody>
       <tr>
-        <th>Name</th>
-        <th>Role</th>
+        <td>Description</td>
+        <td><%= @business.description %></td>
       </tr>
-    </thead>
-
-    <tbody>
-      <% @business.users_business_user.each do |user_and_role| %>
-        <tr onclick="location.href='<%= user_path(user_and_role.user) %>'" class="clickable">
-          <td><%= user_and_role.user.name %></td>
-          <td><%= user_and_role.role.name %></td>
+      <tr>
+        <td>Address</td>
+        <td><%= @business.address %></td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td><%= @business.phone %></td>
+      </tr>
+      <% if @current_user.admin? %>
+        <tr onclick="location.href='<%= user_path(@business.owner) %>'" class="clickable">
+          <td>Owner</td>
+          <td><%= @business.owner.name %></td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
-</p>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<div class="card text-center">
+  <h2 class="card-title">Users</h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @business.users_business_user.each do |user_and_role| %>
+          <tr onclick="location.href='<%= user_path(user_and_role.user) %>'" class="clickable">
+            <td><%= user_and_role.user.name %></td>
+            <td><%= user_and_role.role.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <% if @current_user.tradesmen? %>
   <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
