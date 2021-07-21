@@ -27,13 +27,13 @@
 
 <p>
   <strong>Business:</strong>
-  <%= link_to @job.business.name, business_path(@job.business) %>
+  <%= @job.business.name %>
 </p>
 
 <% if @job.tradesmen_profile.present? %>
   <p>
     <strong>Tradesmen:</strong>
-    <%= link_to @job.tradesmen_profile.name, tradesmen_profile_path(@job.tradesmen_profile) %>
+    <%= @job.tradesmen_profile.name %>
   </p>
 <% end %>
 

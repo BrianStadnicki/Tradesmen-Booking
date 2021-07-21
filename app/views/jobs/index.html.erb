@@ -28,10 +28,10 @@
         <td><%= job.status %></td>
         <td><%= job.active %></td>
         <% if current_user.tradesmen? or current_user.admin?%>
-          <td><%= link_to job.business.name, business_path(job.business) %></td>
+          <td><%= job.business.name %></td>
         <% end %>
         <% if current_user.booker? or current_user.admin? %>
-          <td><%= link_to job.tradesmen_profile.name, tradesmen_profile_path(job.tradesmen_profile) if job.tradesmen_profile.present? %></td>
+          <td><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
         <% end %>
       </tr>
     <% end %>
