@@ -1,41 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @job.title %>
-</p>
+<div class="card text-center">
+  <h2 class="card-title"><%= @job.title %></h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered table-responsive">
+      <tbody>
+        <tr>
+          <td>Description</td>
+          <td><%= @job.description %></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><%= @job.address %></td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td><%= @job.status %></td>
+        </tr>
+        <tr>
+          <td>Active</td>
+          <td><%= @job.active %></td>
+        </tr>
+        <% if @current_user.admin? %>
+          <tr onclick="location.href='<%= business_path(@job.business) %>'" class="clickable">
+            <td>Business</td>
+            <td><%= @job.business.name %></td>
+          </tr>
+        <% end %>
+        <% if @job.tradesmen_profile.present? %>
+          <tr onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'" class="clickable">
+            <td>Tradesmen Profile</td>
+            <td><%= @job.tradesmen_profile.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @job.description %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @job.address %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @job.status %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @job.active %>
-</p>
-
-<p>
-  <strong>Business:</strong>
-  <%= @job.business.name %>
-</p>
-
-<% if @job.tradesmen_profile.present? %>
-  <p>
-    <strong>Tradesmen:</strong>
-    <%= @job.tradesmen_profile.name %>
-  </p>
-<% end %>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>
