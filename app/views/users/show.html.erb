@@ -1,68 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Phone2:</strong>
-  <%= @user.phone2 %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @user.date_of_birth %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role.name %>
-</p>
-
-<% if @user.business.present? %>
-  <p>
-    <strong>Business:</strong>
-    <%= link_to @user.business.name, business_path(id: @user.business.id) %>
-  </p>
-<% end %>
-
-<% if @user.tradesmen_profile.present? %>
-  <p>
-    <strong>Tradesmen Profile:</strong>
-    <%= link_to @user.tradesmen_profile.name, tradesmen_profile_path(id: @user.tradesmen_profile.id) %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Joined on:</strong>
-  <%= @user.remember_created_at %>
-</p>
-
-<p>
-  <strong>Last logged in on:</strong>
-  <%= @user.last_sign_in_at %>
-</p>
-
-<p>
-  <strong>No. times logged in:</strong>
-  <%= @user.sign_in_count %>
-</p>
+<div class="card text-center">
+  <h2 class="card-title"><%= @user.name %></h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered table-responsive">
+      <tbody>
+        <tr>
+          <td>Email</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><%= @user.address %></td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td><%= @user.phone %></td>
+        </tr>
+        <tr>
+          <td>Phone2</td>
+          <td><%= @user.phone2 %></td>
+        </tr>
+        <tr>
+          <td>Date of Birth</td>
+          <td><%= @user.date_of_birth %></td>
+        </tr>
+        <tr>
+          <td>Role</td>
+          <td><%= @user.role.name %></td>
+        </tr>
+        <% if @user.business_belongs.present? %>
+          <tr onclick="location.href='<%= business_path(@user.business) %>'" class="clickable">
+            <td>Business</td>
+            <td><%= @user.business.name %></td>
+          </tr>
+        <% end %>
+        <% if @user.tradesmen_profile_belongs.present? %>
+          <tr onclick="location.href='<%= tradesmen_profile_path(@user.tradesmen_profile_belongs) %>'" class="clickable">
+            <td>Tradesmen Profile</td>
+            <td><%= @user.tradesmen_profile_belongs.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
