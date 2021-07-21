@@ -14,7 +14,7 @@
           <td><%= @tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
         </tr>
         <% if @current_user.admin? %>
-          <tr onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'">
+          <tr onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'" class="clickable">
             <td>Owner</td>
             <td><%= @tradesmen_profile.owner.name %></td>
           </tr>
