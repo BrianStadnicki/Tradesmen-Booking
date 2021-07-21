@@ -31,7 +31,7 @@
 <% end %>
 
 <% if can? :update, @tradesmen_profile %>
-`<%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
+  <%= link_to 'Edit', edit_tradesmen_profile_path(@tradesmen_profile) %> |
 <% end %>
 
 <%= link_to 'Back', tradesmen_profiles_path %>
