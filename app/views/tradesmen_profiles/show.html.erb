@@ -1,26 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tradesmen_profile.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @tradesmen_profile.description %>
-</p>
-
-<p>
-  <strong>Trades:</strong>
-  <%= @tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %>
-</p>
-
-<% if @current_user.admin? %>
-  <p>
-    <strong>Owner:</strong>
-    <%= link_to @tradesmen_profile.owner.name, user_path(id: @tradesmen_profile.owner.id) %>
-  </p>
-<% end %>
+<div class="card text-center">
+  <h2 class="card-title"><%= @tradesmen_profile.name %></h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered table-responsive">
+      <tbody>
+        <tr>
+          <td>Description</td>
+          <td><%= @tradesmen_profile.description %></td>
+        </tr>
+        <tr>
+          <td>Trades</td>
+          <td><%= @tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
+        </tr>
+        <% if @current_user.admin? %>
+          <tr onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'">
+            <td>Owner</td>
+            <td><%= @tradesmen_profile.owner.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <% if @current_user.booker? %>
   <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
