@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
       <th>Trades</th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
   <% @tradesmen.each do |tradesmen_profile| %>
     <tr onclick="location.href='<%= tradesmen_profile_path(tradesmen_profile) %>'" class="clickable">
       <td><%= tradesmen_profile.name %></td>
-      <td><%= tradesmen_profile.description %></td>
       <td><%= tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
     </tr>
   <% end %>
