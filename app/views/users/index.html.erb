@@ -29,13 +29,13 @@
         <% if current_user.admin? %>
           <td><%= user.role.name %></td>
           <td>
-            <% if user.tradesmen_profile.present? %>
-              <%= link_to user.tradesmen_profile.name, tradesmen_profile_path(id: user.tradesmen_profile.id) %>
+            <% if user.tradesmen_profile_belongs.present? %>
+              <%= link_to user.tradesmen_profile_belongs.name, tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>
             <% end %>
           </td>
           <td>
-            <% if user.business.present? %>
-              <%= link_to user.business.name, business_path(id: user.business.id) %>
+            <% if user.business_belongs.present? %>
+              <%= link_to user.business_belongs.name, business_path(id: user.business_belongs.id) %>
             <% end %>
           </td>
         <% end %>
