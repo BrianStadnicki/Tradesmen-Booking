@@ -12,7 +12,7 @@
 
   <tbody>
     <% @tradesmen_trades.each do |tradesmen_trade| %>
-      <tr onclick="location.href='<%= tradesmen_trade_path(tradesmen_trade) %>'">
+      <tr onclick="location.href='<%= tradesmen_trade_path(tradesmen_trade) %>'" class="clickable">
         <td><%= tradesmen_trade.name %></td>
       </tr>
     <% end %>

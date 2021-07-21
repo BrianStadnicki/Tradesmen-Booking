@@ -21,7 +21,7 @@
 
   <tbody>
     <% @jobs.each do |job| %>
-      <tr onclick="location.href='<%= job_path(job) %>'">
+      <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
         <td><%= job.title %></td>
         <td><%= job.description %></td>
         <td><%= job.address %></td>
