@@ -1,7 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <div class="card text-center">
-  <h2 class="card-title"><%= @job.title %></h2>
+  <div class="card-header container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <h2><%= @job.title %></h2>
+      </div>
+      <div class="col-md-2 float-end">
+        <div class="btn btn-primary btn-sm">
+          <%= link_to 'Edit', edit_job_path(@job), class: "btn" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <div class="card-body">
     <table class="table table-hover table-striped table-bordered table-responsive">
       <tbody>
@@ -39,5 +51,4 @@
 </div>
 
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', 'javascript:history.back()' %>
