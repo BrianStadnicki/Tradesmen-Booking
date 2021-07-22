@@ -11,10 +11,10 @@
       <th>Status</th>
       <th>Active</th>
       <% if current_user.tradesmen? or current_user.admin?%>
-        <th>Business</th>
+        <th class="hides">Business</th>
       <% end %>
       <% if current_user.booker? or current_user.admin? %>
-        <th>Tradesmen</th>
+        <th class="hides">Tradesmen</th>
       <% end %>
     </tr>
   </thead>
@@ -28,10 +28,10 @@
         <td><%= job.status %></td>
         <td><%= job.active %></td>
         <% if current_user.tradesmen? or current_user.admin?%>
-          <td><%= job.business.name %></td>
+          <td class="hides"><%= job.business.name %></td>
         <% end %>
         <% if current_user.booker? or current_user.admin? %>
-          <td><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
+          <td class="hides"><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
         <% end %>
       </tr>
     <% end %>
