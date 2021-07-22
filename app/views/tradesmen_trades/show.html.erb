@@ -1,27 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tradesmen_trade.name %>
-</p>
-
-<p>
-  <strong>Tradesmen:</strong>
-  <table class="table table-hover table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tradesmen_trade.tradesmen_profiles.each do |profile| %>
-        <tr>
-          <th><%= link_to profile.name, tradesmen_profile_path(id: profile.id) %></th>
-        </tr>
+<div class="card text-center">
+  <div class="card-header container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <h2><%= @tradesmen_trade.name %></h2>
+      </div>
+      <% if can? :update, @tradesmen_trade %>
+        <div class="col-md-2 float-end">
+          <div class="btn btn-outline-light btn-sm">
+            <%= link_to edit_tradesmen_trade_path(@tradesmen_trade), class: "btn" do %>
+              <%= svg('pencil-square', width: '25px', height: '25px') %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-</p>
+    </div>
+  </div>
+</div>
+<br>
 
-<%= link_to 'Edit', edit_tradesmen_trade_path(@tradesmen_trade) %> |
+<div class="card text-center">
+  <h2 class="card-title">Users</h2>
+  <div class="card-body">
+    <table class="table table-hover table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tradesmen_trade.tradesmen_profiles.each do |profile| %>
+          <tr onclick="location.href='<%= tradesmen_profile_path(profile) %>'" class="clickable">
+            <th><%= profile.name %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <%= link_to 'Back', 'javascript:history.back()' %>
