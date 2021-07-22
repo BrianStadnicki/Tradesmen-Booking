@@ -11,13 +11,13 @@
   </thead>
 
   <tbody>
-  <% @businesses.each do |business| %>
-    <tr onclick="location.href='<%= business_path(business) %>'">
-      <td><%= business.name %></td>
-      <td><%= business.description %></td>
-      <td><%= business.address %></td>
-      <td><%= business.phone %></td>
-    </tr>
-  <% end %>
+    <% @businesses.each do |business| %>
+      <tr onclick="location.href='<%= business_path(business) %>'">
+        <td><%= business.name %></td>
+        <td><%= business.description %></td>
+        <td><%= business.address %></td>
+        <td><%= business.phone %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
