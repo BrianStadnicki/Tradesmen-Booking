@@ -1,12 +1,18 @@
 <%= form_with(model: tradesmen_trade) do |form| %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="card">
+    <div class="card-body">
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary" %>
+      </div>
+
+    </div>
   </div>
 
 <% end %>
