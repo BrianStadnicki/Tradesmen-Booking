@@ -19,3 +19,9 @@
 .clickable {
   cursor: pointer;
 }
+
+@media only screen and (max-width: 640px) {
+  .hides {
+    display: none;
+  }
+}
