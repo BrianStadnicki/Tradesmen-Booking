@@ -7,13 +7,13 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Address</th>
+      <th class="hides">Address</th>
       <th>Phone</th>
-      <th>Phone2</th>
+      <th class="hides">Phone2</th>
       <% if current_user.admin? %>
-        <th>Role</th>
-        <th>Tradesmen Profile</th>
-        <th>Business</th>
+        <th class="hides">Role</th>
+        <th class="hides">Tradesmen Profile</th>
+        <th class="hides">Business</th>
       <% end %>
     </tr>
   </thead>
@@ -23,17 +23,17 @@
       <tr onclick="location.href='<%= user_path(user) %>'" class="clickable">
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.address %></td>
+        <td class="hides"><%= user.address %></td>
         <td><%= user.phone %></td>
-        <td><%= user.phone2 %></td>
+        <td class="hides"><%= user.phone2 %></td>
         <% if current_user.admin? %>
-          <td><%= user.role.name %></td>
-          <td>
+          <td class="hides"><%= user.role.name %></td>
+          <td class="hides">
             <% if user.tradesmen_profile_belongs.present? %>
               <%= link_to user.tradesmen_profile_belongs.name, tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>
             <% end %>
           </td>
-          <td>
+          <td class="hides">
             <% if user.business_belongs.present? %>
               <%= link_to user.business_belongs.name, business_path(id: user.business_belongs.id) %>
             <% end %>
