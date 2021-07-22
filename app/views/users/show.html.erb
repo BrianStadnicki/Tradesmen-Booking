@@ -1,7 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <div class="card text-center">
-  <h2 class="card-title"><%= @user.name %></h2>
+  <div class="card-header container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <h2><%= @user.name %></h2>
+      </div>
+      <% if can? :update, @user %>
+        <div class="col-md-2 float-end">
+          <div class="btn btn-outline-light btn-sm">
+            <%= link_to edit_user_path(@user), class: "btn" do %>
+              <%= svg('pencil-square', width: '25px', height: '25px') %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <div class="card-body">
     <table class="table table-hover table-striped table-bordered table-responsive">
       <tbody>
@@ -46,5 +61,4 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', 'javascript:history.back()' %>
