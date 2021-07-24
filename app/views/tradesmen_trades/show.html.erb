@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<div class="card text-center">
-  <div class="card-header container-fluid">
-    <div class="row">
-      <div class="col-md-10">
-        <h2><%= @tradesmen_trade.name %></h2>
+
+<div class="card">
+  <h1 class="display-1 text-center"><%= @tradesmen_trade.name %></h1>
+
+  <% if can? :update, @tradesmen_trade %>
+    <div class="top-right">
+      <div class="btn btn-outline-light btn-sm">
+        <%= link_to edit_tradesmen_trade_path(@tradesmen_trade), class: "btn" do %>
+          <%= svg('pencil-square') %>
+        <% end %>
       </div>
-      <% if can? :update, @tradesmen_trade %>
-        <div class="col-md-2 float-end">
-          <div class="btn btn-outline-light btn-sm">
-            <%= link_to edit_tradesmen_trade_path(@tradesmen_trade), class: "btn" do %>
-              <%= svg('pencil-square', width: '25px', height: '25px') %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
 <br>
-
 <div class="card text-center">
   <div class="card-header">
     <h2 class="float-start">Tradesmen</h2>
