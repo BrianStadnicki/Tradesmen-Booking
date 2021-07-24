@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_180657) do
+ActiveRecord::Schema.define(version: 2021_07_24_215326) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_07_15_180657) do
     t.index ["business_id", "tradesmen_profile_id"], name: "index_on_businesses_tradesmen_profiles_uniqueness", unique: true
     t.index ["business_id"], name: "index_businesses_tradesmen_profiles_on_business_id"
     t.index ["tradesmen_profile_id"], name: "index_businesses_tradesmen_profiles_on_tradesmen_profile_id"
+  end
+
+  create_table "job_tradesmen_applications", force: :cascade do |t|
+    t.integer "job_id", null: false
+    t.integer "tradesmen_profile_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_id"], name: "index_job_tradesmen_applications_on_job_id"
+    t.index ["tradesmen_profile_id"], name: "index_job_tradesmen_applications_on_tradesmen_profile_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -132,6 +142,8 @@ ActiveRecord::Schema.define(version: 2021_07_15_180657) do
   add_foreign_key "businesses", "users", column: "owner_id"
   add_foreign_key "businesses_tradesmen_profiles", "businesses"
   add_foreign_key "businesses_tradesmen_profiles", "tradesmen_profiles"
+  add_foreign_key "job_tradesmen_applications", "jobs"
+  add_foreign_key "job_tradesmen_applications", "tradesmen_profiles"
   add_foreign_key "jobs", "businesses"
   add_foreign_key "tradesmen_profile_users", "roles"
   add_foreign_key "tradesmen_profile_users", "tradesmen_profiles"
