@@ -1,43 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<div class="card text-center">
-  <div class="card-header container-fluid">
-    <div class="row">
-      <div class="col-md-10">
-        <h2 class="float-start"><%= @tradesmen_profile.name %></h2>
-      </div>
-      <% if can? :update, @tradesmen_profile %>
-        <div class="col-md-2 float-end">
-          <div class="btn btn-outline-light btn-sm">
-            <%= link_to edit_tradesmen_profile_path(@tradesmen_profile), class: "btn" do %>
-              <%= svg('pencil-square', width: '25px', height: '25px') %>
-            <% end %>
-          </div>
+<h1 class="display-1 text-center"><%= @tradesmen_profile.name %></h1>
+
+<%= form_with(model: @tradesmen_profile) do |form| %>
+
+  <div class="card">
+    <% if can? :update, @tradesmen_profile %>
+      <div class="top-right">
+        <div class="btn btn-outline-light btn-sm">
+          <%= link_to edit_tradesmen_profile_path(@tradesmen_profile), class: "btn" do %>
+            <%= svg('pencil-square') %>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+    <div class="card-body">
+      <fieldset disabled>
+
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_field :description, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :tradesmen_trades, class: "form-label" %>
+          <%= form.text_field :tradesmen_trades, class: "form-control", value: "#{@tradesmen_profile.tradesmen_trades.map(&:name).join(', ')}" %>
+        </div>
+
+        <% if current_user.admin? %>
+          <div class="mb-3">
+            <%= form.label :owner, class: "form-label" %>
+            <div onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'" class="clickable">
+              <%=  form.collection_select(
+                     :owner_id, User.all, :id, :name, { prompt: true }, class: "form-control clickable"
+                   ) %>
+            </div>
+          </div>
+        <% end %>
+
+      </fieldset>
     </div>
   </div>
-  <div class="card-body">
-    <table class="table table-hover table-striped table-bordered table-responsive">
-      <tbody>
-        <tr>
-          <td>Description</td>
-          <td><%= @tradesmen_profile.description %></td>
-        </tr>
-        <tr>
-          <td>Trades</td>
-          <td><%= @tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
-        </tr>
-        <% if @current_user.admin? %>
-          <tr onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'" class="clickable">
-            <td>Owner</td>
-            <td><%= @tradesmen_profile.owner.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+
+<% end %>
+
 <br>
 <div class="card text-center">
   <div class="card-header">
