@@ -5,9 +5,17 @@
 <%= form_with(model: @business) do |form| %>
 
   <div class="card">
+    <% if can? :update, @business %>
+      <div class="top-right">
+        <div class="btn btn-outline-light btn-sm">
+          <%= link_to edit_business_path(@business), class: "btn" do %>
+            <%= svg('pencil-square', width: '20px', height: '20px') %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class="card-body">
       <fieldset disabled>
-
         <div class="mb-3">
           <%= form.label :name, class: "form-label" %>
           <%= form.text_field :name, class: "form-control" %>
@@ -37,7 +45,6 @@
           </div>
 
         <% end %>
-
       </fieldset>
     </div>
   </div>
