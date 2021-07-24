@@ -1,62 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<div class="card text-center">
-  <div class="card-header container-fluid">
-    <div class="row">
-      <div class="col-md-10">
-        <h2 class="float-start"><%= @user.name %></h2>
-      </div>
-      <% if can? :update, @user %>
-        <div class="col-md-2 float-end">
-          <div class="btn btn-outline-light btn-sm">
-            <%= link_to edit_user_path(@user), class: "btn" do %>
-              <%= svg('pencil-square', width: '25px', height: '25px') %>
-            <% end %>
-          </div>
+<h1 class="display-1 text-center"><%= @user.name %></h1>
+
+<%= form_with(model: @user) do |form| %>
+
+  <div class="card">
+    <% if can? :update, @user %>
+      <div class="top-right">
+        <div class="btn btn-outline-light btn-sm">
+          <%= link_to edit_user_path(@user), class: "btn" do %>
+            <%= svg('pencil-square') %>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+    <div class="card-body">
+      <fieldset disabled>
+
+        <div class="mb-3">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.text_field :email, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :address, class: "form-label" %>
+          <%= form.text_field :address, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :phone, class: "form-label" %>
+          <%= form.text_field :phone, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :phone2, class: "form-label" %>
+          <%= form.text_field :phone2, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :date_of_birth, class: "form-label" %>
+          <%= form.date_select :date_of_birth, class: "form-control" %>
+        </div>
+
+        <% if current_user.admin? %>
+          <div class="mb-3">
+            <%= form.label :role_id, class: "form-label" %>
+            <%= form.collection_select(
+                  :role_id, Role.user_category, :id, :name, { prompt: true }, class: "form-control"
+                ) %>
+          </div>
+        <% end %>
+
+      </fieldset>
     </div>
   </div>
-  <div class="card-body">
-    <table class="table table-hover table-striped table-bordered table-responsive">
-      <tbody>
-        <tr>
-          <td>Email</td>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <td>Address</td>
-          <td><%= @user.address %></td>
-        </tr>
-        <tr>
-          <td>Phone</td>
-          <td><%= @user.phone %></td>
-        </tr>
-        <tr>
-          <td>Phone2</td>
-          <td><%= @user.phone2 %></td>
-        </tr>
-        <tr>
-          <td>Date of Birth</td>
-          <td><%= @user.date_of_birth %></td>
-        </tr>
-        <tr>
-          <td>Role</td>
-          <td><%= @user.role.name %></td>
-        </tr>
-        <% if @user.business_belongs.present? %>
-          <tr onclick="location.href='<%= business_path(@user.business) %>'" class="clickable">
-            <td>Business</td>
-            <td><%= @user.business.name %></td>
-          </tr>
-        <% end %>
-        <% if @user.tradesmen_profile_belongs.present? %>
-          <tr onclick="location.href='<%= tradesmen_profile_path(@user.tradesmen_profile_belongs) %>'" class="clickable">
-            <td>Tradesmen Profile</td>
-            <td><%= @user.tradesmen_profile_belongs.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+
+<% end %>
