@@ -48,12 +48,15 @@
           </div>
         <% end %>
 
-        <div class="mb-3">
-          <%= form.label :tradesmen_profile, class: "form-label" %>
-          <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'" class="clickable">
-            <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+        <% if @job.tradesmen_profile %>
+          <div class="mb-3">
+            <%= form.label :tradesmen_profile, class: "form-label" %>
+            <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'" class="clickable">
+              <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+            </div>
           </div>
-        </div>
+        <% end %>
+
       </fieldset>
     </div>
   </div>
