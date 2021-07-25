@@ -2,10 +2,6 @@ class JobTradesmenApplicationsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  # GET /jobs/1/job_tradesmen_applications
-  def index
-  end
-
   # GET /jobs/1/job_tradesmen_applications/new
   def new
   end
