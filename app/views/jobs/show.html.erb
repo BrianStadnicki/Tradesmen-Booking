@@ -2,19 +2,18 @@
 
 <h1 class="display-1 text-center"><%= @job.title %></h1>
 
-<%= form_with(model: @job) do |form| %>
-
-  <div class="card">
-    <% if can? :update, @job %>
-      <div class="top-right">
-        <div class="btn btn-outline-light btn-sm">
-          <%= link_to edit_job_path(@job), class: "btn" do %>
-            <%= svg('pencil-square') %>
-          <% end %>
-        </div>
+<div class="card">
+  <% if can? :update, @job %>
+    <div class="top-right">
+      <div class="btn btn-outline-light btn-sm">
+        <%= link_to edit_job_path(@job), class: "btn" do %>
+          <%= svg('pencil-square') %>
+        <% end %>
       </div>
-    <% end %>
-    <div class="card-body">
+    </div>
+  <% end %>
+  <div class="card-body">
+    <%= form_with(model: @job) do |form| %>
       <fieldset disabled>
 
         <div class="mb-3">
@@ -45,7 +44,6 @@
             </div>
           </div>
         <% end %>
-
         <% if @job.tradesmen_profile %>
           <div class="mb-3">
             <%= form.label :tradesmen_profile, class: "form-label" %>
@@ -54,12 +52,11 @@
             </div>
           </div>
         <% end %>
-
       </fieldset>
-    </div>
+    <% end %>
     <% if current_user.tradesmen? %>
-      <%= link_to "Apply", new_job_job_tradesmen_application_path(job_id: @job.id) %>
+      <br>
+      <%= button_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control", method: :get %>
     <% end %>
   </div>
-
-<% end %>
+</div>
