@@ -3,6 +3,11 @@
   <div class="card">
     <div class="card-body">
 
+      <div class="mb-3">
+        <%= form.label :date, class: "form-label" %>
+        <%= form.date_field :date, class: "form-control" %>
+      </div>
+
       <% if current_user.admin? %>
         <div class="mb-3">
           <%= form.label :tradesmen_profile_id, class: "form-label" %>
