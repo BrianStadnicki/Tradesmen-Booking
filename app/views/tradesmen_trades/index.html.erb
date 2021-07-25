@@ -20,4 +20,6 @@
 
 <br>
 
-<%= button_to 'New Tradesmen Trade', new_tradesmen_trade_path, class: "btn btn-primary", method: :get %>
+<% if can? :create, TradesmenTrade %>
+  <%= button_to 'New Tradesmen Trade', new_tradesmen_trade_path, class: "btn btn-primary", method: :get %>
+<% end %>
