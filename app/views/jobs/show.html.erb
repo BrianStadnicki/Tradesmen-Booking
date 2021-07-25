@@ -57,6 +57,9 @@
 
       </fieldset>
     </div>
+    <% if current_user.tradesmen? %>
+      <%= link_to "Apply", new_job_job_tradesmen_application_path(job_id: @job.id) %>
+    <% end %>
   </div>
 
 <% end %>
