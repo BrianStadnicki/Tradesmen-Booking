@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="display-1 text-center">All Job Tradesmen Applications</h1>
+
+<table class="table table-hover table-striped table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Tradesmen</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @job_tradesmen_applications.each do |job_tradesmen_application| %>
+      <tr>
+        <td onclick="location.href='<%= tradesmen_profile_path(job_tradesmen_application.tradesmen_profile) %>'" class="clickable">
+          <%= job_tradesmen_application.tradesmen_profile.name %>
+        </td>
+        <td><%= job_tradesmen_application.date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

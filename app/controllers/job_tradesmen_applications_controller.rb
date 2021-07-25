@@ -2,11 +2,15 @@ class JobTradesmenApplicationsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  # GET /job_tradesmen_applications/new
+  # GET /jobs/1/job_tradesmen_applications
+  def index
+  end
+
+  # GET /jobs/1/job_tradesmen_applications/new
   def new
   end
 
-  # POST /job_tradesmen_applications
+  # POST /jobs/1/job_tradesmen_applications
   def create
     @job_tradesmen_application.job_id = params[:job_id]
     if @job_tradesmen_application.save
