@@ -26,5 +26,5 @@
 <br>
 
 <% if can? :create, Business %>
-  <%= link_to 'New Business', new_business_path %>
+  <%= button_to 'New Business', new_business_path, class: "btn btn-primary", method: :get %>
 <% end %>

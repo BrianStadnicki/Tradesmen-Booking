@@ -41,5 +41,5 @@
 <br>
 
 <% if can? :create, Job %>
-  <%= link_to 'New Job', new_job_path %>
+  <%= button_to 'New Job', new_job_path, class: "btn btn-primary", method: :get %>
 <% end %>
