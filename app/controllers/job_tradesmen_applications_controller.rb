@@ -8,6 +8,7 @@ class JobTradesmenApplicationsController < ApplicationController
 
   # POST /job_tradesmen_applications
   def create
+    @job_tradesmen_application.job_id = params[:job_id]
     if @job_tradesmen_application.save
       redirect_to @job_tradesmen_application.job, notice: 'Application was successfully created.'
     else
