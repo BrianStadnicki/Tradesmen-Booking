@@ -16,6 +16,8 @@ class Ability
         can :manage, TradesmenProfile, owner: user
         cannot :create, TradesmenProfile if user.tradesmen_profile_belongs.present?
         can :trusted, Business
+        # FIXME: only allow creating applications to jobs from businesses trusted to
+        can :create, JobTradesmenApplication, tradesmen_profile: tradesmen_profile
         case user.tradesmen_profile_user.role.name
         when 'Owner'
           can :manage, User, tradesmen_profile_user: { tradesmen_profile: tradesmen_profile }
