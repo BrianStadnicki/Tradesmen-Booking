@@ -1,0 +1,20 @@
+<%= form_with(model: [@job, @job_tradesmen_application], local: true, url: job_job_tradesmen_applications_path) do |form| %>
+
+  <div class="card">
+    <div class="card-body">
+
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <%= form.label :tradesmen_profile_id, class: "form-label" %>
+          <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary"%>
+      </div>
+
+    </div>
+  </div>
+
+<% end %>

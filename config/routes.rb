@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'jobs#index'
   resources :users
-  resources :jobs
+  resources :jobs do
+    resources :job_tradesmen_applications
+  end
   resources :tradesmen_trades
   resources :tradesmen_profiles do
     get 'trusted', on: :collection
