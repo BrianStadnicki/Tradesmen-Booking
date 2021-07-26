@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_215326) do
+ActiveRecord::Schema.define(version: 2021_07_26_191742) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -62,7 +62,9 @@ ActiveRecord::Schema.define(version: 2021_07_24_215326) do
     t.integer "tradesmen_profile_id"
     t.string "status"
     t.boolean "active"
+    t.integer "job_tradesmen_application_id"
     t.index ["business_id"], name: "index_jobs_on_business_id"
+    t.index ["job_tradesmen_application_id"], name: "index_jobs_on_job_tradesmen_application_id"
     t.index ["tradesmen_profile_id"], name: "index_jobs_on_tradesmen_profile_id"
   end
 
@@ -145,6 +147,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_215326) do
   add_foreign_key "job_tradesmen_applications", "jobs"
   add_foreign_key "job_tradesmen_applications", "tradesmen_profiles"
   add_foreign_key "jobs", "businesses"
+  add_foreign_key "jobs", "job_tradesmen_applications"
   add_foreign_key "tradesmen_profile_users", "roles"
   add_foreign_key "tradesmen_profile_users", "tradesmen_profiles"
   add_foreign_key "tradesmen_profile_users", "users"
