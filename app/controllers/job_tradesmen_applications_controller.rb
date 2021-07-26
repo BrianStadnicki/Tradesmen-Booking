@@ -16,11 +16,28 @@ class JobTradesmenApplicationsController < ApplicationController
     end
   end
 
+  # PATCH /jobs/1/job_tradesmen_applications/1
+  def update
+    @job = Job.find(params[:job_id])
+    if params[:accepted]
+      @job.tradesmen_profile_id = @job_tradesmen_application.tradesmen_profile_id
+      @job.active = true
+      @job.save!
+      redirect_to job_path(@job)
+    else
+      if @job_tradesmen_application.update(job_tradesmen_application_params)
+        redirect_to job_path(@job)
+      else
+        redirect_to job_path(@job), notice: 'Failed to update job tradesmen application.'
+      end
+    end
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
   def job_tradesmen_application_params
-    params.require(:job_tradesmen_application).permit(:job_id, :tradesmen_profile_id, :date)
+    params.require(:job_tradesmen_application).permit(:job_id, :tradesmen_profile_id, :date, :accepted)
   end
 
 end
