@@ -46,11 +46,11 @@ class Ability
         case user.business_user.role.name
         when 'Owner'
           can :manage, User, business_user: { business: business }
-          can :create, :destroy, BusinessesTradesmenProfile, business: business
+          can :manage, BusinessesTradesmenProfile, business: business
         when 'Admin'
           can :update, Business, id: business.id
           can :manage, User, business_user: { business: business, role: { name: 'Employee' } }
-          can :create, :destroy, BusinessesTradesmenProfile, business: business
+          can :manage, BusinessesTradesmenProfile, business: business
         end
         cannot :create, User
       else
