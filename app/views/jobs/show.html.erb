@@ -61,4 +61,6 @@
   </div>
 </div>
 
-<%= render "job_tradesmen_applications/index" %>
+<% unless @job.tradesmen_profile %>
+<%=  render "job_tradesmen_applications/index"  %>
+<% end %>
