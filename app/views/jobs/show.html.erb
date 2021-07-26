@@ -44,12 +44,22 @@
             </div>
           </div>
         <% end %>
+
         <% if @job.tradesmen_profile %>
           <div class="mb-3">
             <%= form.label :tradesmen_profile, class: "form-label" %>
             <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'" class="clickable">
               <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
             </div>
+          </div>
+        <% end %>
+
+        <% if @job.job_tradesmen_application %>
+          <div class="mb-3">
+            <%= fields_for :job_tradesmen_application, @job.job_tradesmen_application do |job_tradesmen_application_form| %>
+              <%= job_tradesmen_application_form.label "Booked for", class: "form-label" %>
+              <%= job_tradesmen_application_form.date_field :date, class: "form-control"  %>
+            <% end %>
           </div>
         <% end %>
       </fieldset>
