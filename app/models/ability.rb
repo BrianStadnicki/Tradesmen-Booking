@@ -8,8 +8,7 @@ class Ability
       if user.tradesmen_profile_belongs.present?
         tradesmen_profile = user.tradesmen_profile || user.tradesmen_profile_belongs
         can :read, Business
-        can :manage, Job, tradesmen_profile: tradesmen_profile
-        cannot :create, Job
+        can :read, Job, business: { tradesmen_businesses_tradesmen_profiles: { tradesmen_profile: tradesmen_profile } }
         can :read, User, tradesmen_profile_user: { tradesmen_profile: tradesmen_profile }
         can :read, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
         can :read, TradesmenProfile
