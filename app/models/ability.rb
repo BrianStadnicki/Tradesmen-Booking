@@ -42,6 +42,7 @@ class Ability
         can :read, BusinessesTradesmenProfile, business: business
         can :read, TradesmenProfile
         can :trusted, TradesmenProfile
+        can :update, JobTradesmenApplication, job: { business: business }
         case user.business_user.role.name
         when 'Owner'
           can :manage, User, business_user: { business: business }
