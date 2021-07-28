@@ -1,15 +1,15 @@
-<%= form_with(model: tradesmen_trade) do |form| %>
+<%= form_with(model: tradesmen_trade) do |f| %>
 
   <div class="card">
     <div class="card-body">
 
       <div class="mb-3">
-        <%= form.label :name, class: "form-label" %>
-        <%= form.text_field :name, class: "form-control" %>
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
 
       <div class="actions">
-        <%= form.submit class: "btn btn-primary" %>
+        <%= f.submit class: "btn btn-primary" %>
       </div>
 
     </div>

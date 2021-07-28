@@ -1,22 +1,22 @@
-<%= form_with(model: [@job, @job_tradesmen_application], local: true, url: job_job_tradesmen_applications_path) do |form| %>
+<%= form_with(model: [@job, @job_tradesmen_application], local: true, url: job_job_tradesmen_applications_path) do |f| %>
 
   <div class="card">
     <div class="card-body">
 
       <div class="mb-3">
-        <%= form.label :date, class: "form-label" %>
-        <%= form.date_field :date, class: "form-control" %>
+        <%= f.label :date, class: "form-label" %>
+        <%= f.date_field :date, class: "form-control" %>
       </div>
 
       <% if current_user.admin? %>
         <div class="mb-3">
-          <%= form.label :tradesmen_profile_id, class: "form-label" %>
-          <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+          <%= f.label :tradesmen_profile_id, class: "form-label" %>
+          <%= f.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
         </div>
       <% end %>
 
       <div class="actions">
-        <%= form.submit class: "btn btn-primary"%>
+        <%= f.submit class: "btn btn-primary"%>
       </div>
 
     </div>
