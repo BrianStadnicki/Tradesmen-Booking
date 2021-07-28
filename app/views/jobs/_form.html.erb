@@ -35,11 +35,6 @@
         </div>
       <% end %>
 
-      <div class="mb-3">
-        <%= form.label :tradesmen_profile, class: "form-label" %>
-        <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
-      </div>
-
       <div class="actions">
         <%= form.submit class: "btn btn-primary" %>
       </div>
