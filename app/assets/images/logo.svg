@@ -6,6 +6,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="25mm"
@@ -14,11 +15,33 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/brian/Documents/tradesmensolutions/logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient2830">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2826" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop2828" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2810"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2808" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient3193"
        osb:paint="gradient">
       <stop
@@ -38,6 +61,15 @@
          offset="0"
          id="stop2845" />
     </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2830"
+       id="linearGradient2836"
+       x1="243.95229"
+       y1="9.4003344"
+       x2="-477.60266"
+       y2="715.11835"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -46,9 +78,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.77549174"
-     inkscape:cx="561.25984"
-     inkscape:cy="396.85039"
+     inkscape:zoom="0.81094541"
+     inkscape:cx="538.84381"
+     inkscape:cy="410.80238"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -60,7 +92,7 @@
      inkscape:bbox-paths="true"
      inkscape:snap-bbox-edge-midpoints="true"
      inkscape:snap-bbox-midpoints="true"
-     inkscape:snap-nodes="true"
+     inkscape:snap-nodes="false"
      inkscape:snap-intersection-paths="true"
      inkscape:snap-smooth-nodes="true"
      inkscape:snap-midpoints="true"
@@ -68,7 +100,8 @@
      inkscape:window-height="1024"
      inkscape:window-x="0"
      inkscape:window-y="28"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:object-paths="true" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -77,7 +110,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -85,6 +118,21 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:url(#linearGradient2836);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10.3845;stroke-opacity:1"
+       id="rect857"
+       width="191.11464"
+       height="192.17676"
+       x="52.970222"
+       y="8.9587698"
+       ry="0" />
+    <rect
+       style="fill:#c0c0c0;fill-opacity:1;stroke-width:10"
+       id="rect893"
+       width="20.255056"
+       height="18.407482"
+       x="138.8195"
+       y="96.446274" />
     <path
        sodipodi:type="star"
        style="fill:none;fill-opacity:1;stroke:#ff0012;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -184,5 +232,20 @@
        height="83.05085"
        x="141"
        y="8.9587698" />
+    <path
+       style="fill:#c0c0c0;fill-opacity:1;stroke-width:2.9129"
+       d=""
+       id="path871"
+       transform="scale(0.26458333)" />
+    <path
+       style="fill:#c0c0c0;fill-opacity:1;stroke-width:2.9129"
+       d=""
+       id="path873"
+       transform="scale(0.26458333)" />
+    <path
+       style="fill:#c0c0c0;fill-opacity:1;stroke-width:2.9129"
+       d=""
+       id="path883"
+       transform="scale(0.26458333)" />
   </g>
 </svg>
