@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   get 'business_tradesmen_profile/create'
   get 'business_tradesmen_profile/destroy'
-  devise_for :users
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations',
+    omniauth: 'users/omniauth_callbacks',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    unlocks: 'users/unlocks'
+  }
   root to: 'jobs#index'
   resources :users
   resources :jobs do
