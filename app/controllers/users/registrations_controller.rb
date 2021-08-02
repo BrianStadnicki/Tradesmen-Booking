@@ -24,9 +24,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:role_id].to_i != @user.role.id
+      redirect_back fallback_location: ''
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy
