@@ -10,9 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    if params[:user][:role_id].to_i == Role.user_category.find_by(name: 'Admin').id
+      redirect_back fallback_location: ''
+    else
+      super
+    end
+  end
 
   # GET /resource/edit
   # def edit

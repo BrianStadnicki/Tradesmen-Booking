@@ -51,7 +51,7 @@
       <div class="mb-3">
         <%= f.label :role_id, class: "form-label" %>
         <%= collection_select(
-              :user, :role_id, Role.user_category, :id, :name, { prompt: true }, class: "form-control"
+              :user, :role_id, Role.user_category.where.not(name: 'Admin'), :id, :name, { prompt: true }, class: "form-control"
             ) %>
       </div>
 
