@@ -16,7 +16,6 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 }
   validates :phone, presence: true, length: { maximum: 30 }
   validates :phone2, allow_blank: true, length: { maximum: 30 }
-  validates :date_of_birth, presence: true
 
   def admin?
     role.name == 'Admin'

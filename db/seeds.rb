@@ -37,61 +37,61 @@ tradesmen_trade_painter = TradesmenTrade.create!(name: 'Painter')
 
 # Admin
 user_admin = User.create!(name: 'An Admin', email: '05bs001@gmail.com', address: '11 julias mead pe111rs spalding',
-                          phone: '0746435464', date_of_birth: '20/11/2001', role: role_user_admin, password: 'password',
+                          phone: '0746435464', role: role_user_admin, password: 'password',
                           password_confirmation: 'password')
 # Tradesmen owners
 user_tradesmen_1_owner = User.create!(name: 'N1 Tradesman Owner', email: '05bs002@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '0746435164',
-                                      date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                      role: role_user_tradesman, password: 'password',
                                       password_confirmation: 'password')
 user_tradesman_2_owner = User.create!(name: 'N2 Tradesman Owner', email: '05bs003@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '07464356164',
-                                      date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                      role: role_user_tradesman, password: 'password',
                                       password_confirmation: 'password')
 # Tradesmen admins
 user_tradesmen_1_admin = User.create!(name: 'N1 Tradesman Admin', email: '05bs012@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '0746435164',
-                                      date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                      role: role_user_tradesman, password: 'password',
                                       password_confirmation: 'password')
 user_tradesman_2_admin = User.create!(name: 'N2 Tradesman Admin', email: '05bs013@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '07464356164',
-                                      date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                      role: role_user_tradesman, password: 'password',
                                       password_confirmation: 'password')
 # Tradesmen employees
 user_tradesmen_1_employee = User.create!(name: 'N1 Tradesman Employee', email: '05bs008@gmail.com',
                                          address: '11 julias mead pe111rs spalding', phone: '0746435164',
-                                         date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                         role: role_user_tradesman, password: 'password',
                                          password_confirmation: 'password')
 user_tradesmen_2_employee = User.create!(name: 'N2 Tradesman Employee', email: '05bs009@gmail.com',
                                          address: '11 julias mead pe111rs spalding', phone: '0746435164',
-                                         date_of_birth: '20/11/2001', role: role_user_tradesman, password: 'password',
+                                         role: role_user_tradesman, password: 'password',
                                          password_confirmation: 'password')
 # Booker owners
 user_booker_1_owner = User.create!(name: 'Owner booker1', email: '05bs005@gmail.com',
                                    address: '11 julias mead pe111rs spalding', phone: '0746235164',
-                                   date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                   role: role_user_booker, password: 'password',
                                    password_confirmation: 'password')
 user_booker_2_owner = User.create!(name: 'Owner booker2', email: '05bs007@gmail.com',
                                    address: '11 julias mead pe111rs spalding', phone: '0746135164',
-                                   date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                   role: role_user_booker, password: 'password',
                                    password_confirmation: 'password')
 # Booker admins
 user_booker_1_admin = User.create!(name: 'Admin booker1', email: '05bs010@gmail.com',
                                    address: '11 julias mead pe111rs spalding', phone: '0746235164',
-                                   date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                   role: role_user_booker, password: 'password',
                                    password_confirmation: 'password')
 user_booker_2_admin = User.create!(name: 'Admin booker1', email: '05bs011@gmail.com',
                                    address: '11 julias mead pe111rs spalding', phone: '0746235164',
-                                   date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                   role: role_user_booker, password: 'password',
                                    password_confirmation: 'password')
 # Booker employees
 user_booker_1_employee = User.create!(name: 'Employee booker1', email: '05bs004@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '0746235164',
-                                      date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                      role: role_user_booker, password: 'password',
                                       password_confirmation: 'password')
 user_booker_2_employee = User.create!(name: 'Employee booker2', email: '05bs006@gmail.com',
                                       address: '11 julias mead pe111rs spalding', phone: '0756235164',
-                                      date_of_birth: '20/11/2001', role: role_user_booker, password: 'password',
+                                      role: role_user_booker, password: 'password',
                                       password_confirmation: 'password')
 # Businesses
 business_1 = Business.create!(name: 'Lettings agent uno', description: 'The first', address: 'adsfsdfadf',

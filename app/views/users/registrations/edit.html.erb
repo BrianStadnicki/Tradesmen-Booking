@@ -33,11 +33,6 @@
   </div>
 
   <div class="mb-3">
-    <%= f.label :date_of_birth, class: "form-label" %>
-    <%= f.date_select :date_of_birth, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
     <%= f.label :password, class: "form-label" %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     <% if @minimum_password_length %>
