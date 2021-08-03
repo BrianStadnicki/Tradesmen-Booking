@@ -20,23 +20,27 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr onclick="location.href='<%= user_path(user) %>'" class="clickable">
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td class="hides"><%= user.address %></td>
-        <td><%= user.phone %></td>
-        <td class="hides"><%= user.phone2 %></td>
+      <tr class="clickable">
+        <td onclick="location.href='<%= user_path(user) %>'"><%= user.name %></td>
+        <td onclick="location.href='<%= user_path(user) %>'"><%= user.email %></td>
+        <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.address %></td>
+        <td onclick="location.href='<%= user_path(user) %>'"><%= user.phone %></td>
+        <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.phone2 %></td>
         <% if current_user.admin? %>
-          <td class="hides"><%= user.role.name %></td>
-          <td class="hides">
-            <% if user.tradesmen_profile_belongs.present? %>
-              <%= link_to user.tradesmen_profile_belongs.name, tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>
-            <% end %>
+          <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.role.name %></td>
+          <% if user.tradesmen_profile_belongs.present? %>
+            <td onclick="location.href='<%= tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>'" class="hides">
+              <%= user.tradesmen_profile_belongs.name %>
+          <% else %>
+            <td onclick="location.href='<%= user_path(user) %>'">
+          <% end %>
           </td>
-          <td class="hides">
-            <% if user.business_belongs.present? %>
-              <%= link_to user.business_belongs.name, business_path(id: user.business_belongs.id) %>
-            <% end %>
+          <% if user.business_belongs.present? %>
+            <td onclick="location.href='<%= business_path(id: user.business_belongs.id) %>'" class="hides">
+              <%= user.business_belongs.name %>
+          <% else %>
+            <td onclick="location.href='<%= user_path(user) %>'">
+          <% end %>
           </td>
         <% end %>
       </tr>
