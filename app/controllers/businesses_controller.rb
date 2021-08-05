@@ -4,6 +4,9 @@ class BusinessesController < ApplicationController
 
   # GET /businesses
   def index
+    if @businesses.empty?
+      redirect_to new_business_path
+    end
   end
 
   # GET /businesses/trusted

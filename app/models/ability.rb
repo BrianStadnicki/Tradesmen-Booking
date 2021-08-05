@@ -59,6 +59,7 @@ class Ability
         cannot :create, User
       else
         can :create, Business
+        can :read, Business, id: nil
       end
     end
   end
