@@ -27,6 +27,11 @@
   text-overflow: ellipsis;
 }
 
+.required::after {
+  content: " *";
+  color: red;
+}
+
 @media only screen and (max-width: 640px) {
   .hides {
     display: none;
