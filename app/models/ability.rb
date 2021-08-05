@@ -33,6 +33,7 @@ class Ability
         cannot :create, User
       else
         can :create, TradesmenProfile
+        can :read, TradesmenProfile, id: nil
       end
     elsif user.booker?
       if user.business_belongs.present?

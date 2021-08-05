@@ -4,6 +4,9 @@ class TradesmenProfilesController < ApplicationController
 
   # GET /tradesmen_profiles
   def index
+    if @tradesmen_profiles.empty?
+      redirect_to new_tradesmen_profile_path
+    end
   end
 
   # Get /tradesmen_profiles/trusted
