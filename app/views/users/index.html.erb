@@ -7,7 +7,6 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th class="hides">Address</th>
       <th>Phone</th>
       <th class="hides">Phone2</th>
       <% if current_user.admin? %>
@@ -23,7 +22,6 @@
       <tr class="clickable">
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.name %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.email %></td>
-        <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.address %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.phone %></td>
         <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.phone2 %></td>
         <% if current_user.admin? %>

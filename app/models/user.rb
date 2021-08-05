@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_one :business_belongs, through: :business_user, source: :business
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :address, presence: true, length: { maximum: 100 }
   validates :email, presence: true, length: { maximum: 100 }
   validates :phone, presence: true, length: { maximum: 30 }
   validates :phone2, allow_blank: true, length: { maximum: 30 }
