@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
-      <th class="hides">Phone2</th>
       <% if current_user.admin? %>
         <th class="hides">Role</th>
         <th class="hides">Tradesmen Profile</th>
@@ -23,7 +22,6 @@
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.name %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.email %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.phone %></td>
-        <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.phone2 %></td>
         <% if current_user.admin? %>
           <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.role.name %></td>
           <% if user.tradesmen_profile_belongs.present? %>
