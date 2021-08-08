@@ -13,7 +13,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top d-flex">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
             <%= svg("logo") %>
@@ -22,7 +22,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <ul class="navbar-nav me-auto mb-lg-0">
+            <ul class="navbar-nav mb-lg-0">
               <li class="nav-item"><h3><%= link_to 'Jobs', jobs_path, class: 'nav-link active' %></h3></li>
               <li class="nav-item"><h3><%= link_to 'Users', users_path, class: 'nav-link active' %></h3></li>
               <li class="nav-item"><h3><%= link_to 'Tradesmen', tradesmen_profiles_path, class: 'nav-link active' %></h3></li>
@@ -30,10 +30,19 @@
               <% if current_user.admin? %>
                 <li class="nav-item"><h3><%= link_to 'Tradesmen Trades', tradesmen_trades_path, class: 'nav-link active' %></h3></li>
               <% end %>
-              <li class="nav-item"><h3><%= link_to "Edit Profile", edit_user_registration_path, class: 'nav-link active' %></h3></li>
-              <li class="nav-item"><h3><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link active' %></h3></li>
             </ul>
           </div>
+          <div class="navbar-nav mb-lg-0">
+            <div class="dropdown">
+              <a class="dropdown-toggle me-2" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= svg("person-circle") %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <li class="dropdown-item"><%= link_to "Profile", user_path(@current_user.id), class: 'nav-link active' %></li>
+                <li class="dropdown-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link active' %></li>
+              </ul>
+            </div>
+            </div>
         </div>
       </nav>
     <% else %>
