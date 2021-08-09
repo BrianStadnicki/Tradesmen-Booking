@@ -25,15 +25,6 @@
           <%= form.text_field :phone, class: "form-control" %>
         </div>
 
-        <% if current_user.admin? %>
-          <div class="mb-3">
-            <%= form.label :role_id, class: "form-label" %>
-            <%= form.collection_select(
-                  :role_id, Role.user_category, :id, :name, { prompt: true }, class: "form-control"
-                ) %>
-          </div>
-        <% end %>
-
       </fieldset>
     </div>
   </div>
