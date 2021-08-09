@@ -25,9 +25,15 @@
             <ul class="navbar-nav mb-lg-0">
               <li class="nav-item"><h3><%= link_to 'Jobs', jobs_path, class: 'nav-link active' %></h3></li>
               <li class="nav-item"><h3><%= link_to 'Users', users_path, class: 'nav-link active' %></h3></li>
-              <li class="nav-item"><h3><%= link_to 'Tradesmen', tradesmen_profiles_path, class: 'nav-link active' %></h3></li>
               <li class="nav-item"><h3>
-                  <% if current_user.admin? %>
+                <% if current_user.admin? or current_user.tradesmen?  %>
+                  <%= link_to 'Tradesmen', tradesmen_profiles_path, class: 'nav-link active' %>
+                <% else %>
+                  <%= link_to 'Tradesmen', trusted_tradesmen_profiles_path, class: 'nav-link active' %>
+                <% end %>
+              </h3></li>
+              <li class="nav-item"><h3>
+                  <% if current_user.admin? or current_user.booker?  %>
                     <%= link_to 'Businesses', businesses_path, class: 'nav-link active' %>
                   <% else %>
                     <%= link_to 'Businesses', trusted_businesses_path, class: 'nav-link active' %>
