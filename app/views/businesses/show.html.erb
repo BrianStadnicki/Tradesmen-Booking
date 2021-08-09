@@ -48,6 +48,7 @@
 
 <% if current_user.business_belongs == @business or current_user.admin? %>
   <br>
+
   <div class="card text-center">
     <div class="card-header">
       <h2 class="float-start">Users</h2>
@@ -74,6 +75,8 @@
   </div>
 <% end %>
 
+<br>
+
 <% if @current_user.tradesmen? %>
   <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
     <%= button_to 'Trust', businesses_tradesmen_profile_index_path(business_id: @business.id, tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id), method: :post, action: :create %>
@@ -81,3 +84,5 @@
     <%= button_to 'Untrust', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy' %>
   <% end %>
 <% end %>
+
+<br>

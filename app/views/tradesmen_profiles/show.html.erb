@@ -48,6 +48,7 @@
 <% end %>
 
 <br>
+
 <div class="card text-center">
   <div class="card-header">
     <h2 class="float-start">Users</h2>
@@ -73,6 +74,8 @@
   </div>
 </div>
 
+<br>
+
 <% if @current_user.booker? %>
   <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile %>
     <%= button_to 'Trust', businesses_tradesmen_profile_index_path(business_id: @current_user.business_belongs.id, tradesmen_profile_id: @tradesmen_profile.id), method: :post, action: :create, class: "btn btn-primary" %>
@@ -80,3 +83,5 @@
     <%= button_to 'Untrust', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy', class: "btn btn-primary" %>
   <% end %>
 <% end %>
+
+<br>
