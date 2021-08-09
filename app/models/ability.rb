@@ -23,12 +23,12 @@ class Ability
         case user.tradesmen_profile_user.role.name
         when 'Owner'
           can :manage, User, tradesmen_profile_user: { tradesmen_profile: tradesmen_profile }
-          can :create, :destroy, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
+          can :destroy, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
         when 'Admin'
           can :update, TradesmenProfile, id: tradesmen_profile.id
           can :manage, User,
               tradesmen_profile_user: { tradesmen_profile: tradesmen_profile, role: { name: 'Employee' } }
-          can :create, :destroy, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
+          can :destroy, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
         end
         cannot :create, User
       else
