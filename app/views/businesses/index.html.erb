@@ -1,7 +1,9 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item"><%= link_to 'Trusted', trusted_businesses_path, class: "nav-link" %></li>
-  <li class="nav-item"><%= link_to 'All', businesses_path, class: "nav-link active" %></li>
-</ul>
+<% if current_user.tradesmen? %>
+  <ul class="nav nav-tabs">
+    <li class="nav-item"><%= link_to 'Trusted', trusted_businesses_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to 'All', businesses_path, class: "nav-link active" %></li>
+  </ul>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 
