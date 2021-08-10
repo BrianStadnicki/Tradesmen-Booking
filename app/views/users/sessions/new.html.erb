@@ -25,11 +25,10 @@
         <div class="col justify-content-start">
           <%= f.submit "Log in", class: "btn btn-primary" %>
         </div>
-        <div class="col d-flex justify-content-end">
-          <%= button_to "Forgot your password?", new_password_path(resource_name), method: :get, class: "btn btn-secondary" %>
-        </div>
+<% end %>
+      <div class="col d-flex justify-content-end">
+        <%= button_to "Forgot your password?", new_password_path(resource_name), method: :get, class: "btn btn-secondary" %>
       </div>
     </div>
   </div>
-
-<% end %>
+</div>
