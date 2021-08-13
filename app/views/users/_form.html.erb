@@ -19,13 +19,6 @@
       </div>
       
       <div class="mb-3">
-        <%= f.label :role_id, class: "form-label" %>
-        <%= f.collection_select(
-              :role_id, Role.user_category, :id, :name, { prompt: true }, class: "form-control"
-            ) %>
-      </div>
-
-      <div class="mb-3">
         <%= f.label :password, class: "form-label" %><br>
         <%= f.password_field :password, placeholder: "Leave blank if unchanged", class: "form-control" %>
       </div>
