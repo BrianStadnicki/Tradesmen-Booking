@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
     omniauth: 'users/omniauth_callbacks',
     registrations: 'users/registrations',
+    passwords: 'users/passwords',
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
   }
