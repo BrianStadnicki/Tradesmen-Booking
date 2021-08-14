@@ -6,10 +6,11 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
+      <th class="hides">Role</th>
       <% if current_user.admin? %>
-        <th class="hides">Role</th>
         <th class="hides">Tradesmen Profile</th>
         <th class="hides">Business</th>
+        <th class="hides">Type</th>
       <% end %>
     </tr>
   </thead>
@@ -20,8 +21,14 @@
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.name %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.email %></td>
         <td onclick="location.href='<%= user_path(user) %>'"><%= user.phone %></td>
+        <td onclick="location.href='<%= user_path(user) %>'">
+          <% if user.tradesmen? and user.tradesmen_profile_user.present? %>
+            <%= user.tradesmen_profile_user.role.name %>
+          <% elsif user.booker? and user.business_user.present? %>
+            <%= user.business_user.role.name %>
+          <% end %>
+        </td>
         <% if current_user.admin? %>
-          <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.role.name %></td>
           <% if user.tradesmen_profile_belongs.present? %>
             <td onclick="location.href='<%= tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>'" class="hides">
               <%= user.tradesmen_profile_belongs.name %>
@@ -36,6 +43,7 @@
             <td onclick="location.href='<%= user_path(user) %>'">
           <% end %>
           </td>
+          <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.role.name %></td>
         <% end %>
       </tr>
     <% end %>
