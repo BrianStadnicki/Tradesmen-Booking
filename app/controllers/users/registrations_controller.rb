@@ -59,9 +59,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    if current_user.tradesmen? and !@current_user.tradesmen_profile_belongs.present?
+      new_tradesmen_profile_path
+    elsif current_user.booker? and !@current_user.business_belongs.present?
+      new_business_path
+    end
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
