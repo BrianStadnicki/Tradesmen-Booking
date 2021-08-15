@@ -8,6 +8,11 @@
         <%= f.date_field :date, class: "form-control" %>
       </div>
 
+      <div class="mb-3">
+        <%= f.label :quote, class: "form-label" %>
+        <%= f.number_field :quote, class: "form-label" %>
+      </div>
+
       <% if current_user.admin? %>
         <div class="mb-3">
           <%= f.label :tradesmen_profile_id, class: "form-label" %>
