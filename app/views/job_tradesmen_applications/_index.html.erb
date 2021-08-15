@@ -22,7 +22,7 @@
         </td>
         <td><%= job_tradesmen_application.date %></td>
         <% if @job.quote_required %>
-          <%= job_tradesmen_application.quote %>
+          <td><%= job_tradesmen_application.quote %></td>
         <% end %>
         <% if current_user.booker? %>
           <td><%= button_to "Accept", job_job_tradesmen_application_path(@job, job_tradesmen_application, accepted: true), method: :patch, class: "btn btn-primary form-control" %></td>
