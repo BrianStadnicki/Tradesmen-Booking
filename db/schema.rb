@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_155254) do
+ActiveRecord::Schema.define(version: 2021_08_15_161515) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_155254) do
     t.string "status"
     t.boolean "active"
     t.integer "job_tradesmen_application_id"
+    t.boolean "quote_required"
     t.index ["business_id"], name: "index_jobs_on_business_id"
     t.index ["job_tradesmen_application_id"], name: "index_jobs_on_job_tradesmen_application_id"
     t.index ["tradesmen_profile_id"], name: "index_jobs_on_tradesmen_profile_id"

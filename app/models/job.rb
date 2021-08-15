@@ -10,4 +10,5 @@ class Job < ApplicationRecord
   validates :business, presence: true
   validates :status, presence: true, length: { maximum: 50 }
   validates :active, presence: true
+  validates :quote_required, presence: true
 end
