@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_161515) do
+ActiveRecord::Schema.define(version: 2021_08_15_164222) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_161515) do
     t.date "date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "quote"
+    t.decimal "quote", precision: 8, scale: 2
     t.index ["job_id"], name: "index_job_tradesmen_applications_on_job_id"
     t.index ["tradesmen_profile_id"], name: "index_job_tradesmen_applications_on_tradesmen_profile_id"
   end
