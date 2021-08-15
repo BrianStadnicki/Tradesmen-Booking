@@ -60,6 +60,7 @@
             <% end %>
           </div>
         <% end %>
+        
       </fieldset>
     <% end %>
     <% if current_user.tradesmen? %>
@@ -69,6 +70,6 @@
   </div>
 </div>
 
-<% unless @job.tradesmen_profile %>
-<%=  render "job_tradesmen_applications/index"  %>
+<% if !@job.tradesmen_profile and @job.business == current_user.business_belongs %>
+  <%= render "job_tradesmen_applications/index" %>
 <% end %>
