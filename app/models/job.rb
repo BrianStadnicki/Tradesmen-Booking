@@ -9,6 +9,6 @@ class Job < ApplicationRecord
   validates :tradesmen_profile, presence: false
   validates :business, presence: true
   validates :status, presence: true, length: { maximum: 50 }
-  validates :active, presence: true
-  validates :quote_required, presence: true
+  validates :active, inclusion: { in: [true, false] }
+  validates :quote_required, inclusion: { in: [true, false] }
 end
