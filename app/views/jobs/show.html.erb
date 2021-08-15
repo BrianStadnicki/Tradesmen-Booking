@@ -60,10 +60,10 @@
             <% end %>
           </div>
         <% end %>
-        
+
       </fieldset>
     <% end %>
-    <% if current_user.tradesmen? %>
+    <% if current_user.tradesmen? and !current_user.tradesmen_profile_belongs.job_tradesmen_applications.where(job: @job).first %>
       <br>
       <%= button_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control", method: :get %>
     <% end %>
