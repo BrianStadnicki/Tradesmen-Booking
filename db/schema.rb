@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_221506) do
+ActiveRecord::Schema.define(version: 2021_08_20_225219) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_08_20_221506) do
     t.integer "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "phone2"
+    t.string "email"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
 
