@@ -56,7 +56,7 @@ class BusinessesController < ApplicationController
   def update
     if @business.update(business_params)
       # Don't know why this hack is needed, hopefully temporary
-      @business.owner_id = params['owner']['owner_id']
+      @business.owner_id = params['owner']['owner_id'] if params['owner']
       @business.save
       redirect_to @business, notice: 'Business was successfully updated.'
     else
