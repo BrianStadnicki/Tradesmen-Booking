@@ -26,6 +26,7 @@ class TradesmenProfile < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 200 }
   validates :owner_id, presence: true
+  validates :phone, presence: true
 
   def job_tradesmen_application(job)
     job_tradesmen_applications.where(job: job).first
