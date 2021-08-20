@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_164222) do
+ActiveRecord::Schema.define(version: 2021_08_20_220254) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -103,6 +103,9 @@ ActiveRecord::Schema.define(version: 2021_08_15_164222) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "owner_id"
+    t.string "phone"
+    t.string "phone2"
+    t.string "email"
     t.index ["owner_id"], name: "index_tradesmen_profiles_on_owner_id"
   end
 
