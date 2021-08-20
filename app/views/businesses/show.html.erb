@@ -30,6 +30,16 @@
           <%= form.text_field :phone, class: "form-control" %>
         </div>
 
+        <div class="mb-3">
+          <%= form.label :phone2, class: "form-label" %>
+          <%= form.text_field :phone2, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.email_field :email, class: "form-control" %>
+        </div>
+
         <% if current_user.admin? %>
           <div class="mb-3">
             <%= form.label :owner_id, class: "form-label" %>
