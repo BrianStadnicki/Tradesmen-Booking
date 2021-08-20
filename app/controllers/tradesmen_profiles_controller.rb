@@ -82,6 +82,6 @@ class TradesmenProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tradesmen_profile_params
-      params.require(:tradesmen_profile).permit(:name, :description, :tradesmen_trade_ids, :owner_id)
+      params.require(:tradesmen_profile).permit(:name, :description, :tradesmen_trade_ids, :owner_id, :phone, :phone2, :email)
     end
 end
