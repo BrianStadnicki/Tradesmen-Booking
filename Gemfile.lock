@@ -92,6 +92,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.5)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
@@ -228,6 +231,7 @@ DEPENDENCIES
   cancancan (~> 3.3)
   capybara (>= 3.26)
   devise (~> 4.8)
+  devise_invitable (~> 2.0.5)
   listen (~> 3.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

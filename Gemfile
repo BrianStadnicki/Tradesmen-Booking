@@ -59,3 +59,6 @@ gem "cancancan", "~> 3.3"
 
 # For bootstrap
 gem 'bootstrap', '~> 5.0.0.beta2'
+
+# Devise invitable
+gem 'devise_invitable', '~> 2.0.5'
