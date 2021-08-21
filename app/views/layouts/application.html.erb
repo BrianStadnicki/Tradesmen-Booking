@@ -50,7 +50,7 @@
                 <%= svg("person-circle") %>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                <li class="dropdown-item"><%= link_to "Profile", user_path(@current_user.id), class: 'nav-link active' %></li>
+                <li class="dropdown-item"><%= link_to "Profile", user_path(current_user.id), class: 'nav-link active' %></li>
                 <li class="dropdown-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'nav-link active' %></li>
               </ul>
             </div>
