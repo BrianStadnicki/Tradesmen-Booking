@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get 'business_tradesmen_profile/destroy'
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
+    invitations: 'users/invitations',
     omniauth: 'users/omniauth_callbacks',
-    registrations: 'users/registrations',
     passwords: 'users/passwords',
+    registrations: 'users/registrations',
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
   }
