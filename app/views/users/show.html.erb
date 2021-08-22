@@ -31,6 +31,22 @@
           <%= form.text_field :phone, class: "form-control" %>
         </div>
 
+        <% if @current_user.business_belongs.present? %>
+          <div class="mb-3">
+            <%= form.label :business, class: "form-label" %>
+            <div onclick="location.href='<%= business_path(@current_user.business_belongs) %>'" class="clickable">
+              <%= form.collection_select(:business, Business.all, :id, :name, { prompt: true }, class: "form-control") %>
+            </div>
+          </div>
+        <% elsif @current_user.tradesmen_profile_belongs.present? %>
+            <div class="mb-3">
+              <%= form.label :tradesmen_profile, class: "form-label" %>
+              <div onclick="location.href='<%= tradesmen_profile_path(@current_user.tradesmen_profile_belongs) %>'" class="clickable">
+                <%= form.collection_select(:tradesmen_profile, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+              </div>
+            </div>
+          <% end %>
+
       </fieldset>
     </div>
   </div>
