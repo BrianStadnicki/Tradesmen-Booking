@@ -53,5 +53,5 @@
 <br>
 
 <% if can? :create, User %>
-  <%= button_to 'New User', new_user_path, class: "btn btn-primary", method: :get %>
+  <%= link_to 'New User', new_user_path, class: "btn btn-primary" %>
 <% end %>
