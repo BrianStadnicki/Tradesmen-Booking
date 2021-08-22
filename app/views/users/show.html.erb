@@ -31,21 +31,21 @@
           <%= form.text_field :phone, class: "form-control" %>
         </div>
 
-        <% if @current_user.business_belongs.present? %>
+        <% if @user.business_belongs.present? %>
           <div class="mb-3">
             <%= form.label :business, class: "form-label" %>
-            <div onclick="location.href='<%= business_path(@current_user.business_belongs) %>'" class="clickable">
-              <%= form.collection_select(:business, Business.all, :id, :name, { prompt: true }, class: "form-control") %>
+            <div onclick="location.href='<%= business_path(@user.business_belongs) %>'">
+              <%= form.text_field :business, value: @user.business_belongs.name, class: "form-control clickable" %>
             </div>
           </div>
-        <% elsif @current_user.tradesmen_profile_belongs.present? %>
-            <div class="mb-3">
-              <%= form.label :tradesmen_profile, class: "form-label" %>
-              <div onclick="location.href='<%= tradesmen_profile_path(@current_user.tradesmen_profile_belongs) %>'" class="clickable">
-                <%= form.collection_select(:tradesmen_profile, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
-              </div>
+        <% elsif @user.tradesmen_profile_belongs.present? %>
+          <div class="mb-3">
+            <%= form.label :tradesmen_profile, class: "form-label" %>
+            <div onclick="location.href='<%= tradesmen_profile_path(@user.tradesmen_profile_belongs) %>'">
+              <%= form.text_field :tradesmen_profile, value: @user.tradesmen_profile_belongs.name, class: "form-control clickable" %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
 
       </fieldset>
     </div>
