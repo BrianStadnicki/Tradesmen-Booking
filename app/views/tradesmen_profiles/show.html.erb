@@ -52,10 +52,8 @@
         <% if current_user.admin? %>
           <div class="mb-3">
             <%= form.label :owner, class: "form-label" %>
-            <div onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'" class="clickable">
-              <%=  form.collection_select(
-                     :owner_id, User.all, :id, :name, { prompt: true }, class: "form-control clickable"
-                   ) %>
+            <div onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'">
+              <%= form.text_field :owner, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>

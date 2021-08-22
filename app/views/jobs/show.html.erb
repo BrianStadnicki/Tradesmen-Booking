@@ -37,8 +37,8 @@
         <% if current_user.admin? %>
           <div class="mb-3">
             <%= form.label :business, class: "form-label" %>
-            <div onclick="location.href='<%= business_path(@job.business) %>'" class="clickable">
-              <%= form.collection_select(:business_id, Business.all, :id, :name, { prompt: true }, class: "form-control") %>
+            <div onclick="location.href='<%= business_path(@job.business) %>'">
+              <%= form.text_field :business, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>
@@ -46,8 +46,8 @@
         <% if @job.tradesmen_profile %>
           <div class="mb-3">
             <%= form.label :tradesmen_profile, class: "form-label" %>
-            <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'" class="clickable">
-              <%= form.collection_select(:tradesmen_profile_id, TradesmenProfile.all, :id, :name, { prompt: true }, class: "form-control") %>
+            <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
+              <%= form.text_field :tradesmen_profile, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>
