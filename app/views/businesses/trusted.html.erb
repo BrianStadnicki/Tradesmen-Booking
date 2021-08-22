@@ -15,7 +15,7 @@
 
   <tbody>
     <% @businesses.each do |business| %>
-      <tr onclick="location.href='<%= business_path(business) %>'">
+      <tr onclick="location.href='<%= business_path(business) %>'" class="clickable">
         <td><%= business.name %></td>
         <td><%= business.description %></td>
         <td><%= business.address %></td>

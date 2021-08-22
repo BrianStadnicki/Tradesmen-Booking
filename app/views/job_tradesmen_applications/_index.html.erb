@@ -17,8 +17,8 @@
   <tbody>
     <% @job.job_tradesmen_applications.each do |job_tradesmen_application| %>
       <tr>
-        <td onclick="location.href='<%= tradesmen_profile_path(job_tradesmen_application.tradesmen_profile) %>'" class="clickable">
-          <%= job_tradesmen_application.tradesmen_profile.name %>
+        <td onclick="location.href='<%= tradesmen_profile_path(job_tradesmen_application.tradesmen_profile) %>'">
+          <%= job_tradesmen_application.tradesmen_profile.name class: "clickable" %>
         </td>
         <td><%= job_tradesmen_application.date %></td>
         <% if @job.quote_required %>
