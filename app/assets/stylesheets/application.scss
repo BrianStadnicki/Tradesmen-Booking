@@ -48,6 +48,6 @@
   right: 0;
 }
 
-a.btn {
+a.btn > :not(svg) {
   color: white;
 }
