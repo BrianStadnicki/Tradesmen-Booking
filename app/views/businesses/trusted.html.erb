@@ -1,7 +1,6 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item"><%= link_to 'Trusted', trusted_businesses_path, class: "nav-link active" %></li>
-  <li class="nav-item"><%= link_to 'All', businesses_path, class: "nav-link" %></li>
-</ul>
+<% if current_user.tradesmen? %>
+  <%= render "index_nav" %>
+<% end %>
 
 <table class="table table-hover table-striped table-bordered table-responsive">
   <thead>
