@@ -29,11 +29,6 @@
           <%= f.text_field :status, class: "form-control" %>
         </div>
 
-        <div class="mb-3 form-check form-switch">
-          <%= f.check_box :active, checked: true, class: "form-check-input", id: "active_switch" %>
-          <%= f.label :active, class: "form-label", for: "active_check" %>
-        </div>
-
         <% if current_user.admin? or current_user.tradesmen? %>
           <div class="mb-3">
             <%= f.label :business, class: "form-label" %>
@@ -60,6 +55,11 @@
             <% end %>
           </div>
         <% end %>
+
+        <div class="mb-3 form-check form-switch">
+          <%= f.check_box :active, checked: true, class: "form-check-input", id: "active_switch" %>
+          <%= f.label :active, class: "form-label", for: "active_check" %>
+        </div>
 
       </fieldset>
     <% end %>
