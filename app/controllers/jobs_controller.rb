@@ -6,6 +6,14 @@ class JobsController < ApplicationController
   def index
   end
 
+  # GET /jobs/mine
+  def mine
+  end
+
+  # GET /jobs/mine_active
+  def mine_active
+  end
+
   # GET /jobs/1
   def show
   end
@@ -20,7 +28,7 @@ class JobsController < ApplicationController
 
   # POST /jobs
   def create
-    @job.active = true
+    @job.active |= true
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
 
     if @job.save
