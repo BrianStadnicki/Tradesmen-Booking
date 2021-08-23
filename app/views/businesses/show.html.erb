@@ -48,7 +48,7 @@
           <div class="mb-3">
             <%= form.label :owner_id, class: "form-label" %>
             <div onclick="location.href='<%= user_path(@business.owner) %>'">
-              <%= form.text_field :owner_id, class: "form-control clickable" %>
+              <%= form.text_field :owner_id, value: @business.owner.name, class: "form-control clickable" %>
             </div>
           </div>
 

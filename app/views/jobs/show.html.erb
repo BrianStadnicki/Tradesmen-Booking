@@ -47,7 +47,7 @@
           <div class="mb-3">
             <%= f.label :tradesmen_profile, class: "form-label" %>
             <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
-              <%= f.text_field :tradesmen_profile, class: "form-control clickable" %>
+              <%= f.text_field :tradesmen_profile, value: @job.tradesmen_profile.name, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>

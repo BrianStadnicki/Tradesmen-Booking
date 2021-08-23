@@ -53,7 +53,7 @@
           <div class="mb-3">
             <%= form.label :owner, class: "form-label" %>
             <div onclick="location.href='<%= user_path(@tradesmen_profile.owner) %>'">
-              <%= form.text_field :owner, class: "form-control clickable" %>
+              <%= form.text_field :owner, value: @tradesmen_profile.owner.name, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>
