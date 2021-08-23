@@ -38,7 +38,7 @@
           <div class="mb-3">
             <%= f.label :business, class: "form-label" %>
             <div onclick="location.href='<%= business_path(@job.business) %>'">
-              <%= f.text_field :business, class: "form-control clickable" %>
+              <%= f.text_field :business, value: @job.business.name, class: "form-control clickable" %>
             </div>
           </div>
         <% end %>
