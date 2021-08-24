@@ -23,7 +23,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <ul class="navbar-nav mb-lg-0">
-              <li class="nav-item"><h3><%= link_to 'Jobs', jobs_path, class: 'nav-link active' %></h3></li>
+              <li class="nav-item"><h3>
+                <% if current_user.admin? %>
+                  <%= link_to 'Jobs', jobs_path, class: 'nav-link active' %>
+                <% else %>
+                  <%= link_to 'Jobs', mine_active_jobs_path, class: 'nav-link active' %>
+                <% end %>
+              </h3></li>
               <li class="nav-item"><h3><%= link_to 'Users', users_path, class: 'nav-link active' %></h3></li>
               <li class="nav-item"><h3>
                 <% if current_user.admin? or current_user.tradesmen?  %>
