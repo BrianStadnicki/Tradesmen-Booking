@@ -30,14 +30,22 @@
                   <%= link_to 'Jobs', mine_active_jobs_path, class: 'nav-link active' %>
                 <% end %>
               </h3></li>
-              <li class="nav-item"><h3><%= link_to 'Users', users_path, class: 'nav-link active' %></h3></li>
-              <li class="nav-item"><h3>
-                <% if current_user.admin? or current_user.tradesmen?  %>
-                  <%= link_to 'Tradesmen', tradesmen_profiles_path, class: 'nav-link active' %>
-                <% else %>
-                  <%= link_to 'Tradesmen', trusted_tradesmen_profiles_path, class: 'nav-link active' %>
+                <% if current_user.admin? %>
+                  <li class="nav-item"><h3><%= link_to 'Users', users_path, class: 'nav-link active' %></h3></li>
+                <% elsif current_user.tradesmen_profile_belongs.present? %>
+                  <li class="nav-item"><h3><%= link_to current_user.tradesmen_profile_belongs.name, tradesmen_profile_path(current_user.tradesmen_profile_belongs), class: 'nav-link active' %></h3></li>
+                <% elsif current_user.business_belongs.present? %>
+                  <li class="nav-item"><h3><%= link_to current_user.business_belongs.name, business_path(current_user.business_belongs), class: 'nav-link active' %></h3></li>
                 <% end %>
-              </h3></li>
+              <% if current_user.admin? or current_user.booker? or !current_user.tradesmen_profile_belongs.present? %>
+                <li class="nav-item"><h3>
+                  <% if current_user.admin? %>
+                    <%= link_to 'Tradesmen', tradesmen_profiles_path, class: 'nav-link active' %>
+                  <% else %>
+                    <%= link_to 'Tradesmen', trusted_tradesmen_profiles_path, class: 'nav-link active' %>
+                  <% end %>
+                </h3></li>
+              <% end %>
               <li class="nav-item"><h3>
                   <% if current_user.admin? or current_user.booker?  %>
                     <%= link_to 'Businesses', businesses_path, class: 'nav-link active' %>
