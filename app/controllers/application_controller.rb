@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
       session[:next] = request.fullpath
       redirect_to login_url, alert: 'You have to log in to continue.'
     else
+      Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
       render template: 'public/403', status: 403, layout: true
     end
   end
