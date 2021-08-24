@@ -38,7 +38,7 @@
           </div>
         <% end %>
 
-        <% if @job.tradesmen_profile %>
+        <% if @job.tradesmen_profile and (current_user.admin? or current_user.booker?)%>
           <div class="mb-3">
             <%= f.label :tradesmen_profile, class: "form-label" %>
             <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
