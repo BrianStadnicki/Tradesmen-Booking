@@ -36,6 +36,11 @@
   right: 0;
 }
 
-a.btn > :not(svg) {
+a.btn {
   color: white;
 }
+
+a > svg {
+  color: #666666;
+}
+
