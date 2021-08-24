@@ -47,9 +47,9 @@
                 </h3></li>
               <% end %>
               <li class="nav-item"><h3>
-                  <% if current_user.admin? or current_user.booker?  %>
+                  <% if current_user.admin? or !current_user.business_belongs.present? %>
                     <%= link_to 'Businesses', businesses_path, class: 'nav-link active' %>
-                  <% else %>
+                  <% elsif current_user.tradesmen? %>
                     <%= link_to 'Businesses', trusted_businesses_path, class: 'nav-link active' %>
                   <% end %>
               </h3></li>
