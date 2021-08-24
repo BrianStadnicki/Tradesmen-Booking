@@ -45,7 +45,7 @@ class Ability
         can :read, Business
         can :manage, Business, owner: user
         cannot :create, Business if user.business_belongs.present?
-        can :update, Job, business: business
+        can :create, Job, business: business
         can :read, Job, business: business
         can :update, Job, business: business
         can :mine, Job, business: business
