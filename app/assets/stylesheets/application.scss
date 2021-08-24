@@ -20,22 +20,10 @@
   cursor: pointer;
 }
 
-.truncate {
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @media only screen and (max-width: 640px) {
   .hides {
     display: none;
   }
-
-  .truncate {
-    max-width: 50px;
-  }
-
 }
 
 .card {
