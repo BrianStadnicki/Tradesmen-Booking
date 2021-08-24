@@ -96,9 +96,9 @@
 
 <% if @current_user.tradesmen? %>
   <% if not @business_tradesmen_profile and can? :create, BusinessesTradesmenProfile%>
-    <%= button_to 'Trust', businesses_tradesmen_profile_index_path(business_id: @business.id, tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id), method: :post, action: :create %>
+    <%= button_to 'Trust', businesses_tradesmen_profile_index_path(business_id: @business.id, tradesmen_profile_id: @current_user.tradesmen_profile_belongs.id), method: :post, action: :create, class: "btn btn-primary" %>
   <% elsif can? :destroy, BusinessesTradesmenProfile and @business_tradesmen_profile != nil %>
-    <%= button_to 'Untrust', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy' %>
+    <%= button_to 'Untrust', businesses_tradesmen_profile_path(id: @business_tradesmen_profile.id), method: :delete, action: 'destroy', class: "btn btn-primary" %>
   <% end %>
 <% end %>
 
