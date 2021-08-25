@@ -23,6 +23,7 @@ class JobTradesmenApplicationsController < ApplicationController
       @job.tradesmen_profile_id = @job_tradesmen_application.tradesmen_profile_id
       @job.job_tradesmen_application_id = @job_tradesmen_application.id
       @job.active = true
+      @job.status = "Accepted application"
       @job.save!
       redirect_to job_path(@job)
     else
