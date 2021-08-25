@@ -31,6 +31,7 @@ class JobsController < ApplicationController
     @job.active |= true
     @job.status |= "Awaiting applications"
     @job.status_been_started |= false
+    @job.status_been_completed |= false
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
 
     if @job.save
@@ -59,6 +60,6 @@ class JobsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def job_params
-    params.require(:job).permit(:title, :description, :address, :business_id, :tradesmen_profile_id, :status, :status_been_started, :active, :quote_required)
+    params.require(:job).permit(:title, :description, :address, :business_id, :tradesmen_profile_id, :status, :status_been_started, :status_been_completed, :active, :quote_required)
   end
 end

@@ -96,8 +96,12 @@
           <% else %>
             <%=  link_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control"  %>
           <% end %>
-        <% elsif current_user.tradesmen_profile_belongs == @job.tradesmen_profile and !@job.status_been_started %>
-          <%= button_to "Mark as started", job_path(@job), params: { job: { status: "Started", status_been_started: true } }, method: :patch, class: "btn btn-primary" %>
+        <% elsif current_user.tradesmen_profile_belongs == @job.tradesmen_profile %>
+          <% if !@job.status_been_started %>
+            <%= button_to "Mark as started", job_path(@job), params: { job: { status: "Started", status_been_started: true } }, method: :patch, class: "btn btn-primary" %>
+          <% elsif !@job.status_been_completed %>
+              <%= button_to "Mark as completed", job_path(@job), params: { job: { status: "Completed", status_been_completed: true } }, method: :patch, class: "btn btn-primary" %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
