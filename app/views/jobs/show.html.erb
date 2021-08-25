@@ -101,7 +101,7 @@
   <% end %>
 </div>
 
-<% if !@job.tradesmen_profile and @job.business == current_user.business_belongs %>
+<% if (current_user.booker? or current_user.admin? ) and !@job.tradesmen_profile and @job.business == current_user.business_belongs %>
   <br>
   <%= render "job_tradesmen_applications/index" %>
 <% end %>
