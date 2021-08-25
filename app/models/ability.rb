@@ -16,7 +16,7 @@ class Ability
             active: true, tradesmen_profile: nil
         can :read, User, tradesmen_profile_user: { tradesmen_profile: tradesmen_profile }
         can :read, BusinessesTradesmenProfile, tradesmen_profile: tradesmen_profile
-        can :read, TradesmenProfile
+        can :read, TradesmenProfile, id: tradesmen_profile.id
         can :manage, TradesmenProfile, owner: user
         cannot :create, TradesmenProfile if user.tradesmen_profile_belongs.present?
         can :trusted, Business
