@@ -18,10 +18,12 @@
         <%= f.text_field :address, class: "form-control" %>
       </div>
 
-      <div class="mb-3">
-        <%= f.label :status, class: "form-label" %>
-        <%= f.text_field :status, class: "form-control" %>
-      </div>
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <%= f.label :status, class: "form-label" %>
+          <%= f.text_field :status, class: "form-control" %>
+        </div>
+      <% end %>
 
       <% if current_user.admin? or controller.action_name == "edit" %>
         <div class="mb-3 form-check form-switch">
