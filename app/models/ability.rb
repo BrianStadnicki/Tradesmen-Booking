@@ -43,7 +43,7 @@ class Ability
     elsif user.booker?
       if user.business_belongs.present?
         business = user.business || user.business_belongs
-        can :read, Business
+        can :read, Business, id: business.id
         can :manage, Business, owner: user
         cannot :create, Business if user.business_belongs.present?
         can :create, Job, business: business
