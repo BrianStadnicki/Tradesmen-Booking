@@ -15,9 +15,11 @@
     <% if user_signed_in? %>
       <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top d-flex">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <%= svg("logo") %>
-          </a>
+          <% if current_user.admin? %>
+            <%= link_to jobs_path, class: "navbar-brand" do %><%= svg("logo") %><% end %>
+          <% else %>
+            <%= link_to mine_active_jobs_path, class: "navbar-brand" do %><%= svg("logo") %><% end %>
+          <% end %>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
