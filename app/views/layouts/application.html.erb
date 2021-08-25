@@ -16,7 +16,7 @@
       <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top d-flex">
         <div class="container-fluid">
           <% if current_user.admin? %>
-            <%= link_to jobs_path, class: "navbar-brand" do %><%= svg("logo") %><% end %>
+            <%= link_to users_path, class: "navbar-brand" do %><%= svg("logo") %><% end %>
           <% else %>
             <%= link_to mine_active_jobs_path, class: "navbar-brand" do %><%= svg("logo") %><% end %>
           <% end %>
