@@ -24,6 +24,7 @@ class Ability
         can :mine_active, Job, tradesmen_profile: tradesmen_profile, active: true
         # FIXME: only allow creating applications to jobs from businesses trusted to
         can :create, JobTradesmenApplication, tradesmen_profile: tradesmen_profile
+        can :update, JobTradesmenApplication, tradesmen_profile: tradesmen_profile
         case user.tradesmen_profile_user.role.name
         when 'Owner'
           can :manage, User, tradesmen_profile_user: { tradesmen_profile: tradesmen_profile }
