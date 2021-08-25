@@ -62,7 +62,7 @@
 
         </fieldset>
 
-        <% if current_user.tradesmen? %>
+        <% if current_user.tradesmen? and !@job.tradesmen_profile %>
           <br>
           <% if current_user.tradesmen_profile_belongs.job_tradesmen_application(@job) %>
             <div class="card">
