@@ -11,59 +11,60 @@
     </div>
   <% end %>
   <%= form_with(model: @job) do |f| %>
-      <div class="card-body">
-        <fieldset disabled>
+    <div class="card-body">
+      <fieldset disabled>
+        <div class="mb-3">
+          <%= f.label :description, class: "form-label" %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :address, class: "form-label" %>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :status, class: "form-label" %>
+          <%= f.text_field :status, class: "form-control" %>
+        </div>
+
+        <% if current_user.admin? or current_user.tradesmen? %>
           <div class="mb-3">
-            <%= f.label :description, class: "form-label" %>
-            <%= f.text_area :description, class: "form-control" %>
+            <%= f.label :business, class: "form-label" %>
+            <div onclick="location.href='<%= business_path(@job.business) %>'">
+              <%= f.text_field :business, value: @job.business.name, class: "form-control clickable" %>
+            </div>
           </div>
+        <% end %>
 
+        <% if @job.tradesmen_profile and (current_user.admin? or current_user.booker?)%>
           <div class="mb-3">
-            <%= f.label :address, class: "form-label" %>
-            <%= f.text_field :address, class: "form-control" %>
+            <%= f.label :tradesmen_profile, class: "form-label" %>
+            <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
+              <%= f.text_field :tradesmen_profile, value: @job.tradesmen_profile.name, class: "form-control clickable" %>
+            </div>
           </div>
+        <% end %>
 
+        <% if @job.job_tradesmen_application %>
           <div class="mb-3">
-            <%= f.label :status, class: "form-label" %>
-            <%= f.text_field :status, class: "form-control" %>
+            <%= fields_for :job_tradesmen_application, @job.job_tradesmen_application do |job_tradesmen_application_form| %>
+              <%= job_tradesmen_application_form.label "Booked for", class: "form-label" %>
+              <%= job_tradesmen_application_form.date_field :date, class: "form-control"  %>
+            <% end %>
           </div>
+        <% end %>
 
-          <% if current_user.admin? or current_user.tradesmen? %>
-            <div class="mb-3">
-              <%= f.label :business, class: "form-label" %>
-              <div onclick="location.href='<%= business_path(@job.business) %>'">
-                <%= f.text_field :business, value: @job.business.name, class: "form-control clickable" %>
-              </div>
-            </div>
-          <% end %>
+        <div class="mb-3 form-check form-switch">
+          <%= f.check_box :active, class: "form-check-input", id: "active_switch" %>
+          <%= f.label :active, class: "form-label", for: "active_check" %>
+        </div>
 
-          <% if @job.tradesmen_profile and (current_user.admin? or current_user.booker?)%>
-            <div class="mb-3">
-              <%= f.label :tradesmen_profile, class: "form-label" %>
-              <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
-                <%= f.text_field :tradesmen_profile, value: @job.tradesmen_profile.name, class: "form-control clickable" %>
-              </div>
-            </div>
-          <% end %>
+      </fieldset>
 
-          <% if @job.job_tradesmen_application %>
-            <div class="mb-3">
-              <%= fields_for :job_tradesmen_application, @job.job_tradesmen_application do |job_tradesmen_application_form| %>
-                <%= job_tradesmen_application_form.label "Booked for", class: "form-label" %>
-                <%= job_tradesmen_application_form.date_field :date, class: "form-control"  %>
-              <% end %>
-            </div>
-          <% end %>
-
-          <div class="mb-3 form-check form-switch">
-            <%= f.check_box :active, class: "form-check-input", id: "active_switch" %>
-            <%= f.label :active, class: "form-label", for: "active_check" %>
-          </div>
-
-        </fieldset>
-
-        <% if current_user.tradesmen? and !@job.tradesmen_profile %>
-          <br>
+      <% if current_user.tradesmen? %>
+        <br>
+        <% if !@job.tradesmen_profile %>
           <% if current_user.tradesmen_profile_belongs.job_tradesmen_application(@job) %>
             <div class="card">
               <div class="card-header">
@@ -92,13 +93,15 @@
                 </fieldset>
               </div>
             </div>
-
           <% else %>
-            <%= link_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control" %>
+            <%=  link_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control"  %>
           <% end %>
+        <% elsif current_user.tradesmen_profile_belongs == @job.tradesmen_profile %>
+          <%= button_to "Mark as started", job_path(@job), params: { job: { status: "Started" } }, method: :patch, class: "btn btn-primary" %>
         <% end %>
-      </div>
-  <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <% if (current_user.booker? or current_user.admin? ) and !@job.tradesmen_profile and @job.business == current_user.business_belongs %>
