@@ -62,7 +62,7 @@
 
       </fieldset>
 
-      <% if current_user.tradesmen? %>
+      <% if current_user.tradesmen? and @job.active %>
         <br>
         <% if !@job.tradesmen_profile %>
           <% if current_user.tradesmen_profile_belongs.job_tradesmen_application(@job) %>
@@ -96,15 +96,15 @@
           <% else %>
             <%=  link_to "Apply", new_job_job_tradesmen_application_path(@job), class: "btn btn-primary form-control"  %>
           <% end %>
-        <% elsif current_user.tradesmen_profile_belongs == @job.tradesmen_profile %>
-          <%= button_to "Mark as started", job_path(@job), params: { job: { status: "Started" } }, method: :patch, class: "btn btn-primary" %>
+        <% elsif current_user.tradesmen_profile_belongs == @job.tradesmen_profile and !@job.status_been_started %>
+          <%= button_to "Mark as started", job_path(@job), params: { job: { status: "Started", status_been_started: true } }, method: :patch, class: "btn btn-primary" %>
         <% end %>
       <% end %>
     <% end %>
   </div>
 </div>
 
-<% if (current_user.booker? or current_user.admin? ) and !@job.tradesmen_profile and @job.business == current_user.business_belongs %>
+<% if (current_user.booker? or current_user.admin? ) and !@job.tradesmen_profile and @job.business == current_user.business_belongs and @job.active %>
   <br>
   <%= render "job_tradesmen_applications/index" %>
 <% end %>

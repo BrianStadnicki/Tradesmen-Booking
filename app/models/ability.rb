@@ -14,6 +14,7 @@ class Ability
             business: { tradesmen_businesses_tradesmen_profiles: { tradesmen_profile_id: user.tradesmen_profile_belongs.id } },
             active: true, tradesmen_profile: nil
         can :update, Job, :status, tradesmen_profile: user.tradesmen_profile_belongs
+        can :update, Job, :status_been_started, tradesmen_profile: user.tradesmen_profile_belongs
         can :read, User, tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile_belongs }
         can :read, BusinessesTradesmenProfile, tradesmen_profile: user.tradesmen_profile_belongs
         can :read, TradesmenProfile, id: user.tradesmen_profile_belongs.id
