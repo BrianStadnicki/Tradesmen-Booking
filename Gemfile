@@ -67,3 +67,6 @@ gem 'devise_invitable', '~> 2.0.5'
 
 # Notifications
 gem 'rpush'
+
+# Service workers
+gem 'serviceworker-rails'
