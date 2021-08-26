@@ -80,7 +80,7 @@
         </thead>
 
         <tbody>
-          <% @business.users_business_user.each do |user_and_role| %>
+          <% @business.users_business_user.includes(:user, :role).each do |user_and_role| %>
             <tr onclick="location.href='<%= user_path(user_and_role.user) %>'" class="clickable">
               <td><%= user_and_role.user.name %></td>
               <td><%= user_and_role.role.name %></td>
