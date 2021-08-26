@@ -4,14 +4,17 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
+    @jobs = @jobs.includes(:business)
   end
 
   # GET /jobs/mine
   def mine
+    @jobs = @jobs.includes(:business)
   end
 
   # GET /jobs/mine_active
   def mine_active
+    @jobs = @jobs.includes(:business)
   end
 
   # GET /jobs/1
