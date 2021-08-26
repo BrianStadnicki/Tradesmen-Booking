@@ -6,12 +6,14 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require serviceworker-companion
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+import "/app/assets/javascripts/serviceworker-companion"
 
 Rails.start()
 Turbolinks.start()
