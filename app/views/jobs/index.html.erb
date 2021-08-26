@@ -28,7 +28,7 @@
         <td><%= job.title %></td>
         <td><%= job.address %></td>
         <td><%= job.status %></td>
-        <td><%= job.active %></td>
+        <td><%= job.active ? "yes" : "no" %></td>
         <% if current_user.tradesmen? or current_user.admin?%>
           <td class="hides"><%= job.business.name %></td>
         <% end %>
