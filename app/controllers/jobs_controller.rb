@@ -4,17 +4,17 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = @jobs.includes(:business)
+    index_eager_load
   end
 
   # GET /jobs/mine
   def mine
-    @jobs = @jobs.includes(:business)
+    index_eager_load
   end
 
   # GET /jobs/mine_active
   def mine_active
-    @jobs = @jobs.includes(:business)
+    index_eager_load
   end
 
   # GET /jobs/1
@@ -60,6 +60,16 @@ class JobsController < ApplicationController
   end
 
   private
+
+  def index_eager_load
+    if current_user.booker?
+      @jobs = @jobs.includes(:tradesmen_profile)
+    elsif current_user.tradesmen?
+      @jobs = @jobs.includes(:business)
+    else
+      @jobs = @jobs.includes(:business, :tradesmen_profile)
+    end
+  end
 
   # Only allow a list of trusted parameters through.
   def job_params
