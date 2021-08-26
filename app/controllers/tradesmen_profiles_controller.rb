@@ -6,6 +6,8 @@ class TradesmenProfilesController < ApplicationController
   def index
     if @tradesmen_profiles.empty?
       redirect_to new_tradesmen_profile_path
+    else
+      @tradesmen_profiles = @tradesmen_profiles.includes(:tradesmen_trades)
     end
   end
 
