@@ -15,17 +15,41 @@ const requestNotificationPermission = async (registration) => {
                 applicationServerKey: urlB64ToUint8Array("BD87MR72mMzHzoMk8pekLiZy7gfiKsLFV-fPP5z9XSJxQ7e0vUYLwfoFABuMwoWfVndK4AvpHs7T4KSy2nGjIBA"),
                 userVisibleOnly: true,
             }
-            const subscriptions = await registration.pushManager.subscribe(options)
-            console.log(JSON.stringify(subscriptions))
+            const subscription = await registration.pushManager.subscribe(options)
+            console.log(JSON.stringify(subscription))
+            return subscription
         } catch (err) {
             console.log('Error while registering notifications', err)
         }
     }
 }
 
+const saveNotificationSubscription = async subscription => {
+    await fetch ('/users/current_id')
+        .then(response => response.json())
+        .then(current_id => {
+            fetch('/users/' + current_id.id + '/edit')
+                .then(response => response.text())
+                .then(doc => new DOMParser().parseFromString(doc, "text/html"))
+                .then(formDoc => {
+                    fetch('/users/' + current_id.id, {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-Token': formDoc.querySelector("[name='csrf-token']").content
+                        },
+                        body: JSON.stringify( {user: { notification_subscription: JSON.stringify(subscription) }})
+                    })
+                })
+        })
+}
+
 const main = async () => {
     const registration = await registerServiceWorker()
-    const permission = await requestNotificationPermission(registration)
+    const subscription = await requestNotificationPermission(registration)
+    await saveNotificationSubscription(subscription)
 }
 
 main()
