@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   check_authorization unless: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
     if current_user.nil?
       session[:next] = request.fullpath
       redirect_to login_url, alert: 'You have to log in to continue.'
     else
-      Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
       render template: 'public/403', status: 403, layout: true
     end
   end

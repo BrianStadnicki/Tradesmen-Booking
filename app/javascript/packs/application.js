@@ -13,7 +13,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
-import "/app/assets/javascripts/serviceworker-companion"
+import "../serviceworker-companion"
 
 Rails.start()
 Turbolinks.start()

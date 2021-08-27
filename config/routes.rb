@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/service-worker.js' => "service_worker#service_worker"
+  get '/manifest.json' => "service_worker#manifest"
   get 'business_tradesmen_profile/create'
   get 'business_tradesmen_profile/destroy'
   devise_for :users, controllers: {
