@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   # GET /users/current_id
   def current_id
-    render json: "{id: #{current_user.id}}"
+    render json: "{\"id\": #{current_user.id}}"
   end
 
   private
