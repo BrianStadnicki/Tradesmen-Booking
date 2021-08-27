@@ -15,9 +15,7 @@ const requestNotificationPermission = async (registration) => {
                 applicationServerKey: urlB64ToUint8Array("BD87MR72mMzHzoMk8pekLiZy7gfiKsLFV-fPP5z9XSJxQ7e0vUYLwfoFABuMwoWfVndK4AvpHs7T4KSy2nGjIBA"),
                 userVisibleOnly: true,
             }
-            const subscription = await registration.pushManager.subscribe(options)
-            console.log(JSON.stringify(subscription))
-            return subscription
+            return await registration.pushManager.subscribe(options)
         } catch (err) {
             console.log('Error while registering notifications', err)
         }
@@ -25,25 +23,32 @@ const requestNotificationPermission = async (registration) => {
 }
 
 const saveNotificationSubscription = async subscription => {
-    await fetch ('/users/current_id')
-        .then(response => response.json())
-        .then(current_id => {
-            fetch('/users/' + current_id.id + '/edit')
-                .then(response => response.text())
-                .then(doc => new DOMParser().parseFromString(doc, "text/html"))
-                .then(formDoc => {
-                    fetch('/users/' + current_id.id, {
-                        method: 'put',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-Token': formDoc.querySelector("[name='csrf-token']").content
-                        },
-                        body: JSON.stringify( {user: { notification_subscription: JSON.stringify(subscription) }})
+    if (!(self.localStorage.getItem("notification_subscription") && self.localStorage.getItem("notification_subscription") === JSON.stringify(subscription))) {
+        console.log("Registering notification subscription with server")
+        await fetch ('/users/current_id')
+            .then(response => response.json())
+            .then(current_id => {
+                fetch('/users/' + current_id.id + '/edit')
+                    .then(response => response.text())
+                    .then(doc => new DOMParser().parseFromString(doc, "text/html"))
+                    .then(formDoc => {
+                        fetch('/users/' + current_id.id, {
+                            method: 'put',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRF-Token': formDoc.querySelector("[name='csrf-token']").content
+                            },
+                            body: JSON.stringify( {user: { notification_subscription: JSON.stringify(subscription) }})
+                        }).then(response => {
+                            if (response.ok) {
+                                self.localStorage.setItem("notification_subscription", JSON.stringify(subscription))
+                            }
+                        })
                     })
-                })
-        })
+            })
+    }
 }
 
 const main = async () => {
