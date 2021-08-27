@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    @users = @users.includes(:role, :tradesmen_profile_belongs, :business_belongs, business_user: [:role], tradesmen_profile_user: [:role])
   end
 
   # GET /users/1
