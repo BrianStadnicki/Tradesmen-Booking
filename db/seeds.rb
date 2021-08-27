@@ -108,10 +108,10 @@ BusinessUser.create!(business: business_2, user: user_booker_2_admin, role: role
 BusinessUser.create!(business: business_2, user: user_booker_2_employee, role: role_business_employee)
 
 # Tradesmen profiles
-tradesmen_profile_1 = TradesmenProfile.create!(name: 'First Plumbings', description: 'The first',
+tradesmen_profile_1 = TradesmenProfile.create!(name: 'First Plumbings', description: 'The first', phone: '34234',
                                                owner: user_tradesmen_1_owner)
 tradesmen_profile_2 = TradesmenProfile.create!(name: 'Second electrics & painting', description: 'Premier service',
-                                               owner: user_tradesman_2_owner)
+                                               phone: '34234234324', owner: user_tradesman_2_owner)
 
 tradesmen_profile_1.save
 tradesmen_profile_2.save
