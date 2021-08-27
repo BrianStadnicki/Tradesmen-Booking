@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks'
   }
   root to: 'jobs#index'
-  resources :users
+  resources :users do
+    get 'current_id', on: :collection
+  end
   resources :jobs do
     resources :job_tradesmen_applications
     get 'mine', on: :collection

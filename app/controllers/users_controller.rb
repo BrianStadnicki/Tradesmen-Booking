@@ -50,6 +50,11 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  # GET /users/current_id
+  def current_id
+    render json: "{id: #{current_user.id}}"
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
