@@ -1,19 +1,24 @@
 window.addEventListener('load', () => {
+    self.Notification.requestPermission().then(function(permission) {
+        if(permission !== 'granted'){
+            throw new Error('Permission not granted for Notification');
+        }
+    });
     navigator.serviceWorker.register('/service-worker.js', { scope: "/" }).then(registration => {
-        console.log('ServiceWorker registered: ', registration);
+        console.log('ServiceWorker registered: ', registration)
 
-        let serviceWorker;
+        let serviceWorker
         if (registration.installing) {
-            serviceWorker = registration.installing;
-            console.log('Service worker installing.');
+            serviceWorker = registration.installing
+            console.log('Service worker installing.')
         } else if (registration.waiting) {
-            serviceWorker = registration.waiting;
-            console.log('Service worker installed & waiting.');
+            serviceWorker = registration.waiting
+            console.log('Service worker installed & waiting.')
         } else if (registration.active) {
-            serviceWorker = registration.active;
-            console.log('Service worker active.');
+            serviceWorker = registration.active
+            console.log('Service worker active.')
         }
     }).catch(registrationError => {
-        console.log('Service worker registration failed: ', registrationError);
-    });
-});
+        console.log('Service worker registration failed: ', registrationError)
+    })
+})
