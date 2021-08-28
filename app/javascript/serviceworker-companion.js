@@ -12,12 +12,19 @@ const requestNotificationPermission = async (registration) => {
         console.log('Permission granted!');
         try {
             const options = {
-                applicationServerKey: urlB64ToUint8Array("BD87MR72mMzHzoMk8pekLiZy7gfiKsLFV-fPP5z9XSJxQ7e0vUYLwfoFABuMwoWfVndK4AvpHs7T4KSy2nGjIBA"),
+                applicationServerKey: urlB64ToUint8Array("BJ2mZ3uSBnh6Zho2MNgXpqdqF3c1vRXS-34ULfGdn9L8woat7ayX6hgzJce3FzMqBpFjplgJl-oaH3nDpJbJWSM"),
                 userVisibleOnly: true,
             }
             return await registration.pushManager.subscribe(options)
         } catch (err) {
             console.log('Error while registering notifications', err)
+            registration.pushManager.getSubscription().then(subscription => {
+                subscription.unsubscribe().then(function () {
+                    console.log('Unsubscribed from current notifications')
+                }).catch(function (e) {
+                    console.log('Failed to unsubscribe', e)
+                })
+            })
         }
     }
 }
