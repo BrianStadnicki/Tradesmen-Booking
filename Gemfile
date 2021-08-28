@@ -66,7 +66,7 @@ gem 'bootstrap', '~> 5.0.0.beta2'
 gem 'devise_invitable', '~> 2.0.5'
 
 # Notifications
-gem 'rpush'
+gem 'webpush'
 
 # Service workers
 gem 'serviceworker-rails'
