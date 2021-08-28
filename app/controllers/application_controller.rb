@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  after_action :notification, unless: :service_worker_controller?
   protect_from_forgery
   check_authorization unless: :devise_controller?
 
@@ -22,10 +21,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
   end
 
-  def notification
-    send_notification(current_user, "Hello", "annoying notification every time you do something", { type: "annoying" })
-  end
-
   def send_notification(user, title, body, type)
     notification_subscription = JSON.parse(user.notification_subscription)
 
@@ -43,10 +38,6 @@ class ApplicationController < ActionController::Base
       open_timeout: 5,
       read_timeout: 5
     )
-  end
-
-  def service_worker_controller?
-    controller_name == "service_worker"
   end
 
 end
