@@ -38,6 +38,13 @@ class JobsController < ApplicationController
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
 
     if @job.save
+
+      @job.business.tradesmen.includes(:users).each do |tradesmen|
+        tradesmen.users.each do |user|
+          send_notification(user, 'Job created', @job.business.name + ' created a job', { category: "Jobs", type: "created" })
+        end
+      end
+
       redirect_to @job, notice: 'Job was successfully created.'
     else
       render :new
