@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     notification_subscription = JSON.parse(user.notification_subscription)
 
     Webpush.payload_send(
-      message: "{\"title\": \"#{title}\", \"body\": \"#{body}\", \"type\": #{type.to_json}}",
+      message: "{\"title\": \"#{title}\", \"body\": \"#{body}\"}",
       endpoint: notification_subscription['endpoint'],
       p256dh: notification_subscription['keys']['p256dh'],
       auth: notification_subscription['keys']['auth'],
