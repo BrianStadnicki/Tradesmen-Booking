@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def send_notification(user, title, body, type)
+    return unless user.notification_subscription
     notification_subscription = JSON.parse(user.notification_subscription)
 
     Webpush.payload_send(
