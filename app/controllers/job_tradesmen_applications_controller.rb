@@ -25,6 +25,11 @@ class JobTradesmenApplicationsController < ApplicationController
       @job.active = true
       @job.status = "Accepted application"
       @job.save!
+
+      @job.tradesmen_profile.users.each do |user|
+        send_notification user, "Job accepted", "#{@job.business.name} accepted your application for #{@job.title}", { category: "Jobs", type: "accepted" }
+      end
+
       redirect_to job_path(@job)
     else
       if @job_tradesmen_application.update(job_tradesmen_application_params)
