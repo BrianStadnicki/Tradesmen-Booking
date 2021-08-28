@@ -16,6 +16,7 @@ class TradesmenProfilesController < ApplicationController
     if @current_user.booker?
       @tradesmen = @current_user.business_belongs.tradesmen
     end
+    @tradesmen = @tradesmen.includes(:tradesmen_trades)
   end
 
   # GET /tradesmen_profiles/1
