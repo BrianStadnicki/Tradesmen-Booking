@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  after_action :notification, unless: :service_worker_controller?
   protect_from_forgery
   check_authorization unless: :devise_controller?
 
@@ -13,7 +14,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def notification(user, title, body, type)
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone, :role_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :role_id])
+    devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
+  end
+
+  def notification
+    send_notification(current_user, "Hello", "annoying notification every time you do something", { type: "annoying" })
+  end
+
+  def send_notification(user, title, body, type)
     notification_subscription = JSON.parse(user.notification_subscription)
 
     Webpush.payload_send(
@@ -32,11 +45,8 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone, :role_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :role_id])
-    devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
+  def service_worker_controller?
+    controller_name == "service_worker"
   end
+
 end
