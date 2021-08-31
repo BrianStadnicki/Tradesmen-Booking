@@ -54,6 +54,13 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   def update
     if @job.update(job_params)
+      if params[:job][:status]
+        @job.business.users.each do |user|
+          puts user.name, user.notification_subscription
+          send_notification user, "Job status updated to #{@job.status}", "Job #{@job.title} status updated to #{@job.status}", { category: "Jobs", type: "status" }
+        end
+      end
+
       redirect_to @job, notice: 'Job was successfully updated.'
     else
       render :edit
