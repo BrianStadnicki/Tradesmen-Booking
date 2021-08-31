@@ -9,6 +9,15 @@ class BusinessesTradesmenProfileController < ApplicationController
   def create
     @business_tradesmen_profile = BusinessesTradesmenProfile.new(businesses_tradesmen_profile_params)
     if @business_tradesmen_profile.save
+
+      @business_tradesmen_profile.business.users.each do |user|
+        send_notification user, "Trusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now trusting #{@business_tradesmen_profile.tradesmen_profile.name}", { category: "BusinessTradesmen", type: "created" }
+      end
+
+      @business_tradesmen_profile.tradesmen_profile.users.each do |user|
+        send_notification user, "Business #{@business_tradesmen_profile.business.name} trusted you", "The business #{@business_tradesmen_profile.business.name} is now trusting you", { category: "BusinessTradesmen", type: "created" }
+      end
+
       redirect_back fallback_location: root_url, notice: 'Tradesmen profile was successfully created.'
     else
       render :new
