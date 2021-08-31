@@ -25,21 +25,24 @@ class ApplicationController < ActionController::Base
     return unless user.notification_subscription
     Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};type:#{type}"
     notification_subscription = JSON.parse(user.notification_subscription)
-
-    Webpush.payload_send(
-      message: "{\"title\": \"#{title}\", \"body\": \"#{body}\"}",
-      endpoint: notification_subscription['endpoint'],
-      p256dh: notification_subscription['keys']['p256dh'],
-      auth: notification_subscription['keys']['auth'],
-      vapid: {
-        subject: NOTIFICATIONS['vapid']['subject'],
-        public_key: NOTIFICATIONS['vapid']['public_key'],
-        private_key: NOTIFICATIONS['vapid']['private_key']
-      },
-      ssl_timeout: 5,
-      open_timeout: 5,
-      read_timeout: 5
-    )
+    begin
+      Webpush.payload_send(
+        message: "{\"title\": \"#{title}\", \"body\": \"#{body}\"}",
+        endpoint: notification_subscription['endpoint'],
+        p256dh: notification_subscription['keys']['p256dh'],
+        auth: notification_subscription['keys']['auth'],
+        vapid: {
+          subject: NOTIFICATIONS['vapid']['subject'],
+          public_key: NOTIFICATIONS['vapid']['public_key'],
+          private_key: NOTIFICATIONS['vapid']['private_key']
+        },
+        ssl_timeout: 5,
+        open_timeout: 5,
+        read_timeout: 5
+      )
+    rescue Webpush::Error => error
+      Rails.logger.debug error.message
+    end
   end
 
 end
