@@ -69,6 +69,11 @@ class TradesmenProfilesController < ApplicationController
     end
 
     if @tradesmen_profile.update(tradesmen_profile_params)
+
+      @tradesmen_profile.users.each do |user|
+        send_notification user, "Your tradesmen profile was updated", "", { category: "TradesmenProfile", type: "updated" }
+      end
+
       redirect_to @tradesmen_profile, notice: 'Tradesmen profile was successfully updated.'
     else
       render :edit
