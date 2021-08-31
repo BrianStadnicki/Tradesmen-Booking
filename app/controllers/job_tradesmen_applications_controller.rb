@@ -4,6 +4,7 @@ class JobTradesmenApplicationsController < ApplicationController
 
   # GET /jobs/1/job_tradesmen_applications/new
   def new
+    @job = Job.find(params[:job_id])
   end
 
   # POST /jobs/1/job_tradesmen_applications

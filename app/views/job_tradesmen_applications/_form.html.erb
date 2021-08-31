@@ -8,10 +8,12 @@
         <%= f.date_field :date, class: "form-control" %>
       </div>
 
-      <div class="mb-3">
-        <%= f.label :quote, class: "form-label" %>
-        <%= f.number_field :quote, class: "form-control" %>
-      </div>
+      <% if @job.quote_required  %>
+        <div class="mb-3">
+          <%= f.label :quote, class: "form-label" %>
+          <%= f.number_field :quote, class: "form-control" %>
+        </div>
+      <% end %>
 
       <% if current_user.admin? %>
         <div class="mb-3">
