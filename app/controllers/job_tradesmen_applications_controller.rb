@@ -17,6 +17,11 @@ class JobTradesmenApplicationsController < ApplicationController
     end
   end
 
+  # GET /jobs/1/job_tradesmen_applications/1/edit
+  def edit
+    @job = Job.find(params[:job_id])
+  end
+
   # PATCH /jobs/1/job_tradesmen_applications/1
   def update
     @job = Job.find(params[:job_id])
