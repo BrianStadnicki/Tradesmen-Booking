@@ -60,7 +60,6 @@ class BusinessesController < ApplicationController
       @business.save
 
       @business.users.each do |user|
-        puts user.name, user.notification_subscription
         send_notification user, "Your business profile was updated", "", { category: "Business", type: "updated" }
       end
 
