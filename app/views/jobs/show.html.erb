@@ -86,10 +86,12 @@
                     <%= f.date_field :date, value: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).date, class: "form-control" %>
                   </div>
 
-                  <div class="mb-3">
-                    <%= f.label :quote, class: "form-label" %>
-                    <%= f.number_field :quote, value: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).quote, class: "form-control" %>
-                  </div>
+                  <% if @job.quote_required %>
+                    <div class="mb-3">
+                      <%= f.label :quote, class: "form-label" %>
+                      <%= f.number_field :quote, value: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).quote, class: "form-control" %>
+                    </div>
+                  <% end %>
                 </fieldset>
               </div>
             </div>
