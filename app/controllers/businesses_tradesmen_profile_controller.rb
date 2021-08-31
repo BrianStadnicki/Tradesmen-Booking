@@ -33,6 +33,15 @@ class BusinessesTradesmenProfileController < ApplicationController
         tradesmen_profile_id: params[:tradesmen_profile_id], business_id: params[:business_id])
     end
     @business_tradesmen_profile.destroy
+
+    @business_tradesmen_profile.business.users.each do |user|
+      send_notification user, "Untrusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now not trusting #{@business_tradesmen_profile.tradesmen_profile.name}", { category: "BusinessTradesmen", type: "destroyed" }
+    end
+
+    @business_tradesmen_profile.tradesmen_profile.users.each do |user|
+      send_notification user, "Business #{@business_tradesmen_profile.business.name} untrusted you", "The business #{@business_tradesmen_profile.business.name} is now not trusting you", { category: "BusinessTradesmen", type: "destroyed" }
+    end
+
     redirect_back fallback_location: root_url, notice: 'Tradesmen profile was successfully destroyed.'
   end
 
