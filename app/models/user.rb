@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :invitable
   belongs_to :role
+  has_many :notifications
   has_one :business, required: false, foreign_key: 'owner_id', dependent: :destroy
   has_one :tradesmen_profile, required: false, foreign_key: 'owner_id', dependent: :destroy
   has_one :tradesmen_profile_user, required: false

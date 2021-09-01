@@ -24,8 +24,9 @@ class ApplicationController < ActionController::Base
   def send_notification(user, title, body, type)
     return unless user.notification_subscription
     Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};type:#{type}"
-    notification_subscription = JSON.parse(user.notification_subscription)
+    Notifications.create!({ user: user, title: title, body: body, type_type: type[:type], type_category: type[:category] })
     begin
+      notification_subscription = JSON.parse(user.notification_subscription)
       Webpush.payload_send(
         message: "{\"title\": \"#{title}\", \"body\": \"#{body}\"}",
         endpoint: notification_subscription['endpoint'],
