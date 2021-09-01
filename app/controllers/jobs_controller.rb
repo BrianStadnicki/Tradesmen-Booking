@@ -42,7 +42,7 @@ class JobsController < ApplicationController
 
       @job.business.tradesmen.includes(:users).each do |tradesmen|
         tradesmen.users.each do |user|
-          send_notification user, 'Job created', @job.business.name + ' created a job', { category: "Jobs", type: "created" }
+          send_notification user, 'Job created', @job.business.name + ' created a job', "Jobs", "created"
         end
       end
 
@@ -57,7 +57,7 @@ class JobsController < ApplicationController
     if @job.update(job_params)
       if params[:job][:status]
         @job.business.users.each do |user|
-          send_notification user, "Job status updated to #{@job.status}", "Job #{@job.title} status updated to #{@job.status}", { category: "Jobs", type: "status" }
+          send_notification user, "Job status updated to #{@job.status}", "Job #{@job.title} status updated to #{@job.status}", "Jobs", "status"
         end
       end
 

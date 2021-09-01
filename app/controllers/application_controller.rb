@@ -21,10 +21,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
   end
 
-  def send_notification(user, title, body, type)
+  def send_notification(user, title, body, category, type)
     return unless user.notification_subscription
-    Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};type:#{type}"
-    Notifications.create!({ user: user, title: title, body: body, type_type: type[:type], type_category: type[:category] })
+    Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};category: #{category};type:#{type}"
+
+    Notifications.create!({ user: user, title: title, body: body, type_category: category, type_type: type })
     begin
       notification_subscription = JSON.parse(user.notification_subscription)
       Webpush.payload_send(

@@ -11,11 +11,11 @@ class BusinessesTradesmenProfileController < ApplicationController
     if @business_tradesmen_profile.save
 
       @business_tradesmen_profile.business.users.each do |user|
-        send_notification user, "Trusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now trusting #{@business_tradesmen_profile.tradesmen_profile.name}", { category: "BusinessTradesmen", type: "created" }
+        send_notification user, "Trusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now trusting #{@business_tradesmen_profile.tradesmen_profile.name}","BusinessTradesmen", "created"
       end
 
       @business_tradesmen_profile.tradesmen_profile.users.each do |user|
-        send_notification user, "Business #{@business_tradesmen_profile.business.name} trusted you", "The business #{@business_tradesmen_profile.business.name} is now trusting you", { category: "BusinessTradesmen", type: "created" }
+        send_notification user, "Business #{@business_tradesmen_profile.business.name} trusted you", "The business #{@business_tradesmen_profile.business.name} is now trusting you", "BusinessTradesmen", "created"
       end
 
       redirect_back fallback_location: root_url, notice: 'Tradesmen profile was successfully created.'
@@ -35,11 +35,11 @@ class BusinessesTradesmenProfileController < ApplicationController
     @business_tradesmen_profile.destroy
 
     @business_tradesmen_profile.business.users.each do |user|
-      send_notification user, "Untrusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now not trusting #{@business_tradesmen_profile.tradesmen_profile.name}", { category: "BusinessTradesmen", type: "destroyed" }
+      send_notification user, "Untrusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now not trusting #{@business_tradesmen_profile.tradesmen_profile.name}", "BusinessTradesmen", "destroyed"
     end
 
     @business_tradesmen_profile.tradesmen_profile.users.each do |user|
-      send_notification user, "Business #{@business_tradesmen_profile.business.name} untrusted you", "The business #{@business_tradesmen_profile.business.name} is now not trusting you", { category: "BusinessTradesmen", type: "destroyed" }
+      send_notification user, "Business #{@business_tradesmen_profile.business.name} untrusted you", "The business #{@business_tradesmen_profile.business.name} is now not trusting you", "BusinessTradesmen", "destroyed"
     end
 
     redirect_back fallback_location: root_url, notice: 'Tradesmen profile was successfully destroyed.'

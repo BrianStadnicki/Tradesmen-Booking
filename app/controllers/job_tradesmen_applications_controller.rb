@@ -13,7 +13,7 @@ class JobTradesmenApplicationsController < ApplicationController
     if @job_tradesmen_application.save
 
       @job_tradesmen_application.job.business.users.each do |user|
-        send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} applied for a job", "They applied for #{@job_tradesmen_application.job.title}", { category: "JobTradesmenApplication", type: "created" }
+        send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} applied for a job", "They applied for #{@job_tradesmen_application.job.title}", "JobTradesmenApplication", "created"
       end
 
       redirect_to @job_tradesmen_application.job, notice: 'Application was successfully created.'
@@ -38,7 +38,7 @@ class JobTradesmenApplicationsController < ApplicationController
       @job.save!
 
       @job.tradesmen_profile.users.each do |user|
-        send_notification user, "Job accepted", "#{@job.business.name} accepted your application for #{@job.title}", { category: "Jobs", type: "accepted" }
+        send_notification user, "Job accepted", "#{@job.business.name} accepted your application for #{@job.title}", "Jobs", "accepted"
       end
 
       redirect_to job_path(@job)
@@ -46,7 +46,7 @@ class JobTradesmenApplicationsController < ApplicationController
       if @job_tradesmen_application.update(job_tradesmen_application_params)
 
         @job_tradesmen_application.job.business.users.each do |user|
-          send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} changed their application for a job", "They changed their application for #{@job_tradesmen_application.job.title}", { category: "JobTradesmenApplication", type: "updated" }
+          send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} changed their application for a job", "They changed their application for #{@job_tradesmen_application.job.title}", "JobTradesmenApplication", "updated"
         end
 
         redirect_to job_path(@job)
