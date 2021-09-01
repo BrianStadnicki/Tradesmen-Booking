@@ -86,6 +86,16 @@
                     <%= f.date_field :date, value: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).date, class: "form-control" %>
                   </div>
 
+                  <div class="mb-3 form-check form-switch">
+                    <%= f.check_box :morning, checked: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).morning, class: "form-check-input", id: "active_switch" %>
+                    <%= f.label :morning, class: "form-label", for: "active_check" %>
+                  </div>
+
+                  <div class="mb-3 form-check form-switch">
+                    <%= f.check_box :afternoon, checked: current_user.tradesmen_profile_belongs.job_tradesmen_application(@job).afternoon, class: "form-check-input", id: "active_switch" %>
+                    <%= f.label :afternoon, class: "form-label", for: "active_check" %>
+                  </div>
+
                   <% if @job.quote_required %>
                     <div class="mb-3">
                       <%= f.label :quote, class: "form-label" %>

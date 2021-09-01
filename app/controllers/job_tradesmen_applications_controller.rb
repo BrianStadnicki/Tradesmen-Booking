@@ -60,7 +60,7 @@ class JobTradesmenApplicationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def job_tradesmen_application_params
-    params.require(:job_tradesmen_application).permit(:job_id, :tradesmen_profile_id, :date, :accepted, :quote)
+    params.require(:job_tradesmen_application).permit(:job_id, :tradesmen_profile_id, :date, :morning, :afternoon, :accepted, :quote)
   end
 
 end
