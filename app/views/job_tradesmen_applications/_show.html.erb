@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title display-6 text-center">Application</h1>
+    <% if can? :update, @job_tradesmen_application %>
+      <div class="top-right">
+        <div class="btn btn-outline-light btn-sm">
+          <%= link_to edit_job_job_tradesmen_application_path(@job_tradesmen_application), class: "btn" do %>
+            <%= svg('pencil-square') %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= form_with(model: [@job, @job_tradesmen_application]) do |f| %>
+    <div class="card-body">
+      <fieldset disabled>
+        <div class="mb-3">
+          <%= f.label :date, class: "form-label" %>
+          <%= f.date_field :date, value: @job_tradesmen_application.date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3 form-check form-switch">
+          <%= f.check_box :morning, checked: @job_tradesmen_application.morning, class: "form-check-input", id: "active_switch" %>
+          <%= f.label :morning, class: "form-label", for: "active_check" %>
+        </div>
+
+        <div class="mb-3 form-check form-switch">
+          <%= f.check_box :afternoon, checked: @job_tradesmen_application.afternoon, class: "form-check-input", id: "active_switch" %>
+          <%= f.label :afternoon, class: "form-label", for: "active_check" %>
+        </div>
+
+        <% if @job.quote_required %>
+          <div class="mb-3">
+            <%= f.label :quote, class: "form-label" %>
+            <%= f.number_field :quote, value: @job_tradesmen_application.quote, class: "form-control" %>
+          </div>
+        <% end %>
+      </fieldset>
+    </div>
+  <% end %>
+</div>
