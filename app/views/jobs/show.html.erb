@@ -50,7 +50,7 @@
           <div class="mb-3">
             <%= fields_for :job_tradesmen_application, @job.job_tradesmen_application do |job_tradesmen_application_form| %>
               <%= job_tradesmen_application_form.label "Booked for", class: "form-label" %>
-              <%= job_tradesmen_application_form.date_field :date, class: "form-control"  %>
+              <%= job_tradesmen_application_form.text_field :date, value: @job.job_tradesmen_application.date.strftime("%d/%m/%Y") + (@job.job_tradesmen_application.morning ? " morning " : "") + (@job.job_tradesmen_application.afternoon ? " afternoon " : ""), class: "form-control" %>
             <% end %>
           </div>
         <% end %>
