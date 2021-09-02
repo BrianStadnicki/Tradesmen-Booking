@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_232756) do
+ActiveRecord::Schema.define(version: 2021_09_02_093335) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_232756) do
     t.string "type_category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "read"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 

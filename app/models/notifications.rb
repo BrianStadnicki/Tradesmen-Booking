@@ -5,4 +5,5 @@ class Notifications < ApplicationRecord
   validates :body, presence: true, length: { maximum: 100 }
   validates :type_type, presence: true, length: { maximum: 20 }
   validates :type_category, presence: true, length: { maximum: 20 }
+  validates :read, inclusion: { in: [true, false] }
 end
