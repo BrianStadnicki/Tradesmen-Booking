@@ -1,0 +1,24 @@
+class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
+  # GET /notifications
+  def index
+  end
+
+  # PATCH/PUT /notifications/1
+  def update
+    if @notification.update(notification_params)
+      redirect_back fallback_location: root_path
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  # Only allow a list of trusted parameters through.
+  def notification_params
+    params.require(:notification).permit(:read)
+  end
+end

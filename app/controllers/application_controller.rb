@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery
   check_authorization unless: :devise_controller?
+  before_action :get_notifications
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
@@ -25,7 +26,7 @@ class ApplicationController < ActionController::Base
     return unless user.notification_subscription
     Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};category: #{category};type:#{type}"
 
-    Notifications.create!({ user: user, title: title, body: body, type_category: category, type_type: type, read: false })
+    Notification.create!({ user: user, title: title, body: body, type_category: category, type_type: type, read: false })
     begin
       notification_subscription = JSON.parse(user.notification_subscription)
       Webpush.payload_send(
@@ -45,6 +46,10 @@ class ApplicationController < ActionController::Base
     rescue Webpush::Error => error
       Rails.logger.debug error.message
     end
+  end
+
+  def get_notifications
+    @notifications = current_user.notifications if current_user.present?
   end
 
 end

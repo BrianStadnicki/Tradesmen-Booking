@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   }
   root to: 'jobs#index'
   resources :users do
+    resources :notifications
     get 'current_id', on: :collection
   end
   resources :jobs do

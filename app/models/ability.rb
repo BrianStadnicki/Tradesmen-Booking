@@ -8,6 +8,7 @@ class Ability
       can :read, User, id: user.id
       can :update, User, id: user.id
       can :current_id, User
+      can :index, Notification
       if user.admin?
         can :manage, :all
       elsif user.tradesmen?

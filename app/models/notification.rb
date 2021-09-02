@@ -1,4 +1,4 @@
-class Notifications < ApplicationRecord
+class Notification < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true, length: { maximum: 50 }
