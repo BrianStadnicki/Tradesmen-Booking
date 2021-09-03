@@ -6,4 +6,5 @@ class Notification < ApplicationRecord
   validates :type_type, presence: true, length: { maximum: 20 }
   validates :type_category, presence: true, length: { maximum: 20 }
   validates :read, inclusion: { in: [true, false] }
+  validates :datetime, presence: true
 end
