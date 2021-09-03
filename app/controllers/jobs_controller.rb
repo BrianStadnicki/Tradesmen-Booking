@@ -33,7 +33,7 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job.active |= true
-    @job.status |= "Awaiting applications"
+    @job.status = "Awaiting applications" if !@job.status
     @job.status_been_started |= false
     @job.status_been_completed |= false
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
