@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @job.job_tradesmen_applications.each do |job_tradesmen_application| %>
+    <% @job.job_tradesmen_applications.includes(:tradesmen_profile).each do |job_tradesmen_application| %>
       <tr>
         <td onclick="location.href='<%= tradesmen_profile_path(job_tradesmen_application.tradesmen_profile) %>'" class="clickable">
           <%= job_tradesmen_application.tradesmen_profile.name %>
