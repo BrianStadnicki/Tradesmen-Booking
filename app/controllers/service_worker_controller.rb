@@ -1,6 +1,6 @@
 class ServiceWorkerController < ApplicationController
-  authorize_resource
-  protect_from_forgery except: [:service_worker, :manifest]
+  skip_authorization_check
+  protect_from_forgery except: [:service_worker]
   skip_before_action :get_notifications
 
   def service_worker
