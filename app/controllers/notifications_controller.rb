@@ -4,6 +4,8 @@ class NotificationsController < ApplicationController
 
   # GET /notifications
   def index
+    @notifications = current_user.notifications.paginate(page: params[:page], per_page: 10).order(datetime: :desc)
+    render layout: false
   end
 
   # PATCH/PUT /notifications/1
