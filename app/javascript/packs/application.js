@@ -7,6 +7,7 @@
 //= require popper
 //= require bootstrap
 //= require serviceworker-companion
+//= require notifications
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -14,6 +15,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
 import "../serviceworker-companion"
+import "../notifications"
 
 Rails.start()
 Turbolinks.start()
