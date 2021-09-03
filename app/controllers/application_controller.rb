@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notifications
-    @notifications = current_user.notifications if current_user.present?
+    @notifications = current_user.notifications.reverse if current_user.present?
   end
 
 end
