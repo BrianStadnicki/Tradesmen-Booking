@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notifications
-    @notifications = current_user.notifications.reverse if current_user.present?
+    @notifications = current_user.notifications.paginate(page: 1, per_page: 10).order(datetime: :desc) if current_user.present?
   end
 
 end
