@@ -70,3 +70,6 @@ gem 'webpush'
 
 # Service workers
 gem 'serviceworker-rails'
+
+# Pagination
+gem 'will_paginate'
