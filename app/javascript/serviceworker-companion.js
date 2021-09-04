@@ -32,29 +32,26 @@ const requestNotificationPermission = async (registration) => {
 const saveNotificationSubscription = async subscription => {
     if (!(self.localStorage.getItem("notification_subscription") && self.localStorage.getItem("notification_subscription") === JSON.stringify(subscription))) {
         console.log("Registering notification subscription with server")
-        await fetch ('/users/current_id')
-            .then(response => response.json())
-            .then(current_id => {
-                fetch('/users/' + current_id.id + '/edit')
-                    .then(response => response.text())
-                    .then(doc => new DOMParser().parseFromString(doc, "text/html"))
-                    .then(formDoc => {
-                        fetch('/users/' + current_id.id, {
-                            method: 'put',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest',
-                                'X-CSRF-Token': formDoc.querySelector("[name='csrf-token']").content
-                            },
-                            body: JSON.stringify( {user: { notification_subscription: JSON.stringify(subscription) }})
-                        }).then(response => {
-                            if (response.ok) {
-                                self.localStorage.setItem("notification_subscription", JSON.stringify(subscription))
-                            }
-                        })
+        let userID = self.localStorage.getItem("user_id")
+        await fetch('/users/' + userID + '/edit')
+                .then(response => response.text())
+                .then(doc => new DOMParser().parseFromString(doc, "text/html"))
+                .then(formDoc => {
+                    fetch('/users/' + userID, {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-Token': formDoc.querySelector("[name='csrf-token']").content
+                        },
+                        body: JSON.stringify( {user: { notification_subscription: JSON.stringify(subscription) }})
+                    }).then(response => {
+                        if (response.ok) {
+                            self.localStorage.setItem("notification_subscription", JSON.stringify(subscription))
+                        }
                     })
-            })
+                })
     }
 }
 
