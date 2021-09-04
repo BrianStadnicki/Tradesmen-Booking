@@ -1,7 +1,0 @@
-<% @notifications.each do |notification| %>
-  <li class="dropdown-item">
-    <h5><%= notification.title %></h5>
-    <p><%= notification.body %></p>
-    <p><%= notification.datetime.to_s(:short) %></p>
-  </li>
-<% end %>
