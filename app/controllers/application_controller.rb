@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery
   check_authorization unless: :devise_controller?
-  before_action :get_notifications
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
@@ -46,10 +45,6 @@ class ApplicationController < ActionController::Base
     rescue Webpush::Error => error
       Rails.logger.debug error.message
     end
-  end
-
-  def get_notifications
-    @notifications = current_user.notifications.paginate(page: 1, per_page: 10).order(datetime: :desc) if current_user.present?
   end
 
   def after_sign_in_path_for(resource)
