@@ -1,5 +1,5 @@
 <% @notifications.each do |notification| %>
-  <li class="dropdown-item">
+  <li class="dropdown-item <%= "active" unless notification.read %>">
     <h5><%= notification.title %></h5>
     <p><%= notification.body %></p>
     <p><%= notification.datetime.to_s(:short) %></p>
