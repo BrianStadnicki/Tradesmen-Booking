@@ -11,7 +11,6 @@ class NotificationsController < ApplicationController
   # PATCH/PUT /notifications/1
   def update
     if @notification.update(notification_params)
-      redirect_back fallback_location: root_path
     else
       render :edit
     end
