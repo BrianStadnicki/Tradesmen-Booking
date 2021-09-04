@@ -1,0 +1,10 @@
+<li class="dropdown-item <%= "active" unless @notification.read %>" id="notification-<%= @notification.id %>">
+  <h5><%= @notification.title %></h5>
+  <p><%= @notification.body %></p>
+  <p><%= @notification.datetime.to_s(:short) %></p>
+  <% if @notification.read %>
+    <%= button_to "Unread", user_notification_path(current_user, @notification), params: { notification: { read: false } }, method: :patch, class: "btn btn-sm btn-primary" %>
+  <% else %>
+    <%= button_to "Read", user_notification_path(current_user, @notification), params: { notification: { read: true } }, method: :patch, class: "btn btn-sm btn-primary" %>
+  <% end %>
+</li>

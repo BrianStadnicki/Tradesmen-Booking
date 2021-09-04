@@ -9,6 +9,7 @@ class Ability
       can :update, User, id: user.id
       can :current_id, User
       can :index, Notification
+      can :read, Notification
       can :update, Notification
       if user.admin?
         can :manage, :all

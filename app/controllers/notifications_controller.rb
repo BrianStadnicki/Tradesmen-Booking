@@ -8,6 +8,11 @@ class NotificationsController < ApplicationController
     render layout: false
   end
 
+  # GET /notifications/1
+  def show
+    render layout: false
+  end
+
   # PATCH/PUT /notifications/1
   def update
     if @notification.update(notification_params)
