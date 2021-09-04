@@ -10,6 +10,17 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <% if session.has_key?(:sign_in) %>
+      <% session.delete(:sign_in) %>
+      <script type=application/javascript>
+        fetch ('/users/current_id')
+            .then(response => response.json())
+            .then(current_id => {
+                self.localStorage.setItem("user_id", current_id.id)
+            })
+      </script>
+    <% end %>
+
     <link rel="manifest" href="/manifest.json" />
   </head>
 

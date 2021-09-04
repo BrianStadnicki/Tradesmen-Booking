@@ -52,4 +52,9 @@ class ApplicationController < ActionController::Base
     @notifications = current_user.notifications.paginate(page: 1, per_page: 10).order(datetime: :desc) if current_user.present?
   end
 
+  def after_sign_in_path_for(resource)
+    session[:sign_in] = true
+    super
+  end
+
 end
