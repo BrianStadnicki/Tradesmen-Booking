@@ -16,6 +16,7 @@ class NotificationsController < ApplicationController
   # PATCH/PUT /notifications/1
   def update
     if @notification.update(notification_params)
+      render 'show', layout: false
     else
       render :edit
     end

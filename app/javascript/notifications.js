@@ -34,17 +34,39 @@ async function fetchNotifications(userID, page) {
 
     return fetch("/users/" + userID + "/notifications?page=" + page)
         .then(response => response.text())
-        .then(doc => new DOMParser().parseFromString(doc, "text/html"))
-        .then(doc => {
+        .then(notificationsDoc => new DOMParser().parseFromString(notificationsDoc, "text/html"))
+        .then(notificationsDoc => {
             let menuLoading = document.getElementById("navbarDropdownMenuLinkNotificationsMenuLoading")
             menuLoading.style.display = "none"
-            if (doc.body.innerHTML !== "") {
+            if (notificationsDoc.body.innerHTML !== "") {
+
+                prepareForms(notificationsDoc)
+
                 let menu = document.getElementById("navbarDropdownMenuLinkNotificationsMenu")
-                while (doc.body.childNodes.length) {
-                    menu.insertBefore(doc.body.firstChild, menuLoading)
+                while (notificationsDoc.body.childNodes.length) {
+                    menu.insertBefore(notificationsDoc.body.firstChild, menuLoading)
                 }
             } else {
                 loading.remove()
             }
         })
+}
+
+function prepareForms(element) {
+    element.querySelectorAll("li > form").forEach(form => {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault()
+            form.getElementsByClassName("btn")[0].disabled = true
+            fetch(event.target.action, {
+                method: "POST",
+                body: new URLSearchParams(new FormData(event.target))
+            })
+                .then(response => response.text())
+                .then(notificationDoc => new DOMParser().parseFromString(notificationDoc, "text/html"))
+                .then(notificationDoc => {
+                    prepareForms(notificationDoc)
+                    form.parentNode.parentNode.replaceChild(notificationDoc.body.firstChild, form.parentNode)
+                })
+        })
+    })
 }
