@@ -82,6 +82,11 @@
           <% end %>
         <% end %>
       <% end %>
+      <% if @job.completed %>
+        <div class="float-start">
+          Completed: <%= @job.completed.strftime("%d/%m/%Y") %>
+        </div>
+      <% end %>
       <div class="float-end">
         Posted: <%= @job.posted.strftime("%d/%m/%Y") %>
       </div>
