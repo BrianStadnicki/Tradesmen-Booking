@@ -17,6 +17,7 @@
       <th class="hides">Tradesmen</th>
     <% end %>
     <th class="hides">Posted</th>
+    <th class="hides">Completed</th>
   </tr>
   </thead>
 
@@ -34,6 +35,11 @@
         <td class="hides"><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
       <% end %>
       <td class="hides"><%= job.posted.strftime("%d/%m/%Y") %></td>
+      <td class="hides">
+        <% if job.completed %>
+          <%= job.completed.strftime("%d/%m/%Y") %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
