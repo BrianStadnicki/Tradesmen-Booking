@@ -1,6 +1,6 @@
 class JobTradesmenApplicationsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  skip_authorization_check
 
   # GET /jobs/1/job_tradesmen_applications/new
   def new
@@ -25,11 +25,13 @@ class JobTradesmenApplicationsController < ApplicationController
   # GET /jobs/1/job_tradesmen_applications/1/edit
   def edit
     @job = Job.find(params[:job_id])
+    @job_tradesmen_application = @job.job_tradesmen_applications.where(tradesmen_profile: current_user.tradesmen_profile_belongs).first
   end
 
   # PATCH /jobs/1/job_tradesmen_applications/1
   def update
     @job = Job.find(params[:job_id])
+    @job_tradesmen_application = @job.job_tradesmen_applications.where(tradesmen_profile: current_user.tradesmen_profile_belongs).first
     if params[:accepted]
       @job.tradesmen_profile_id = @job_tradesmen_application.tradesmen_profile_id
       @job.job_tradesmen_application_id = @job_tradesmen_application.id
