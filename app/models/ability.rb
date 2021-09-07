@@ -10,7 +10,7 @@ class Ability
       can :current_id, User
       can :index, Notification
       can :read, Notification
-      can :update, Notification
+      can :update, Notification, :read
       if user.admin?
         can :manage, :all
       elsif user.tradesmen?
