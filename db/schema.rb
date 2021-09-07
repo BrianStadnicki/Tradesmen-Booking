@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_130036) do
+ActiveRecord::Schema.define(version: 2021_09_07_062025) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 2021_09_03_130036) do
     t.index ["business_id"], name: "index_jobs_on_business_id"
     t.index ["job_tradesmen_application_id"], name: "index_jobs_on_job_tradesmen_application_id"
     t.index ["tradesmen_profile_id"], name: "index_jobs_on_tradesmen_profile_id"
+  end
+
+  create_table "notification_preferences", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "category"
+    t.string "type_"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category"], name: "index_notification_preferences_on_category"
+    t.index ["type_"], name: "index_notification_preferences_on_type_"
+    t.index ["user_id"], name: "index_notification_preferences_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
