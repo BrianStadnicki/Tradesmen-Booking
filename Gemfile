@@ -73,3 +73,6 @@ gem 'serviceworker-rails'
 
 # Pagination
 gem 'will_paginate'
+
+# Job queuing
+gem 'sidekiq'
