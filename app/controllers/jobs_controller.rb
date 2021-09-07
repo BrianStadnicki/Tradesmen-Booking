@@ -24,6 +24,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/completed
   def completed
+    index_eager_load
   end
 
   # GET /jobs/1
