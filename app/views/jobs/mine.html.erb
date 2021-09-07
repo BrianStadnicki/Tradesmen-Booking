@@ -9,6 +9,7 @@
     <th>Title</th>
     <th>Address</th>
     <th>Status</th>
+    <th>Active</th>
     <% if current_user.tradesmen? or current_user.admin?%>
       <th class="hides">Business</th>
     <% end %>
@@ -24,6 +25,7 @@
       <td><%= job.title %></td>
       <td><%= "#{job.address_house_street}, #{job.address_city_town}, #{job.address_province_state}, #{job.address_post_code}" %></td>
       <td><%= job.status %></td>
+      <td><%= job.active ? "yes" : "no" %></td>
       <% if current_user.tradesmen? or current_user.admin?%>
         <td class="hides"><%= job.business.name %></td>
       <% end %>
