@@ -20,7 +20,7 @@
 
         <div class="mb-3">
           <%= f.label :address, class: "form-label" %>
-          <%= f.text_field :address, class: "form-control" %>
+          <%= f.text_field :address, value: "#{@job.address_house_street}, #{@job.address_city_town}, #{@job.address_province_state}, #{@job.address_post_code}", class: "form-control" %>
         </div>
 
         <div class="mb-3">
