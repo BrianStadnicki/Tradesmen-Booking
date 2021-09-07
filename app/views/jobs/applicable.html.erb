@@ -1,0 +1,47 @@
+<% if current_user.booker? %>
+  <%= render "mine_nav" %>
+<% else %>
+  <%= render "index_nav" %>
+<% end %>
+
+<h1 class="display-1 text-center">Jobs</h1>
+
+<table class="table table-hover table-striped table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Status</th>
+    <th>Active</th>
+    <% if current_user.tradesmen? or current_user.admin?%>
+      <th class="hides">Business</th>
+    <% end %>
+    <% if current_user.booker? or current_user.admin? %>
+      <th class="hides">Tradesmen</th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @jobs.each do |job| %>
+    <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
+      <td><%= job.title %></td>
+      <td><%= "#{job.address_post_code}" %></td>
+      <td><%= job.status %></td>
+      <td><%= job.active ? "yes" : "no" %></td>
+      <% if current_user.tradesmen? or current_user.admin?%>
+        <td class="hides"><%= job.business.name %></td>
+      <% end %>
+      <% if current_user.booker? or current_user.admin? %>
+        <td class="hides"><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :create, Job %>
+  <%= link_to 'New Job', new_job_path, class: "btn btn-primary" %>
+<% end %>

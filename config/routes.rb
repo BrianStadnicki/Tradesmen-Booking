@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :job_tradesmen_applications
     get 'mine', on: :collection
     get 'mine_active', on: :collection
+    get 'applicable', on: :collection
   end
   resources :tradesmen_trades
   resources :tradesmen_profiles do
