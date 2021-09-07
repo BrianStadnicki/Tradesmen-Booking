@@ -4,7 +4,10 @@ class Job < ApplicationRecord
   belongs_to :job_tradesmen_application, optional: true
   has_many :job_tradesmen_applications
   validates :title, presence: true, length: { maximum: 40 }
-  validates :address, presence: true, length: { maximum: 100 }
+  validates :address_house_street, presence: true, length: { maximum: 100 }
+  validates :address_city_town, presence: true, length: { maximum: 100 }
+  validates :address_province_state, presence: true, length: { maximum: 100 }
+  validates :address_post_code, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2000 }
   validates :tradesmen_profile, presence: false
   validates :business, presence: true
