@@ -22,6 +22,10 @@ class JobsController < ApplicationController
     index_eager_load
   end
 
+  # GET /jobs/completed
+  def completed
+  end
+
   # GET /jobs/1
   def show
     @job_tradesmen_application = current_user.tradesmen_profile_belongs.job_tradesmen_application(@job) if current_user.tradesmen?
