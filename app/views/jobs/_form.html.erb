@@ -30,7 +30,7 @@
 
       <div class="mb-3">
         <%= f.label :address_post_code, "Post Code", class: "form-label" %>
-        <%= f.text_field :address_post_code, class: "form-control" %>
+        <%= f.text_field :address_post_code, class: "form-control", style: "text-transform: uppercase;" %>
       </div>
 
       <% if current_user.admin? %>

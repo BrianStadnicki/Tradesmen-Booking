@@ -36,6 +36,7 @@ class JobsController < ApplicationController
     @job.status = "Awaiting applications" if !@job.status
     @job.status_been_started |= false
     @job.status_been_completed |= false
+    @job.address_post_code = @job.address_post_code.upcase
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
 
     if @job.save
