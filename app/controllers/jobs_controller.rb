@@ -50,6 +50,7 @@ class JobsController < ApplicationController
     @job.address_province_state = @job.address_province_state.titleize
     @job.address_post_code = @job.address_post_code.upcase
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
+    @job.posted = Date.today
 
     if @job.save
 
