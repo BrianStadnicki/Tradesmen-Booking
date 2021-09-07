@@ -32,6 +32,8 @@ class Ability
           can :trusted, Business
           can :mine, Job, tradesmen_profile: user.tradesmen_profile_belongs
           can :mine_active, Job, tradesmen_profile: user.tradesmen_profile_belongs, active: true
+          can :applicable, Job, business: { tradesmen_businesses_tradesmen_profiles: { tradesmen_profile_id: user.tradesmen_profile_belongs.id } },
+              active: true, tradesmen_profile: nil
           # FIXME: only allow creating applications to jobs from businesses trusted to
           can :create, JobTradesmenApplication, tradesmen_profile: user.tradesmen_profile_belongs
           can :update, JobTradesmenApplication, tradesmen_profile: user.tradesmen_profile_belongs
