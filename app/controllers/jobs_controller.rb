@@ -68,6 +68,11 @@ class JobsController < ApplicationController
 
   # PATCH/PUT /jobs/1
   def update
+
+    if params[:job][:status_been_completed] == "true"
+      @job.completed = Date.today
+    end
+
     if @job.update(job_params)
       if params[:job][:status]
         @job.business.users.each do |user|
