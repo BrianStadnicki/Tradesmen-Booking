@@ -16,6 +16,7 @@
     <% if current_user.booker? or current_user.admin? %>
       <th class="hides">Tradesmen</th>
     <% end %>
+    <th class="hides">Posted</th>
   </tr>
   </thead>
 
@@ -32,6 +33,7 @@
       <% if current_user.booker? or current_user.admin? %>
         <td class="hides"><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
       <% end %>
+      <td class="hides"><%= job.posted.strftime("%d/%m/%Y") %></td>
     </tr>
   <% end %>
   </tbody>
