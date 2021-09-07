@@ -8,8 +8,8 @@ class Ability
       can :read, User, id: user.id
       can :update, User, id: user.id
       can :current_id, User
-      can :index, Notification
-      can :read, Notification
+      can :index, Notification, user: user
+      can :read, Notification, user: user
       can :update, Notification, :read
       if user.admin?
         can :manage, :all
