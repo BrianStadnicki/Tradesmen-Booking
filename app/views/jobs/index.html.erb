@@ -26,7 +26,7 @@
     <% @jobs.each do |job| %>
       <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
         <td><%= job.title %></td>
-        <td><%= job.address %></td>
+        <td><%= "#{job.address_house_street} #{job.address_city_town} #{job.address_province_state} #{job.address_post_code}" %></td>
         <td><%= job.status %></td>
         <td><%= job.active ? "yes" : "no" %></td>
         <% if current_user.tradesmen? or current_user.admin?%>
