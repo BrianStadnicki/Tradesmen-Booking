@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_174012) do
+ActiveRecord::Schema.define(version: 2021_09_07_185356) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_174012) do
     t.string "address_city_town"
     t.string "address_province_state"
     t.string "address_post_code"
+    t.date "posted"
     t.index ["business_id"], name: "index_jobs_on_business_id"
     t.index ["job_tradesmen_application_id"], name: "index_jobs_on_job_tradesmen_application_id"
     t.index ["tradesmen_profile_id"], name: "index_jobs_on_tradesmen_profile_id"
