@@ -20,7 +20,7 @@
 
         <div class="mb-3">
           <%= f.label :address, class: "form-label" %>
-          <% if current_user.admin? or (current_user.tradesmen? and current_user.tradesmen_profile_belongs == @job.tradesmen_profile) %>
+          <% if current_user.admin? or current_user.tradesmen_profile_belongs == @job.tradesmen_profile or current_user.business_belongs == @job.business %>
             <%= f.text_field :address, value: "#{@job.address_house_street}, #{@job.address_city_town}, #{@job.address_province_state}, #{@job.address_post_code}", class: "form-control" %>
           <% else %>
             <%= f.text_field :address, value: "#{@job.address_city_town}, #{@job.address_province_state}, #{@job.address_post_code}", class: "form-control" %>
