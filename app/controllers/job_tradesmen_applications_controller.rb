@@ -31,10 +31,10 @@ class JobTradesmenApplicationsController < ApplicationController
   # PATCH /jobs/1/job_tradesmen_applications/1
   def update
     @job = Job.find(params[:job_id])
-    @job_tradesmen_application = @job.job_tradesmen_applications.where(tradesmen_profile: current_user.tradesmen_profile_belongs).first
+    @job_tradesmen_application = JobTradesmenApplication.find(params[:id])
     if params[:accepted]
-      @job.tradesmen_profile_id = @job_tradesmen_application.tradesmen_profile_id
-      @job.job_tradesmen_application_id = @job_tradesmen_application.id
+      @job.tradesmen_profile = @job_tradesmen_application.tradesmen_profile
+      @job.job_tradesmen_application = @job_tradesmen_application
       @job.active = true
       @job.status = "Accepted application"
       @job.save!
