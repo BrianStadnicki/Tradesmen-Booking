@@ -1,16 +1,16 @@
 class JobTradesmenApplicationsController < ApplicationController
   before_action :authenticate_user!
-  skip_authorization_check
+  load_and_authorize_resource :job
+  load_and_authorize_resource :job_tradesmen_application, through: :job
 
   # GET /jobs/1/job_tradesmen_applications/new
   def new
-    @job = Job.find(params[:job_id])
   end
 
   # POST /jobs/1/job_tradesmen_applications
   def create
-    @job_tradesmen_application.job_id = params[:job_id]
-    if @job_tradesmen_application.save
+    @job_tradesmen_application.tradesmen_profile ||= current_user.tradesmen_profile_belongs
+    if @job_tradesmen_application.save!
 
       @job_tradesmen_application.job.business.users.each do |user|
         send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} applied for a job", "They applied for #{@job_tradesmen_application.job.title}", "JobTradesmenApplication", "created"
@@ -24,14 +24,11 @@ class JobTradesmenApplicationsController < ApplicationController
 
   # GET /jobs/1/job_tradesmen_applications/1/edit
   def edit
-    @job = Job.find(params[:job_id])
     @job_tradesmen_application = @job.job_tradesmen_applications.where(tradesmen_profile: current_user.tradesmen_profile_belongs).first
   end
 
   # PATCH /jobs/1/job_tradesmen_applications/1
   def update
-    @job = Job.find(params[:job_id])
-    @job_tradesmen_application = JobTradesmenApplication.find(params[:id])
     if params[:accepted]
       @job.tradesmen_profile = @job_tradesmen_application.tradesmen_profile
       @job.job_tradesmen_application = @job_tradesmen_application

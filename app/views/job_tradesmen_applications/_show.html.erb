@@ -4,7 +4,7 @@
     <% if can? :update, @job_tradesmen_application %>
       <div class="top-right">
         <div class="btn btn-outline-light btn-sm">
-          <%= link_to edit_job_job_tradesmen_application_path(@job), class: "btn" do %>
+          <%= link_to edit_job_job_tradesmen_application_path(@job, @job_tradesmen_application), class: "btn" do %>
             <%= svg('pencil-square') %>
           <% end %>
         </div>
