@@ -113,8 +113,8 @@ tradesmen_profile_1 = TradesmenProfile.create!(name: 'First Plumbings', descript
 tradesmen_profile_2 = TradesmenProfile.create!(name: 'Second electrics & painting', description: 'Premier service',
                                                phone: '34234234324', owner: user_tradesman_2_owner)
 
-tradesmen_profile_1.save
-tradesmen_profile_2.save
+tradesmen_profile_1.save!
+tradesmen_profile_2.save!
 
 # Tradesmen profile users
 TradesmenProfileUser.create!(tradesmen_profile_id: tradesmen_profile_1.id, user: user_tradesmen_1_owner,

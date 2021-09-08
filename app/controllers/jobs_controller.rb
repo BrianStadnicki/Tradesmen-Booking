@@ -53,7 +53,7 @@ class JobsController < ApplicationController
     @job.business_id = @current_user.business_belongs.id unless @current_user.admin?
     @job.posted = Date.today
 
-    if @job.save
+    if @job.save!
 
       @job.business.tradesmen.includes(:users).each do |tradesmen|
         tradesmen.users.each do |user|

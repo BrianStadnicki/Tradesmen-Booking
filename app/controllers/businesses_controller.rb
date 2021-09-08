@@ -37,7 +37,7 @@ class BusinessesController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       @business.owner_id = @current_user.id unless @current_user.admin?
-      @business.save
+      @business.save!
       @business_user = BusinessUser.new(user: @business.owner, business: @business,
                                         role: Role.find_by(name: 'Admin',
                                                            category: RoleCategory.find_by(name: 'Business')))
@@ -57,7 +57,7 @@ class BusinessesController < ApplicationController
     if @business.update(business_params)
       # Don't know why this hack is needed, hopefully temporary
       @business.owner_id = params['owner']['owner_id'] if params['owner']
-      @business.save
+      @business.save!
 
       @business.users.each do |user|
         send_notification user, "Your business profile was updated", "", "Business", "updated"
