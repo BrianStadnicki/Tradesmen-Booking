@@ -39,6 +39,7 @@ const saveNotificationSubscription = async subscription => {
                 .then(formDoc => {
                     fetch('/users/' + userID, {
                         method: 'put',
+                        redirect: 'manual',
                         headers: {
                             'Content-Type': 'application/json',
                             'Accept': 'application/json',
