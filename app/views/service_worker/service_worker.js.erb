@@ -20,4 +20,16 @@ self.addEventListener('push', function (event) {
         icon: '/icons/favicon-96x96.png'
     })
 
+    self.clients.matchAll({
+        type: 'window'
+    }).then((clients) => {
+        if (clients && clients.length) {
+            clients.forEach(client => {
+                client.postMessage({
+                    type: 'NOTIFICATION'
+                })
+            })
+        }
+    })
+
 })

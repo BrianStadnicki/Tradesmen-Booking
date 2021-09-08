@@ -56,10 +56,19 @@ const saveNotificationSubscription = async subscription => {
     }
 }
 
+const listenToServiceWorker = async () => {
+    navigator.serviceWorker.onmessage = (event) => {
+        if (event.data && event.data.type === 'NOTIFICATION') {
+            window.updateNotifications(self.localStorage.getItem("user_id"))
+        }
+    }
+}
+
 const main = async () => {
     const registration = await registerServiceWorker()
     const subscription = await requestNotificationPermission(registration)
     await saveNotificationSubscription(subscription)
+    await listenToServiceWorker()
 }
 
 main()

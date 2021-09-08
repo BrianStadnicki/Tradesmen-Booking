@@ -52,6 +52,26 @@ async function fetchNotifications(userID, page) {
         })
 }
 
+window.updateNotifications = async function updateNotifications(userID) {
+    return fetch("/users/" + userID + "/notifications?page=1")
+        .then(response => response.text())
+        .then(notificationsDoc => new DOMParser().parseFromString(notificationsDoc, "text/html"))
+        .then(notificationsDoc => {
+            if (notificationsDoc.body.innerHTML !== "") {
+
+                let menu = document.getElementById("navbarDropdownMenuLinkNotificationsMenu")
+                let newestExisting = menu.firstElementChild.id.split('-')[1]
+                notificationsDoc.body.childNodes.forEach(notification => {
+                    if (notification.id.split('-')[1] > newestExisting) {
+                        prepareForms(notification)
+                        menu.insertBefore(notification, menu.firstChild)
+                    }
+                })
+            } else {
+            }
+        })
+}
+
 function prepareForms(element) {
     element.querySelectorAll("li > form").forEach(form => {
         form.addEventListener("submit", function (event) {
