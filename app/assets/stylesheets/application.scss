@@ -30,10 +30,20 @@
   position: relative;
 }
 
+.notification {
+  position: relative;
+}
+
 .top-right {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.middle-right {
+  position: absolute;
+  top: 40%;
+  right: 2%;
 }
 
 #navbarDropdownMenuLinkNotificationsMenu {
