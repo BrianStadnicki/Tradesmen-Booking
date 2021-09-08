@@ -24,7 +24,6 @@ class JobTradesmenApplicationsController < ApplicationController
 
   # GET /jobs/1/job_tradesmen_applications/1/edit
   def edit
-    @job_tradesmen_application = @job.job_tradesmen_applications.where(tradesmen_profile: current_user.tradesmen_profile_belongs).first
   end
 
   # PATCH /jobs/1/job_tradesmen_applications/1
