@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery
   check_authorization unless: :devise_controller?
+  before_action :get_unread_notifications_count
+
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
@@ -26,6 +28,10 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug "Sending notification to #{user.id} #{user.name} with title: #{title};body: #{body};category: #{category};type:#{type}"
     return unless user.notification_subscription
     NotifierJob.perform_later notification
+  end
+
+  def get_unread_notifications_count
+    @unread_notifications_count = Notification.where(user: current_user, read: false).count
   end
 
   def after_sign_in_path_for(resource)

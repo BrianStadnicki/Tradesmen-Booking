@@ -46,6 +46,19 @@
   right: 2%;
 }
 
+#navbarDropdownMenuLinkNotifications {
+  display: inline-block;
+  position: relative;
+}
+
+#navbarDropdownMenuLinkNotifications .badge {
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
 #navbarDropdownMenuLinkNotificationsMenu {
   max-height: 600px;
   width: 500px;
