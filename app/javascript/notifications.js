@@ -53,27 +53,26 @@ async function fetchNotifications(userID, page) {
 }
 
 window.updateNotifications = async function updateNotifications(userID) {
+    incrementNotificationsBadge()
     let menu = document.getElementById("navbarDropdownMenuLinkNotificationsMenu")
-    if (menu.childElementCount === 1) return
-
-    return fetch("/users/" + userID + "/notifications?page=1")
-        .then(response => response.text())
-        .then(notificationsDoc => new DOMParser().parseFromString(notificationsDoc, "text/html"))
-        .then(notificationsDoc => {
-            if (notificationsDoc.body.innerHTML !== "") {
-
-                let newestExisting = menu.firstElementChild.id.split('-')[1]
-                notificationsDoc.body.childNodes.forEach(notification => {
-                    if (notification.id.split('-')[1] > newestExisting) {
-                        if (menu.childElementCount !== 1) {
-                            prepareForms(notification)
-                            menu.insertBefore(notification, menu.firstChild)
+    if (menu.childElementCount !== 1) {
+        return fetch("/users/" + userID + "/notifications?page=1")
+            .then(response => response.text())
+            .then(notificationsDoc => new DOMParser().parseFromString(notificationsDoc, "text/html"))
+            .then(notificationsDoc => {
+                if (notificationsDoc.body.innerHTML !== "") {
+                    let newestExisting = menu.firstElementChild.id.split('-')[1]
+                    notificationsDoc.body.childNodes.forEach(notification => {
+                        if (notification.tagName) {
+                            if (notification.id.split('-')[1] > newestExisting) {
+                                prepareForms(notification)
+                                menu.insertBefore(notification, menu.firstChild)
+                            }
                         }
-                        incrementNotificationsBadge()
-                    }
-                })
-            }
-        })
+                    })
+                }
+            })
+    }
 }
 
 function incrementNotificationsBadge() {
