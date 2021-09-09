@@ -65,12 +65,21 @@ window.updateNotifications = async function updateNotifications(userID) {
                 let newestExisting = menu.firstElementChild.id.split('-')[1]
                 notificationsDoc.body.childNodes.forEach(notification => {
                     if (notification.id.split('-')[1] > newestExisting) {
-                        prepareForms(notification)
-                        menu.insertBefore(notification, menu.firstChild)
+                        if (menu.childElementCount !== 1) {
+                            prepareForms(notification)
+                            menu.insertBefore(notification, menu.firstChild)
+                        }
+                        incrementNotificationsBadge()
                     }
                 })
             }
         })
+}
+
+function incrementNotificationsBadge() {
+    let badge = document.querySelector("#navbarDropdownMenuLinkNotifications > .badge")
+    badge.style.display = "inline-block"
+    badge.textContent++
 }
 
 function prepareForms(element) {
