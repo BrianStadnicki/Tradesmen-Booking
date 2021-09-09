@@ -82,14 +82,29 @@ function incrementNotificationsBadge() {
     badge.textContent++
 }
 
+function decrementNotificationsBadge() {
+    let badge = document.querySelector("#navbarDropdownMenuLinkNotifications > .badge")
+    if (badge.style.display === "none") return
+    badge.textContent--
+    if (badge.textContent === "0") {
+        badge.style.display = "none"
+    }
+}
+
 function prepareForms(element) {
     element.querySelectorAll("li > form").forEach(form => {
         form.addEventListener("submit", function (event) {
             event.preventDefault()
             form.getElementsByClassName("btn")[0].disabled = true
+            let formData = new FormData(event.target)
+            if (formData.get("notification[read]") === 'false') {
+                incrementNotificationsBadge()
+            } else {
+                decrementNotificationsBadge()
+            }
             fetch(event.target.action, {
                 method: "POST",
-                body: new URLSearchParams(new FormData(event.target))
+                body: new URLSearchParams(formData)
             })
                 .then(response => response.text())
                 .then(notificationDoc => new DOMParser().parseFromString(notificationDoc, "text/html"))
