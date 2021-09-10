@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <% if current_page?(controller: :jobs, action: :mine_active) %>
+    <% if action_name == 'mine_active' or current_page?(root_path)%>
       <%= link_to 'Active', mine_active_jobs_path, class: 'nav-link active' %>
     <% else %>
       <%= link_to 'Active', mine_active_jobs_path, class: 'nav-link' %>
