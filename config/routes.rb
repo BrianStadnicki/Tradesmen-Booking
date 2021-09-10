@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     unlocks: 'users/unlocks'
   }
-  root to: 'jobs#index'
+  root to: 'jobs#mine_active'
   resources :users do
     resources :notifications
     get 'current_id', on: :collection
