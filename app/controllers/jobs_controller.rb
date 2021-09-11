@@ -4,12 +4,16 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
+    index_paginate
     index_eager_load
+    index_render
   end
 
   # GET /jobs/mine
   def mine
+    index_paginate
     index_eager_load
+    index_render
   end
 
   # GET /jobs/mine_active
@@ -24,7 +28,9 @@ class JobsController < ApplicationController
 
   # GET /jobs/completed
   def completed
+    index_paginate
     index_eager_load
+    index_render
   end
 
   # GET /jobs/1
@@ -95,6 +101,10 @@ class JobsController < ApplicationController
 
   private
 
+  def index_paginate
+    @jobs = @jobs.paginate(page: params[:page], per_page: 5)
+  end
+
   def index_eager_load
     if current_user.booker?
       @jobs = @jobs.includes(:tradesmen_profile)
@@ -103,6 +113,10 @@ class JobsController < ApplicationController
     else
       @jobs = @jobs.includes(:business, :tradesmen_profile)
     end
+  end
+
+  def index_render
+    render layout: false if params[:page]
   end
 
   # Only allow a list of trusted parameters through.
