@@ -7,7 +7,8 @@ class TradesmenProfilesController < ApplicationController
     if @tradesmen_profiles.empty?
       redirect_to new_tradesmen_profile_path
     else
-      @tradesmen_profiles = @tradesmen_profiles.includes(:tradesmen_trades)
+      @tradesmen_profiles = @tradesmen_profiles.includes(:tradesmen_trades).paginate(page: params[:page], per_page: 30)
+      render layout: false if params[:page]
     end
   end
 
@@ -16,7 +17,8 @@ class TradesmenProfilesController < ApplicationController
     if @current_user.booker?
       @tradesmen = @current_user.business_belongs.tradesmen
     end
-    @tradesmen = @tradesmen.includes(:tradesmen_trades)
+    @tradesmen = @tradesmen.includes(:tradesmen_trades).paginate(page: params[:page], per_page: 30)
+    render layout: false if params[:page]
   end
 
   # GET /tradesmen_profiles/1

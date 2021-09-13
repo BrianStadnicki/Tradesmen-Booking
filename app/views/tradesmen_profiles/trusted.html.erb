@@ -11,7 +11,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="main-paginated">
   <% @tradesmen.each do |tradesmen_profile| %>
     <tr onclick="location.href='<%= tradesmen_profile_path(tradesmen_profile) %>'" class="clickable">
       <td><%= tradesmen_profile.name %></td>
