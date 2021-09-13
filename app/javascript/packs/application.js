@@ -8,6 +8,7 @@
 //= require bootstrap
 //= require serviceworker-companion
 //= require notifications
+//= require paginate
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -16,6 +17,7 @@ import "channels"
 import "bootstrap"
 import "../serviceworker-companion"
 import "../notifications"
+import "../paginate"
 
 Rails.start()
 Turbolinks.start()
