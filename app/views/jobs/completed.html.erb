@@ -18,7 +18,7 @@
   </tr>
   </thead>
 
-  <tbody>
+  <tbody id="main-paginated">
   <% @jobs.each do |job| %>
     <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
       <td><%= job.title %></td>
