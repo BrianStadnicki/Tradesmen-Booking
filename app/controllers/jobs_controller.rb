@@ -23,7 +23,9 @@ class JobsController < ApplicationController
 
   # GET /jobs/applicable
   def applicable
+    index_paginate
     index_eager_load
+    index_render
   end
 
   # GET /jobs/completed
@@ -102,7 +104,7 @@ class JobsController < ApplicationController
   private
 
   def index_paginate
-    @jobs = @jobs.paginate(page: params[:page], per_page: 5)
+    @jobs = @jobs.paginate(page: params[:page], per_page: 30)
   end
 
   def index_eager_load
