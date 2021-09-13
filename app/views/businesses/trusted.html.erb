@@ -14,7 +14,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="main-paginated">
     <% @businesses.each do |business| %>
       <tr onclick="location.href='<%= business_path(business) %>'" class="clickable">
         <td><%= business.name %></td>

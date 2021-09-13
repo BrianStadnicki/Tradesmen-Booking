@@ -6,6 +6,9 @@ class BusinessesController < ApplicationController
   def index
     if @businesses.empty?
       redirect_to new_business_path
+    else
+      @businesses = @businesses.paginate(page: params[:page], per_page: 30)
+      render layout: false if params[:page]
     end
   end
 
@@ -14,6 +17,8 @@ class BusinessesController < ApplicationController
     if @current_user.tradesmen?
       @businesses = @current_user.tradesmen_profile_belongs.businesses
     end
+    @businesses = @businesses.paginate(page: params[:page], per_page: 30)
+    render layout: false if params[:page]
   end
 
   # GET /businesses/1
