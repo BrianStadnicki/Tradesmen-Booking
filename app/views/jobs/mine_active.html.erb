@@ -17,6 +17,9 @@
     <% end %>
     <th class="hides">Posted</th>
   </tr>
+  <% if can? :create, Job %>
+    <%= link_to 'New Job', new_job_path, class: "btn btn-primary float-end new-job-btn" %>
+  <% end %>
   </thead>
 
   <tbody id="main-paginated">
@@ -36,9 +39,3 @@
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if can? :create, Job %>
-  <%= link_to 'New Job', new_job_path, class: "btn btn-primary" %>
-<% end %>
