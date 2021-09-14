@@ -11,6 +11,9 @@
       <th scope="col">Name</th>
       <th scope="col">Trades</th>
     </tr>
+    <% if can? :create, TradesmenProfile %>
+    <%= link_to 'New Tradesmen Profile', new_tradesmen_profile_path, class: "btn btn-primary float-end new-table-btn" %>
+  <% end %>
   </thead>
 
   <tbody id="main-paginated">
