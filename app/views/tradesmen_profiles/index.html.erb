@@ -5,6 +5,8 @@
   </ul>
 <% end %>
 
+<h1 class="display-1 text-center">Tradesmen</h1>
+
 <table class="table table-hover table-striped table-bordered table-responsive">
   <thead>
     <tr>
@@ -25,9 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if can? :create, TradesmenProfile %>
-  <%= link_to 'New Tradesmen Profile', new_tradesmen_profile_path, class: "btn btn-primary" %>
-<% end %>
