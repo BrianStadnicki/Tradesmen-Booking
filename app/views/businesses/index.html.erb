@@ -12,6 +12,9 @@
       <th>Address</th>
       <th>Phone</th>
     </tr>
+    <% if can? :create, Business %>
+    <%= link_to 'New Business', new_business_path, class: "btn btn-primary float-end new-table-btn" %>
+  <% end %>
   </thead>
 
   <tbody id="main-paginated">
@@ -27,7 +30,3 @@
 </table>
 
 <br>
-
-<% if can? :create, Business %>
-  <%= link_to 'New Business', new_business_path, class: "btn btn-primary" %>
-<% end %>
