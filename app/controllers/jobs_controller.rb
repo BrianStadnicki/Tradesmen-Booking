@@ -30,6 +30,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/completed
   def completed
+    @jobs = Job.where(status_been_completed: true) if current_user.admin?
     index_paginate
     index_eager_load
     index_render
