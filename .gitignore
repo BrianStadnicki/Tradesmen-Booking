@@ -82,3 +82,5 @@ yarn-debug.log*
 # Ignore notifications config
 /config/notifications.yml
 /error
+
+/config/master.key
