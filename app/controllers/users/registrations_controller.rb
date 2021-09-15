@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if params[:user][:role_id].to_i == Role.user_category.find_by(name: 'Admin').id
+    if params[:user][:role_id].to_i != Role.user_category.find_by(name: 'Tradesman').id
       redirect_back fallback_location: ''
     else
       super
