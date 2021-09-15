@@ -9,6 +9,7 @@
 //= require serviceworker-companion
 //= require notifications
 //= require paginate
+//= require 'new-registration-interactive'
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -18,6 +19,7 @@ import "bootstrap"
 import "../serviceworker-companion"
 import "../notifications"
 import "../paginate"
+import "../new-registration-interactive"
 
 Rails.start()
 Turbolinks.start()
