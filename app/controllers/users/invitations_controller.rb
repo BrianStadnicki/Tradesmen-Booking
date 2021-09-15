@@ -22,8 +22,40 @@ class Users::InvitationsController < Devise::InvitationsController
   # end
 
   # PUT /resource/invitation
-  # def update
-  # end
+  def update
+    raw_invitation_token = update_resource_params[:invitation_token]
+    self.resource = accept_resource
+    invitation_accepted = resource.errors.empty?
+
+    yield resource if block_given?
+
+    if invitation_accepted
+
+      if resource.booker?
+        if resource.business.present?
+          BusinessUser.create!(user: resource, business: resource.business, role: Role.find_by(name: 'Owner', category: RoleCategory.find_by(name: 'Business')))
+        end
+      elsif resource.tradesmen?
+        if resource.tradesmen_profile.present?
+          TradesmenProfileUser.create!(user: resource, tradesmen_profile: resource.tradesmen_profile, role: Role.find_by(name: 'Owner', category: RoleCategory.find_by(name: 'Tradesmen Profile')))
+        end
+      end
+
+      if resource.class.allow_insecure_sign_in_after_accept
+        flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
+        set_flash_message :notice, flash_message if is_flashing_format?
+        resource.after_database_authentication
+        sign_in(resource_name, resource)
+        respond_with resource, location: after_accept_path_for(resource)
+      else
+        set_flash_message :notice, :updated_not_active if is_flashing_format?
+        respond_with resource, location: new_session_path(resource_name)
+      end
+    else
+      resource.invitation_token = raw_invitation_token
+      respond_with_navigational(resource) { render :edit }
+    end
+  end
 
   # GET /resource/invitation/remove?invitation_token=abcdef
   # def destroy
@@ -36,6 +68,7 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   # def update_resource_params
-  #   devise_parameter_sanitizer.sanitize(:accept_invitation)
+  #   devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name, :phone])
   # end
+
 end

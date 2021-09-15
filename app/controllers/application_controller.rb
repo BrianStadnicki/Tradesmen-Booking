@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone, :role_id])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :role_id])
     devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name, :phone])
   end
 
   def send_notification(user, title, body, category, type)

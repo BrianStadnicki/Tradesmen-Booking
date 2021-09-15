@@ -43,9 +43,7 @@
       <% if current_user.admin? %>
         <div class="mb-3">
           <%= f.label :owner, class: "form-label" %>
-          <%=  f.collection_select(
-                 :owner_id, User.all, :id, :name, { prompt: true }, class: "form-control"
-               ) %>
+          <%= f.text_field :owner_id, class: "form-control" %>
         </div>
       <% end %>
 

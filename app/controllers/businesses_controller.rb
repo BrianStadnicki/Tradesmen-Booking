@@ -41,13 +41,20 @@ class BusinessesController < ApplicationController
   # POST /businesses
   def create
     ActiveRecord::Base.transaction do
-      @business.owner_id = @current_user.id unless @current_user.admin?
+      if current_user.admin?
+        @business.owner = User.invite!(email: params[:business][:owner_id], role: Role.find_by(name: "Booker", category: RoleCategory.find_by(name: "User")))
+      else
+        @business.owner_id = @current_user.id
+      end
       @business.save!
-      @business_user = BusinessUser.new(user: @business.owner, business: @business,
-                                        role: Role.find_by(name: 'Admin',
-                                                           category: RoleCategory.find_by(name: 'Business')))
-      @business_user.business_id = @business.id
-      @business_user.save!
+
+      unless current_user.admin?
+        @business_user = BusinessUser.new(user: @business.owner, business: @business,
+                                          role: Role.find_by(name: 'Admin',
+                                                             category: RoleCategory.find_by(name: 'Business')))
+        @business_user.business_id = @business.id
+        @business_user.save!
+      end
       redirect_to @business, notice: 'Business was successfully created.'
 
     rescue

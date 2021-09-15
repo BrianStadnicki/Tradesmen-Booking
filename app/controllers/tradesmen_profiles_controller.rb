@@ -40,19 +40,30 @@ class TradesmenProfilesController < ApplicationController
   # POST /tradesmen_profiles
   def create
     ActiveRecord::Base.transaction do
-      @tradesmen_profile.owner_id = @current_user.id unless @current_user.admin?
+
+      if current_user.admin?
+        @tradesmen_profile.owner = User.invite!(email: params[:tradesmen_profile][:owner_id], role: Role.find_by(name: "Tradesman", category: RoleCategory.find_by(name: "User")), tradesmen_profile: @tradesmen_profile)
+      else
+        @tradesmen_profile.owner_id = current_user.id
+      end
+
       params[:tradesmen_profile][:tradesmen_trade_ids].each do |tradesmen_trade_id|
         unless tradesmen_trade_id.empty?
           tradesmen_trade = TradesmenTrade.find(tradesmen_trade_id)
           @tradesmen_profile.tradesmen_trades << tradesmen_trade
         end
       end
+
       @tradesmen_profile.save!
-      @tradesmen_profile_user = TradesmenProfileUser.new(user: @tradesmen_profile.owner,
-                                                         tradesmen_profile: @tradesmen_profile,
-                                                         role: Role.find_by(name: 'Admin',
-                                                                            category: RoleCategory.find_by(name: 'Tradesmen Profile')))
-      @tradesmen_profile_user.save!
+
+      unless current_user.admin?
+        @tradesmen_profile_user = TradesmenProfileUser.new(user: @tradesmen_profile.owner,
+                                                           tradesmen_profile: @tradesmen_profile,
+                                                           role: Role.find_by(name: 'Admin',
+                                                                              category: RoleCategory.find_by(name: 'Tradesmen Profile')))
+        @tradesmen_profile_user.save!
+      end
+
       redirect_to @tradesmen_profile, notice: 'Tradesmen profile was successfully created.'
     rescue
       render :new

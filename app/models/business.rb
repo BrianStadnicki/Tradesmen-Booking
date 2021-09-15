@@ -20,5 +20,4 @@ class Business < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
   validates :address, presence: true, length: { maximum: 100 }, uniqueness: { case_sensitive: false }
   validates :phone, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
-  validates :owner_id, presence: true
 end
