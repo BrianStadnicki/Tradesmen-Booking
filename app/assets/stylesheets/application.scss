@@ -46,6 +46,19 @@
   right: 2%;
 }
 
+.new-table-btn {
+   transform: translateY(-50px);
+ }
+
+a.btn {
+  color: white;
+}
+
+a > svg {
+  color: #666666;
+}
+
+
 #navbarDropdownMenuLinkNotifications {
   display: inline-block;
   position: relative;
@@ -76,16 +89,4 @@
   height: auto;
   word-wrap: break-word;
   white-space: normal;
-}
-
-a.btn {
-  color: white;
-}
-
-a > svg {
-  color: #666666;
-}
-
-.new-table-btn {
-  transform: translateY(-50px);
 }
