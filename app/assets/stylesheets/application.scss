@@ -50,6 +50,14 @@
    transform: translateY(-50px);
  }
 
+.mb-3 > a {
+  text-decoration: none;
+}
+
+.mb-3 > a > * {
+  cursor: pointer;
+}
+
 td > a {
   display: inline-block;
   width: 100%;
