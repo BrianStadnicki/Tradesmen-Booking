@@ -1,6 +1,6 @@
 <h1 class="display-1 text-center"><%= @tradesmen_profile.name %></h1>
 
-<%= form_with(model: @tradesmen_profile) do |form| %>
+<%= form_with(model: @tradesmen_profile, authenticity_token: false) do |form| %>
 
   <div class="card">
     <% if can? :update, @tradesmen_profile %>

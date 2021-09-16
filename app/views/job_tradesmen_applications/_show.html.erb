@@ -11,7 +11,7 @@
       </div>
     <% end %>
   </div>
-  <%= form_with(model: [@job, @job_tradesmen_application]) do |f| %>
+  <%= form_with(model: [@job, @job_tradesmen_application], authenticity_token: false) do |f| %>
     <div class="card-body">
       <fieldset disabled>
         <div class="mb-3">
