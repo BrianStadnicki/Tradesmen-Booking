@@ -24,15 +24,15 @@
 
   <tbody id="main-paginated">
   <% @jobs.each do |job| %>
-    <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
-      <td><%= job.title %></td>
+    <tr>
+      <td><%= link_to job.title, job_path(job) %></td>
       <td><%= "#{job.address_house_street}, #{job.address_city_town}, #{job.address_province_state}, #{job.address_post_code}" %></td>
       <td><%= job.status %></td>
       <% if current_user.tradesmen? or current_user.admin?%>
-        <td class="hides"><%= job.business.name %></td>
+        <td class="hides"><%= link_to job.business.name, business_path(job.business) %></td>
       <% end %>
       <% if current_user.booker? or current_user.admin? %>
-        <td class="hides"><%= job.tradesmen_profile.name if job.tradesmen_profile.present? %></td>
+        <td class="hides"><%= link_to job.tradesmen_profile.name, tradesmen_profile_path(job.tradesmen_profile) if job.tradesmen_profile.present? %></td>
       <% end %>
       <td class="hides"><%= job.posted.strftime("%d/%m/%Y") %></td>
     </tr>

@@ -15,8 +15,8 @@
 
   <tbody id="main-paginated">
   <% @tradesmen.each do |tradesmen_profile| %>
-    <tr onclick="location.href='<%= tradesmen_profile_path(tradesmen_profile) %>'" class="clickable">
-      <td><%= tradesmen_profile.name %></td>
+    <tr>
+      <td><%= link_to tradesmen_profile.name, tradesmen_profile_path(tradesmen_profile) %></td>
       <td><%= tradesmen_profile.tradesmen_trades.map(&:name).join(', ') %></td>
     </tr>
   <% end %>

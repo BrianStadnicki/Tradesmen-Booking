@@ -18,10 +18,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr class="clickable">
-        <td onclick="location.href='<%= user_path(user) %>'"><%= user.name %></td>
-        <td onclick="location.href='<%= user_path(user) %>'"><%= user.email %></td>
-        <td onclick="location.href='<%= user_path(user) %>'"><%= user.phone %></td>
-        <td onclick="location.href='<%= user_path(user) %>'">
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td>
           <% if user.tradesmen? and user.tradesmen_profile_user.present? %>
             <%= user.tradesmen_profile_user.role.name %>
           <% elsif user.booker? and user.business_user.present? %>
@@ -30,20 +30,20 @@
         </td>
         <% if current_user.admin? %>
           <% if user.tradesmen_profile_belongs.present? %>
-            <td onclick="location.href='<%= tradesmen_profile_path(id: user.tradesmen_profile_belongs.id) %>'" class="hides">
-              <%= user.tradesmen_profile_belongs.name %>
+            <td>
+              <%= link_to user.tradesmen_profile_belongs.name, tradesmen_profile_path(user.tradesmen_profile_belongs) %>
           <% else %>
-            <td onclick="location.href='<%= user_path(user) %>'">
+            <td>
           <% end %>
           </td>
           <% if user.business_belongs.present? %>
-            <td onclick="location.href='<%= business_path(id: user.business_belongs.id) %>'" class="hides">
-              <%= user.business_belongs.name %>
+            <td>
+              <%= link_to user.business_belongs.name, business_path(user.business_belongs) %>
           <% else %>
-            <td onclick="location.href='<%= user_path(user) %>'">
+            <td>
           <% end %>
           </td>
-          <td onclick="location.href='<%= user_path(user) %>'" class="hides"><%= user.role.name %></td>
+          <td><%= user.role.name %></td>
         <% end %>
       </tr>
     <% end %>

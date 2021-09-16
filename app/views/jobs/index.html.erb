@@ -25,8 +25,8 @@
 
   <tbody id="main-paginated">
     <% @jobs.each do |job| %>
-      <tr onclick="location.href='<%= job_path(job) %>'" class="clickable">
-        <td><%= job.title %></td>
+      <tr>
+        <td><%= link_to job.title, job_path(job) %></td>
         <td><%= "#{job.address_post_code}" %></td>
         <td><%= job.status %></td>
         <td><%= job.active ? "yes" : "no" %></td>

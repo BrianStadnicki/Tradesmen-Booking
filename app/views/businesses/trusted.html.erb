@@ -16,8 +16,8 @@
 
   <tbody id="main-paginated">
     <% @businesses.each do |business| %>
-      <tr onclick="location.href='<%= business_path(business) %>'" class="clickable">
-        <td><%= business.name %></td>
+      <tr>
+        <td><%= link_to business.name, business_path(business) %></td>
         <td><%= business.description %></td>
         <td><%= business.address %></td>
         <td><%= business.phone %></td>
