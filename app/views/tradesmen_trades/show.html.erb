@@ -26,8 +26,12 @@
 
       <tbody>
         <% @tradesmen_trade.tradesmen_profiles.each do |profile| %>
-          <tr onclick="location.href='<%= tradesmen_profile_path(profile) %>'" class="clickable">
-            <th><%= profile.name %></th>
+          <tr>
+            <td>
+              <%= link_to tradesmen_profile_path(profile) do %>
+                <%= profile.name %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -47,9 +47,9 @@
         <% if current_user.admin? %>
           <div class="mb-3">
             <%= form.label :owner_id, class: "form-label" %>
-            <div onclick="location.href='<%= user_path(@business.owner) %>'">
-              <%= form.text_field :owner_id, value: @business.owner.name, class: "form-control clickable" %>
-            </div>
+            <%= link_to user_path(@business.owner) do %>
+              <%= form.text_field :owner_id, value: @business.owner.name, class: "form-control" %>
+            <% end %>
           </div>
 
         <% end %>
@@ -81,8 +81,12 @@
 
         <tbody>
           <% @business.users_business_user.includes(:user, :role).each do |user_and_role| %>
-            <tr onclick="location.href='<%= user_path(user_and_role.user) %>'" class="clickable">
-              <td><%= user_and_role.user.name %></td>
+            <tr>
+              <td>
+                <%= link_to user_path(user_and_role.user) do %>
+                  <%= user_and_role.user.name %>
+                <% end %>
+              </td>
               <td><%= user_and_role.role.name %></td>
             </tr>
           <% end %>

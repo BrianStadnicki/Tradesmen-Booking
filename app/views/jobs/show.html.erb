@@ -35,18 +35,18 @@
         <% if current_user.admin? or current_user.tradesmen? %>
           <div class="mb-3">
             <%= f.label :business, class: "form-label" %>
-            <div onclick="location.href='<%= business_path(@job.business) %>'">
-              <%= f.text_field :business, value: @job.business.name, class: "form-control clickable" %>
-            </div>
+            <%= link_to business_path(@job.business) do %>
+              <%= f.text_field :business, value: @job.business.name, class: "form-control" %>
+            <% end %>
           </div>
         <% end %>
 
         <% if @job.tradesmen_profile and (current_user.admin? or current_user.booker?)%>
           <div class="mb-3">
             <%= f.label :tradesmen_profile, class: "form-label" %>
-            <div onclick="location.href='<%= tradesmen_profile_path(@job.tradesmen_profile) %>'">
-              <%= f.text_field :tradesmen_profile, value: @job.tradesmen_profile.name, class: "form-control clickable" %>
-            </div>
+            <%= link_to tradesmen_profile_path(@job.tradesmen_profile) do %>
+              <%= f.text_field :tradesmen_profile, value: @job.tradesmen_profile.name, class: "form-control" %>
+            <% end %>
           </div>
         <% end %>
 

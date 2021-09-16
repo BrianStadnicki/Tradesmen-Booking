@@ -34,16 +34,16 @@
         <% if @user.business_belongs.present? %>
           <div class="mb-3">
             <%= form.label :business, class: "form-label" %>
-            <div onclick="location.href='<%= business_path(@user.business_belongs) %>'">
+            <%= link_to business_path(@user.business_belongs) do %>
               <%= form.text_field :business, value: @user.business_belongs.name, class: "form-control clickable" %>
-            </div>
+            <% end %>
           </div>
         <% elsif @user.tradesmen_profile_belongs.present? %>
           <div class="mb-3">
             <%= form.label :tradesmen_profile, class: "form-label" %>
-            <div onclick="location.href='<%= tradesmen_profile_path(@user.tradesmen_profile_belongs) %>'">
+            <%= link_to tradesmen_profile_path(@user.tradesmen_profile_belongs) do %>
               <%= form.text_field :tradesmen_profile, value: @user.tradesmen_profile_belongs.name, class: "form-control clickable" %>
-            </div>
+            <% end %>
           </div>
         <% end %>
 
