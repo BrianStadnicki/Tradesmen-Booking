@@ -1,7 +1,7 @@
 <h1 class="display-1 text-center"><%= @job.title %></h1>
 
 <div class="card">
-  <% if can? :update, @job %>
+  <% if !current_user.tradesmen? and can? :update, @job %>
     <div class="top-right">
       <div class="btn btn-outline-light btn-sm">
         <%= link_to edit_job_path(@job), class: "btn" do %>
