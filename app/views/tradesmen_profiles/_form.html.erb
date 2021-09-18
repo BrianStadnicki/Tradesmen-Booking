@@ -29,14 +29,16 @@
       </div>
 
       <div class="mb-3 form-check form-switch">
-        <%= f.label :tradesmen_trades, class: "form-label" %>
+        <%= f.label :tradesmen_trades, 'Trades', class: "form-label" %>
         <div class="container">
-          <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name, class: "form-control" do |b| %>
-            <div class="row">
-              <%= b.check_box class: "form-check-input", id: b.text + "_trade_toggle"%>
-              <%= b.label class: "form-label", for: b.text + "_trade_toggle" %>
-            </div>
-          <% end %>
+          <div class="row">
+            <%= collection_check_boxes :tradesmen_profile, :tradesmen_trade_ids, TradesmenTrade.all, :id, :name, class: "form-control" do |b| %>
+              <div class="col-4">
+                <%= b.check_box class: "form-check-input", id: b.text + "_trade_toggle"%>
+                <%= b.label class: "form-label", for: b.text + "_trade_toggle" %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
 
