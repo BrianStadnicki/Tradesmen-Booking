@@ -26,3 +26,8 @@ role_tradesmen_admin = Role.create!(name: 'Admin', description: 'Administrator o
 role_tradesmen_employee = Role.create!(name: 'Employee',
                                        description: 'Employee of tradesmen profile, can manage jobs but not profile',
                                        category: role_category_tradesmen)
+
+# Tradesmen trades
+["Bell hanger", "Boilermaker", "Carpenter", "Carpet layer", "Dredger", "Electrician", "Elevator mechanic", "Fencer", "Glazier", "Heavy equipment operator", "HVAC Technician", "Insulation", "Ironworker", "Laborer", "Landscaper", "Linemen", "Mason", "Millwright", "Painter", "Pile driver", "Pipefitter", "Plasterer", "Plumber", "Sheet metal worker", "Steel fixer", "Waterproofer", "Welder"].each do |type|
+  TradesmenTrade.create!(name: type)
+end
