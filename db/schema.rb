@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_060828) do
+ActiveRecord::Schema.define(version: 2021_09_19_110154) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -194,10 +194,10 @@ ActiveRecord::Schema.define(version: 2021_09_09_060828) do
   add_foreign_key "businesses", "users", column: "owner_id"
   add_foreign_key "businesses_tradesmen_profiles", "businesses"
   add_foreign_key "businesses_tradesmen_profiles", "tradesmen_profiles"
-  add_foreign_key "job_tradesmen_applications", "jobs"
+  add_foreign_key "job_tradesmen_applications", "jobs", on_delete: :cascade
   add_foreign_key "job_tradesmen_applications", "tradesmen_profiles"
   add_foreign_key "jobs", "businesses"
-  add_foreign_key "jobs", "job_tradesmen_applications"
+  add_foreign_key "jobs", "job_tradesmen_applications", on_delete: :cascade
   add_foreign_key "notifications", "users"
   add_foreign_key "tradesmen_profile_users", "roles"
   add_foreign_key "tradesmen_profile_users", "tradesmen_profiles"
