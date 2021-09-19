@@ -61,6 +61,7 @@ class Ability
           can :create, Job, business: user.business_belongs
           can :read, Job, business: user.business_belongs
           can :update, Job, business: user.business_belongs
+          can :destroy, Job, business: user.business_belongs
           can :mine, Job, business: user.business_belongs
           can :mine_active, Job, business: user.business_belongs, active: true
           can :completed, Job, business: user.business_belongs, active: false
