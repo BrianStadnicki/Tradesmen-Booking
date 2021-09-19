@@ -33,7 +33,7 @@ if ENV.fetch("RACK_ENV") == 'development'
     verify_mode: 'none'
   )
 else
-  port ENV.fetch("PORT")
+  port ENV.fetch("PORT") { 3000 }
 end
 
 # Specifies the number of `workers` to boot in clustered mode.
