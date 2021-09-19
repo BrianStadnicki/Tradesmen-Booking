@@ -33,6 +33,13 @@ const saveNotificationSubscription = async subscription => {
     if (!(self.localStorage.getItem("notification_subscription") && self.localStorage.getItem("notification_subscription") === JSON.stringify(subscription))) {
         console.log("Registering notification subscription with server")
         let userID = self.localStorage.getItem("user_id")
+        if (userID === null) {
+            await fetch ('/users/current_id')
+                .then(response => response.json())
+                .then(current_id => {
+                    self.localStorage.setItem("user_id", current_id.id)
+                })
+        }
         await fetch('/users/' + userID + '/edit')
                 .then(response => response.text())
                 .then(doc => new DOMParser().parseFromString(doc, "text/html"))
