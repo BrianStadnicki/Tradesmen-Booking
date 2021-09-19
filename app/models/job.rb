@@ -2,7 +2,7 @@ class Job < ApplicationRecord
   belongs_to :business
   belongs_to :tradesmen_profile, optional: true
   belongs_to :job_tradesmen_application, optional: true
-  has_many :job_tradesmen_applications
+  has_many :job_tradesmen_applications, dependent: :destroy
   validates :title, presence: true, length: { maximum: 40 }
   validates :address_house_street, presence: true, length: { maximum: 100 }
   validates :address_city_town, presence: true, length: { maximum: 100 }
