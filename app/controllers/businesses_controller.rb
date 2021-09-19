@@ -4,12 +4,8 @@ class BusinessesController < ApplicationController
 
   # GET /businesses
   def index
-    if @businesses.empty?
-      redirect_to new_business_path
-    else
-      @businesses = @businesses.paginate(page: params[:page], per_page: 30)
-      render layout: false if params[:page]
-    end
+    @businesses = @businesses.paginate(page: params[:page], per_page: 30)
+    render layout: false if params[:page]
   end
 
   # GET /businesses/trusted
