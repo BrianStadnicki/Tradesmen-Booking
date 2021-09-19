@@ -1,0 +1,4 @@
+vapid:
+   subject: "mailto:tradesmenbook@gmail.com"
+   public_key: "BJ2mZ3uSBnh6Zho2MNgXpqdqF3c1vRXS-34ULfGdn9L8woat7ayX6hgzJce3FzMqBpFjplgJl-oaH3nDpJbJWSM="
+   private_key: "OrpdtdpOEqOfUdCRtPa3NNvB6RvStje7KJ0vQmg8ZDg="

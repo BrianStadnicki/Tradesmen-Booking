@@ -79,8 +79,5 @@ yarn-debug.log*
 .yarn-integrity
 .project
 
-# Ignore notifications config
-/config/notifications.yml
 /error
-
 /config/master.key
