@@ -1,9 +1,9 @@
 class Business < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
-  has_many :jobs
+  belongs_to :owner, class_name: 'User', dependent: :destroy
+  has_many :jobs, dependent: :destroy
 
   has_many :users_business_user, class_name: 'BusinessUser',  dependent: :destroy
-  has_many :users, through: :users_business_user, source: :user
+  has_many :users, through: :users_business_user, source: :user, dependent: :destroy
   has_many :admins_business_user, lambda {
                       BusinessUser.joins(:role).where(roles: { name: 'Admin' }).includes(:user)
                     }, class_name: 'BusinessUser'
@@ -16,6 +16,7 @@ class Business < ApplicationRecord
   has_many :tradesmen, through: :tradesmen_businesses_tradesmen_profiles, source: :tradesmen_profile
 
   has_many :employees, through: :employees_business_user, source: :user
+
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 500 }
   validates :address, presence: true, length: { maximum: 100 }, uniqueness: { case_sensitive: false }
