@@ -20,7 +20,6 @@ import "../serviceworker-companion"
 import "../notifications"
 import "../paginate"
 import "../new-registration-interactive"
-import 'stylesheets/application'
 
 Rails.start()
 Turbolinks.start()
