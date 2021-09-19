@@ -55,6 +55,12 @@ class JobTradesmenApplicationsController < ApplicationController
     end
   end
 
+  # DELETE /jobs/1/job_tradesmen_applications/1
+  def destroy
+    @job_tradesmen_application.destroy
+    redirect_to job_path(@job), notice: 'Job application was successfully destroyed.'
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

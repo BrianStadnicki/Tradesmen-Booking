@@ -32,9 +32,15 @@
         </div>
       <% end %>
 
-      <div class="actions">
+      <div class="float-start actions">
         <%= f.submit "Apply", class: "btn btn-primary"%>
       </div>
+
+      <% unless @job_tradesmen_application.new_record? %>
+        <div class="float-end">
+          <%= button_to 'Delete', job_job_tradesmen_application_path(@job_tradesmen_application), method: :delete, action: 'destroy', class: "btn btn-secondary" %>
+        </div>
+      <% end %>
 
     </div>
   </div>

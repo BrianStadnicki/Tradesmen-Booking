@@ -38,6 +38,7 @@ class Ability
           can :create, JobTradesmenApplication, job: { business: { tradesmen_businesses_tradesmen_profiles: { tradesmen_profile_id: user.tradesmen_profile_belongs.id } },
                                                        active: true, tradesmen_profile: nil }, tradesmen_profile: user.tradesmen_profile_belongs
           can :update, JobTradesmenApplication, tradesmen_profile: user.tradesmen_profile_belongs
+          can :destroy, JobTradesmenApplication, tradesmen_profile: user.tradesmen_profile_belongs
           case user.tradesmen_profile_user.role.name
           when 'Owner'
             can :manage, User, tradesmen_profile_user: { tradesmen_profile: user.tradesmen_profile_belongs }
