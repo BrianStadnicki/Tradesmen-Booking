@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_110154) do
+ActiveRecord::Schema.define(version: 2021_09_19_120956) do
 
   create_table "business_users", force: :cascade do |t|
     t.integer "business_id"
@@ -191,17 +191,17 @@ ActiveRecord::Schema.define(version: 2021_09_19_110154) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "businesses", "users", column: "owner_id"
+  add_foreign_key "businesses", "users", column: "owner_id", on_delete: :cascade
   add_foreign_key "businesses_tradesmen_profiles", "businesses"
   add_foreign_key "businesses_tradesmen_profiles", "tradesmen_profiles"
   add_foreign_key "job_tradesmen_applications", "jobs", on_delete: :cascade
   add_foreign_key "job_tradesmen_applications", "tradesmen_profiles"
   add_foreign_key "jobs", "businesses"
   add_foreign_key "jobs", "job_tradesmen_applications", on_delete: :cascade
-  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", on_delete: :cascade
   add_foreign_key "tradesmen_profile_users", "roles"
   add_foreign_key "tradesmen_profile_users", "tradesmen_profiles"
-  add_foreign_key "tradesmen_profile_users", "users"
-  add_foreign_key "tradesmen_profiles", "users", column: "owner_id"
-  add_foreign_key "users", "roles"
+  add_foreign_key "tradesmen_profile_users", "users", on_delete: :cascade
+  add_foreign_key "tradesmen_profiles", "users", column: "owner_id", on_delete: :cascade
+  add_foreign_key "users", "roles", on_delete: :cascade
 end
