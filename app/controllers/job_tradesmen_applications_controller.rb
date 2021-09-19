@@ -31,6 +31,7 @@ class JobTradesmenApplicationsController < ApplicationController
     if params[:accepted]
       @job.tradesmen_profile = @job_tradesmen_application.tradesmen_profile
       @job.job_tradesmen_application = @job_tradesmen_application
+      @job.job_tradesmen_applications.where.not(id: @job_tradesmen_application.id).destroy_all
       @job.active = true
       @job.status = "Accepted application"
       @job.save!
