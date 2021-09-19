@@ -18,9 +18,16 @@
         <%= f.text_field :phone, class: "form-control" %>
       </div>
 
-      <div class="actions">
+      <div class="float-start actions">
         <%= f.submit class: "btn btn-primary" %>
       </div>
+
+      <% unless user.new_record? %>
+        <div class="float-end">
+          <%= button_to 'Delete', user_path(user), method: :delete, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+
      </div>
   </div>
 
