@@ -4,12 +4,8 @@ class TradesmenProfilesController < ApplicationController
 
   # GET /tradesmen_profiles
   def index
-    if @tradesmen_profiles.empty?
-      redirect_to new_tradesmen_profile_path
-    else
-      @tradesmen_profiles = @tradesmen_profiles.includes(:tradesmen_trades).paginate(page: params[:page], per_page: 30)
-      render layout: false if params[:page]
-    end
+    @tradesmen_profiles = @tradesmen_profiles.includes(:tradesmen_trades).paginate(page: params[:page], per_page: 30)
+    render layout: false if params[:page]
   end
 
   # Get /tradesmen_profiles/trusted
