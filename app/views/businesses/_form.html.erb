@@ -46,7 +46,7 @@
 
       <% unless business.new_record? %>
         <div class="float-end">
-          <%= button_to 'Delete', business_path(business), method: :delete, class: "btn btn-secondary" %>
+          <%= button_to 'Delete', business_path(business), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" %>
         </div>
     <% end %>
     </div>

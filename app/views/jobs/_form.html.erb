@@ -65,7 +65,7 @@
 
       <% unless job.new_record? %>
         <div class="float-end">
-          <%= button_to 'Delete', job_path(job), method: :delete, action: 'destroy', class: "btn btn-secondary" %>
+          <%= button_to 'Delete', job_path(job), method: :delete, data: { confirm: "Are you sure?" }, action: 'destroy', class: "btn btn-secondary" %>
         </div>
       <% end %>
 

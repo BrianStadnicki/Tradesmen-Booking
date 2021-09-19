@@ -38,7 +38,7 @@
 
       <% unless @job_tradesmen_application.new_record? %>
         <div class="float-end">
-          <%= button_to 'Delete', job_job_tradesmen_application_path(@job_tradesmen_application), method: :delete, action: 'destroy', class: "btn btn-secondary" %>
+          <%= button_to 'Delete', job_job_tradesmen_application_path(@job_tradesmen_application), method: :delete, data: { confirm: "Are you sure?" }, action: 'destroy', class: "btn btn-secondary" %>
         </div>
       <% end %>
 
