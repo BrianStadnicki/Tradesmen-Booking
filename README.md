@@ -7,4 +7,4 @@
 `bundle exec sidekiq`
 
 ## Create Admin seed
-` User.create!(name: "Admin", email: "05bs001@gmail.com", phone: "345345345", role: Role.user_category.find_by(name: "Admin"), password: "password")`
+`User.create!(name: "Admin", email: "tradesmenbook@gmail.com", confirmed_at: Date.new, phone: "07543709205", role: Role.user_category.find_by(name: "Admin"), password: "ipoidfugodsfkgeaprfgsd$££$%%£$%£$%fdskpalosdf£4234235345345ASDFASDFTErete£$%^$%GT")`
