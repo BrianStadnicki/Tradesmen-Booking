@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone, :role_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :unconfirmed_email, :phone, :role_id])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :phone, :role_id])
     devise_parameter_sanitizer.permit(:invite, keys: [:name, :email, :phone, :role_id, :business_id, :tradesmen_profile_id])
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name, :phone])
@@ -37,7 +37,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     session[:sign_in] = true
-    super
+    if resource.tradesmen? and !resource.tradesmen_profile_belongs.present?
+      new_tradesmen_profile_path
+    else
+      super
+    end
   end
 
 end
