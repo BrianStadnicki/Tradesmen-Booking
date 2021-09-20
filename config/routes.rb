@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/inactive', to: redirect('/inactive.html')
   get '/service-worker.js' => "service_worker#service_worker"
   get '/manifest.json' => "service_worker#manifest"
   get 'business_tradesmen_profile/create'
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :notifications
     get 'current_id', on: :collection
+    devise_scope :user do
+      get 'inactive' => "users/registrations#inactive"
+    end
   end
   resources :jobs do
     resources :job_tradesmen_applications
