@@ -1,2 +1,2 @@
 web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
-worker: REDIS_URL="redis://:p231cabc5aff455ec86a9340562ca71236bdbe6bd58231dd522b9fabb728c2f9d@ec2-34-254-117-5.eu-west-1.compute.amazonaws.com:32450" bundle exec sidekiq -c 5
+worker: bundle exec sidekiq -c 5

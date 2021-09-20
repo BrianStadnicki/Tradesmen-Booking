@@ -76,8 +76,8 @@ Rails.application.configure do
     address: "smtp.eu.mailgun.org",
     port: 587,
     domain: "mg.tradesmen.io",
-    user_name: "postmaster@mg.tradesmen.io",
-    password: "13ea920cd9b091ad5f93a23bd83322b3-45f7aa85-93368721",
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
     authentication: "plain",
     enable_starttls_auto: true
   }
