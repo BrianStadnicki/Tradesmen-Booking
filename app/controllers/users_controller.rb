@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    @users = @users.paginate(page: params[:page], per_page: 30)
     @users = @users.includes(:role, :tradesmen_profile_belongs, :business_belongs, business_user: [:role], tradesmen_profile_user: [:role])
+    render layout: false if params[:page]
   end
 
   # GET /users/1

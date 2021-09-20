@@ -15,7 +15,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="main-paginated">
     <% @users.each do |user| %>
       <tr class="clickable">
         <td><%= link_to user.name, user_path(user) %></td>
