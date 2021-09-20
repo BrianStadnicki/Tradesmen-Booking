@@ -77,7 +77,7 @@ Rails.application.configure do
     port: 587,
     domain: "mg.tradesmen.io",
     user_name: "postmaster@mg.tradesmen.io",
-    password: "0657c78558b55a017a92ef73d33de66e-45f7aa85-a5df3c68",
+    password: "13ea920cd9b091ad5f93a23bd83322b3-45f7aa85-93368721",
     authentication: "plain",
     enable_starttls_auto: true
   }
