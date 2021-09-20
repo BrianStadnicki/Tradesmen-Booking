@@ -73,9 +73,11 @@ const listenToServiceWorker = async () => {
 
 const main = async () => {
     const registration = await registerServiceWorker()
-    const subscription = await requestNotificationPermission(registration)
-    await saveNotificationSubscription(subscription)
-    await listenToServiceWorker()
+    if (window.location.pathname !== '/users' && window.location.pathname !== '/users/sign_up' && window.location.pathname !== '/users/sign_in' && window.location.pathname !== '/users/registrations/inactive') {
+        const subscription = await requestNotificationPermission(registration)
+        await saveNotificationSubscription(subscription)
+        await listenToServiceWorker()
+    }
 }
 
 main()
