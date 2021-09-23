@@ -1,8 +1,6 @@
-<%= form_for @job_tradesmen_application, locals do |f| %>
-
-  <div class="card">
-    <div class="card-body">
-
+<div class="card">
+  <div class="card-body">
+    <%= form_for @job_tradesmen_application, locals do |f| %>
       <div class="mb-3">
         <%= f.label :date, class: "form-label" %>
         <%= f.date_field :date, class: "form-control" %>
@@ -35,14 +33,11 @@
       <div class="float-start actions">
         <%= f.submit "Apply", class: "btn btn-primary"%>
       </div>
-
-      <% unless @job_tradesmen_application.new_record? %>
-        <div class="float-end">
-          <%= button_to 'Delete', job_job_tradesmen_application_path(@job_tradesmen_application), method: :delete, data: { confirm: "Are you sure?" }, action: 'destroy', class: "btn btn-secondary" %>
-        </div>
-      <% end %>
-
-    </div>
+    <% end %>
+    <% unless @job_tradesmen_application.new_record? %>
+      <div class="float-end">
+        <%= button_to 'Delete', job_job_tradesmen_application_path(@job_tradesmen_application), method: :delete, data: { confirm: "Are you sure?" }, action: 'destroy', class: "btn btn-secondary" %>
+      </div>
+    <% end %>
   </div>
-
-<% end %>
+</div>
