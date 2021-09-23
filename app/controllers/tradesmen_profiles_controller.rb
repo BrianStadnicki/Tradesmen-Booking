@@ -80,7 +80,7 @@ class TradesmenProfilesController < ApplicationController
     if @tradesmen_profile.update(tradesmen_profile_params)
 
       @tradesmen_profile.users.each do |user|
-        send_notification user, "Your tradesmen profile was updated", "", "TradesmenProfile", "updated"
+        send_notification user, "Your tradesmen profile was updated", "Please ensure this is correct", "TradesmenProfile", "updated"
       end
 
       redirect_to @tradesmen_profile, notice: 'Tradesmen profile was successfully updated.'
