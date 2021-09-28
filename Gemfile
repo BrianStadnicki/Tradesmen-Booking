@@ -50,8 +50,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
 end
 
 group :production do
