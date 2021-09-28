@@ -50,14 +50,14 @@ class TradesmenProfilesController < ApplicationController
         end
       end
 
-      @tradesmen_profile.save!
+      @tradesmen_profile.save
 
       unless current_user.admin?
         @tradesmen_profile_user = TradesmenProfileUser.new(user: @tradesmen_profile.owner,
                                                            tradesmen_profile: @tradesmen_profile,
                                                            role: Role.find_by(name: 'Admin',
                                                                               category: RoleCategory.find_by(name: 'Tradesmen Profile')))
-        @tradesmen_profile_user.save!
+        @tradesmen_profile_user.save
       end
 
       redirect_to @tradesmen_profile, notice: 'Tradesmen profile was successfully created.'

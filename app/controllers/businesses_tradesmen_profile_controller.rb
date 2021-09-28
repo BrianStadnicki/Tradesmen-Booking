@@ -8,7 +8,7 @@ class BusinessesTradesmenProfileController < ApplicationController
   # POST /businesess_tradesmen_profiles
   def create
     @business_tradesmen_profile = BusinessesTradesmenProfile.new(businesses_tradesmen_profile_params)
-    if @business_tradesmen_profile.save!
+    if @business_tradesmen_profile.save
 
       @business_tradesmen_profile.business.users.each do |user|
         send_notification user, "Trusted tradesmen #{@business_tradesmen_profile.tradesmen_profile.name}", "Your Business is now trusting #{@business_tradesmen_profile.tradesmen_profile.name}","BusinessTradesmen", "created"

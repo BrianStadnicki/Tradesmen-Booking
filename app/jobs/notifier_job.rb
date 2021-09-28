@@ -21,7 +21,7 @@ class NotifierJob < ApplicationJob
     )
     rescue Webpush::ExpiredSubscription
       notification.user.notification_subscription = nil
-      notification.user.save!
+      notification.user.save
     end
   end
 end

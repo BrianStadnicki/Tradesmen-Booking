@@ -10,7 +10,7 @@ class JobTradesmenApplicationsController < ApplicationController
   # POST /jobs/1/job_tradesmen_applications
   def create
     @job_tradesmen_application.tradesmen_profile ||= current_user.tradesmen_profile_belongs
-    if @job_tradesmen_application.save!
+    if @job_tradesmen_application.save
 
       @job_tradesmen_application.job.business.users.each do |user|
         send_notification user, "Tradesmen #{@job_tradesmen_application.tradesmen_profile.name} applied for a job", "They applied for #{@job_tradesmen_application.job.title}", "JobTradesmenApplication", "created"
@@ -34,7 +34,7 @@ class JobTradesmenApplicationsController < ApplicationController
       @job.job_tradesmen_applications.where.not(id: @job_tradesmen_application.id).destroy_all
       @job.active = true
       @job.status = "Accepted application"
-      @job.save!
+      @job.save
 
       @job.tradesmen_profile.users.each do |user|
         send_notification user, "Job accepted", "#{@job.business.name} accepted your application for #{@job.title}", "Jobs", "accepted"

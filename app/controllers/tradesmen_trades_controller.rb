@@ -20,7 +20,7 @@ class TradesmenTradesController < ApplicationController
 
   # POST /tradesmen_trades
   def create
-    if @tradesmen_trade.save!
+    if @tradesmen_trade.save
       redirect_to @tradesmen_trade, notice: 'Tradesmen trade was successfully created.'
     else
       render :new

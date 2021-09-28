@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    if @user.save!
+    if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new

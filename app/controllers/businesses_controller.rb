@@ -42,14 +42,14 @@ class BusinessesController < ApplicationController
       else
         @business.owner_id = @current_user.id
       end
-      @business.save!
+      @business.save
 
       unless current_user.admin?
         @business_user = BusinessUser.new(user: @business.owner, business: @business,
                                           role: Role.find_by(name: 'Admin',
                                                              category: RoleCategory.find_by(name: 'Business')))
         @business_user.business_id = @business.id
-        @business_user.save!
+        @business_user.save
       end
       redirect_to @business, notice: 'Business was successfully created.'
 
@@ -65,7 +65,7 @@ class BusinessesController < ApplicationController
     if @business.update(business_params)
       # Don't know why this hack is needed, hopefully temporary
       @business.owner_id = params['owner']['owner_id'] if params['owner']
-      @business.save!
+      @business.save
 
       @business.users.each do |user|
         send_notification user, "Your business profile was updated", "Please ensure this was correct", "Business", "updated"
