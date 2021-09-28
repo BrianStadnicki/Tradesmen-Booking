@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if params[:user][:role_id].to_i != @user.role.id
+    if params[:user][:role_id].present? and params[:user][:role_id].to_i != @user.role.id
       redirect_back fallback_location: ''
     else
       super
